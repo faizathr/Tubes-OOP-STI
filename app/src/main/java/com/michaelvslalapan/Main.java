@@ -3,12 +3,43 @@
  */
 package com.michaelvslalapan;
 
+import java.util.Scanner;
+
 public class Main {
-    public String getGreeting() {
-        return "Hello World!";
-    }
 
     public static void main(String[] args) {
-        System.out.println(new Main().getGreeting());
+        System.out.println("Masukkan Menu yang Ingin Dipilih");
+        System.out.printf("\nStart\nHelp\nPlants List\nZombiesList\nExit\n\n");
+
+        Scanner input = new Scanner(System.in);
+
+        boolean isGameOver = false;
+        
+        while(isGameOver == false){
+            String menu = input.nextLine();
+
+            switch(menu.toUpperCase()){
+                case "START":
+                    System.out.println("berhasil");
+                    break;
+                case "HELP":
+                    break;
+                case "PLANTS LIST":
+                    break;
+                case "ZOMBIESLIST":
+                    break;
+                case "EXIT":
+                    isGameOver = true;
+                    break;
+                default:
+                    System.out.println("Masukkan Menu yang Benar");
+                    break;
+            }
+            
+        }
+        
+        input.close();
+        
+
     }
 }
