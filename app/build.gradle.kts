@@ -32,5 +32,9 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "org.example.App"
+    mainClass = "com.michaelvslalapan.Organism.Tanaman.Sunflower"
+}
+
+tasks.named<JavaExec>("run") {
+    standardInput = System.`in`
 }

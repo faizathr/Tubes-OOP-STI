@@ -1,13 +1,13 @@
 package com.michaelvslalapan.Organism;
 
-public class Organism {
+public abstract class Organism {
     private String name;
-    private int health;
-    private int attackDamage;
-    private int attackSpeed;
+    private double health;
+    private double attackDamage;
+    private double attackSpeed;
     private Boolean is_aquatic;
 
-    public Organism(String name, int health, int attackDamage, int attackSpeed, Boolean is_aquatic){
+    public Organism(String name, double health, double attackDamage, double attackSpeed, Boolean is_aquatic){
         this.name = name;
         this.health = health;
         this.attackDamage = attackDamage;
@@ -20,15 +20,15 @@ public class Organism {
         return name;
     }
 
-    public int get_Health(){
+    public double get_Health(){
         return health;
     }
 
-    public int get_Attack_Damage(){
+    public double get_Attack_Damage(){
         return attackDamage;
     }
 
-    public int get_Attack_Speed(){
+    public double get_Attack_Speed(){
         return attackSpeed;
     }
 
@@ -57,8 +57,9 @@ public class Organism {
         this.is_aquatic = is_aquatic;
     }
 
-    // Method untuk mengurangi health
-    public void decreaseHealth() {
-        // Implementasi pengurangan health akibat attack dari zombie (ke tanaman) dan attack dari tanaman (ke zombie) 
+    public void decreaseHealth(double health){
+        this.health -= health;
     }
+
+    // decreaseHealth bakal dipindah ke abstract class zombie dan plant karena dua duanya bakal punya method decreaseHealth yang beda
 }
