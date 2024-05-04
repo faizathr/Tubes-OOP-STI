@@ -1,6 +1,6 @@
 package com.michaelvslalapan.Organism;
 
-public class Organism {
+public abstract class Organism {
     private String name;
     private int health;
     private int attackDamage;
@@ -57,8 +57,5 @@ public class Organism {
         this.is_aquatic = is_aquatic;
     }
 
-    // Method untuk mengurangi health
-    public void decreaseHealth() {
-        // Implementasi pengurangan health akibat attack dari zombie (ke tanaman) dan attack dari tanaman (ke zombie) 
-    }
+    // decreaseHealth bakal dipindah ke abstract class zombie dan plant karena dua duanya bakal punya method decreaseHealth yang beda
 }
