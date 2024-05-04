@@ -21,8 +21,6 @@ dependencies {
 
     // This dependency is used by the application.
     implementation(libs.guava)
-
-    testImplementation("org.junit.jupiter:junit-jupiter-api")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -34,7 +32,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "com.michaelvslalapan.Main"
+    mainClass = "com.michaelvslalapan.Organism.Tanaman.Sunflower"
 }
 
 tasks.named<JavaExec>("run") {

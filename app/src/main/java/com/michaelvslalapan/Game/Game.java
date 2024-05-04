@@ -1,7 +1,7 @@
 package com.michaelvslalapan.Game;
 
 public class Game {
-    private static boolean isGameOver = true;
+    private static boolean isGameOver = false;
     private static long startTime = System.currentTimeMillis();
     private static int sun = 0;
     // plantdeck
