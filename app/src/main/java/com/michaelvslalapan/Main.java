@@ -13,9 +13,9 @@ public class Main {
 
         Scanner input = new Scanner(System.in);
 
-        boolean isGameOver = false;
+        boolean isProgramOver = false;
         
-        while(isGameOver == false){
+        while(isProgramOver == false){
             String menu = input.nextLine();
 
             switch(menu.toUpperCase()){
@@ -29,7 +29,7 @@ public class Main {
                 case "ZOMBIESLIST":
                     break;
                 case "EXIT":
-                    isGameOver = true;
+                    isProgramOver = true;
                     break;
                 default:
                     System.out.println("Masukkan Menu yang Benar");

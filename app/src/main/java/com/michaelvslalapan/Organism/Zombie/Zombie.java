@@ -12,7 +12,7 @@ public abstract class Zombie extends Organism {
     }
 
     public void zombie_Attack_Plants(Plants p) {
-        p.decreaseHealth(get_Attack_Damage());
+        p.decreaseHealth(this.get_Attack_Damage());
     } // buat zombie melakukan attack ke tanaman
 
     public double getZombieSpeed(){

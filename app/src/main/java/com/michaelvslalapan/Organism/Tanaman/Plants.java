@@ -1,14 +1,15 @@
 package com.michaelvslalapan.Organism.Tanaman;
 
 import com.michaelvslalapan.Organism.Organism;
+import com.michaelvslalapan.Organism.Zombie.Zombie;
 
-public class Plants extends Organism {
+public abstract class Plants extends Organism {
 
     private int cost;
     private int range;
-    private int cooldown;
+    private double cooldown;
 
-    public Plants(String name, int health, int attackDamage, int attackSpeed, Boolean is_aquatic, int cost, int range, int cooldown) {
+    public Plants(String name, int cost, double health, double attackDamage, double attackSpeed, int range, double cooldown, Boolean is_aquatic) {
         super(name, health, attackDamage, attackSpeed, is_aquatic);
         this.cost = cost;
         this.range = range;
@@ -24,7 +25,7 @@ public class Plants extends Organism {
         return range;
     }
 
-    public int getCooldown() {
+    public double getCooldown() {
         return cooldown;
     }
 
@@ -41,8 +42,7 @@ public class Plants extends Organism {
         this.cooldown = cooldown;
     }
 
-    // Method untuk menyerang
-    public void attack() {
-        // Implementasi serangan tanaman
-    }
+    public void zombie_Attack_Plants(Zombie z) {
+        z.decreaseHealth(this.get_Attack_Damage());
+    } // buat plant melakukan attack ke zombie 
 }
