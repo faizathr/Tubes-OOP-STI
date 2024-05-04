@@ -12,23 +12,23 @@ public class Game {
 
     }
 
-    public boolean getIsGameOver(){
+    public static boolean getIsGameOver(){
         return isGameOver;
     }
 
-    public long getStartTime(){
+    public static long getStartTime(){
         return startTime;
     }
 
-    public int getSun(){
+    public static int getSun(){
         return sun;
     }
 
-    public void addSun (int sun){
+    public synchronized static void addSun (int sun){
         Game.sun += sun;
     }
     
-    public void decreaseSun(int sun){
+    public synchronized static void decreaseSun(int sun){
         Game.sun -= sun;
     }
 }
