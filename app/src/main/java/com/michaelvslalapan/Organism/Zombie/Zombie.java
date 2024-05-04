@@ -5,17 +5,23 @@ import com.michaelvslalapan.Organism.Tanaman.Plants;
 
 public abstract class Zombie extends Organism {
 
-    private long zombie_speed = 5;
+    private double zombieSpeed = 5;
 
-    static {
-        System.out.println("test");
-    }
-
-    public Zombie(String name, int health, int attackDamage, int attackSpeed, Boolean is_aquatic) {
+    public Zombie(String name, double health, double attackDamage, double attackSpeed, Boolean is_aquatic) {
         super(name, health, attackDamage, attackSpeed, is_aquatic);
     }
 
-    public abstract void zombie_Attack_Plants(Plants p); // buat zombie melakukan attack ke tanaman
+    public void zombie_Attack_Plants(Plants p) {
+        p.decreaseHealth(get_Attack_Damage());
+    } // buat zombie melakukan attack ke tanaman
+
+    public double getZombieSpeed(){
+        return zombieSpeed;
+    }
+
+    public void setZombieSpeed (double zombieSpeed){
+        this.zombieSpeed = zombieSpeed;
+    }
 
     // No additional attributes needed for basic Zombie
 

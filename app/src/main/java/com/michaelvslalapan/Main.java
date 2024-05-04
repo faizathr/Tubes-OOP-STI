@@ -3,7 +3,6 @@
  */
 package com.michaelvslalapan;
 
-
 public class Main {
     public String getGreeting() {
         return "Hello World!";
