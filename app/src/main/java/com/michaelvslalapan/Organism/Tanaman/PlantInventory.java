@@ -1,6 +1,6 @@
 package com.michaelvslalapan.Organism.Tanaman;
+
 import java.util.ArrayList;
-import com.michaelvslalapan.Organism.Tanaman.Plants;
 
 public class PlantInventory {
     private final ArrayList<Plants> plantCatalog;
