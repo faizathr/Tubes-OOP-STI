@@ -65,5 +65,9 @@ public abstract class Organism {
         this.health -= health;
     }
 
+    public long getStartTime(){
+        return startTime;
+    }
+
     // decreaseHealth bakal dipindah ke abstract class zombie dan plant karena dua duanya bakal punya method decreaseHealth yang beda
 }
