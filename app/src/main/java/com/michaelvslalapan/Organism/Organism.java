@@ -1,11 +1,14 @@
 package com.michaelvslalapan.Organism;
 
+import java.util.concurrent.*;
+
 public abstract class Organism {
     private String name;
     private double health;
     private double attackDamage;
     private double attackSpeed;
     private Boolean is_aquatic;
+    private long startTime;
 
     public Organism(String name, double health, double attackDamage, double attackSpeed, Boolean is_aquatic){
         this.name = name;
@@ -13,6 +16,7 @@ public abstract class Organism {
         this.attackDamage = attackDamage;
         this.attackSpeed = attackSpeed;
         this.is_aquatic = is_aquatic;
+        startTime = TimeUnit.SECONDS.convert(System.currentTimeMillis(), TimeUnit.MILLISECONDS);
     }
 
     //Getter Method
@@ -59,6 +63,10 @@ public abstract class Organism {
 
     public void decreaseHealth(double health){
         this.health -= health;
+    }
+
+    public long getStartTime(){
+        return startTime;
     }
 
     // decreaseHealth bakal dipindah ke abstract class zombie dan plant karena dua duanya bakal punya method decreaseHealth yang beda
