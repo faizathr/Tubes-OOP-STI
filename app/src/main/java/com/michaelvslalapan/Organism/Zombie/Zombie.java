@@ -1,5 +1,8 @@
 package com.michaelvslalapan.Organism.Zombie;
 
+import java.lang.Math;
+import javax.swing.Timer;
+
 import com.michaelvslalapan.Organism.Organism;
 import com.michaelvslalapan.Organism.Tanaman.Plants;
 
@@ -26,4 +29,41 @@ public abstract class Zombie extends Organism {
     // No additional attributes needed for basic Zombie
 
     // Getter and Setter methods are inherited from Organism class
+
+    private static Timer zombieSpawningTimer;
+    private float CoordX;
+    private int CoordY;
+
+    private int getCoordYbyLane(int lane) {
+        
+    }
+
+    public Zombie genrateRandomZombie(int lane) {
+        Zombie[] ZombieInventory = new Zombie[] {
+            new BucketheadZombie(),    
+            new DuckyTubeZombie(),
+            new ConeheadZombie(),
+            new NormalZombie(),
+            new DolphinRiderZombie(),
+            new PoleVaultingZombie()
+        };
+        Zombie zombie = ZombieInventory[(int)(Math.random() * ZombieInventory.length)];
+        return zombie;
+    }
+
+    public static void startSpawning(){
+        zombieSpawningTimer = new Timer(1000, new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                //if (getZombieCount() < maxZombie){
+                for (int lane = 0; lane < 6; lane++) {
+                    if ((int)(Math.random() * 3) == 1) {
+                        increaseZombieCount();
+                        Game.zombies.add(genrateRandomZombie(lane));
+                    }   
+                }
+            }
+        });
+        zombieSpawningTimer.start();
+        //zombieSpawningTimer.setDelay(1000);
+    }
 }

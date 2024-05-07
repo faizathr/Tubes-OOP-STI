@@ -1,5 +1,8 @@
 package com.michaelvslalapan.Game;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Game {
     private static boolean isGameOver = false;
     private static long startTime = System.currentTimeMillis();
@@ -7,6 +10,11 @@ public class Game {
     // plantdeck
     // gamemap
 
+    private static int zombieCount = 0;
+    //public final static int maxZombie = 50;
+
+    public static List<Plants> plants = new ArrayList<Plant>();
+    public static List<Zombie> zombies = new ArrayList<Zombie>();
 
     public static void startGame(){
 
@@ -30,5 +38,17 @@ public class Game {
     
     public synchronized static void decreaseSun(int sun){
         Game.sun -= sun;
+    }
+
+    public int getZombieCount() {
+        return zombieCount;
+    }
+
+    public void increaseZombieCount() {
+        zombieCount++;
+    }
+
+    public void decreaseZombieCount() {
+        zombieCount--;
     }
 }
