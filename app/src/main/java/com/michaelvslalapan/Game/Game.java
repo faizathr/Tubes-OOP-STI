@@ -2,6 +2,8 @@ package com.michaelvslalapan.Game;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.michaelvslalapan.Organism.Tanaman.Plants;
+import com.michaelvslalapan.Organism.Zombie.Zombie;
 
 public class Game {
     private static boolean isGameOver = false;
@@ -13,7 +15,7 @@ public class Game {
     private static int zombieCount = 0;
     //public final static int maxZombie = 50;
 
-    public static List<Plants> plants = new ArrayList<Plant>();
+    public static List<Plants> plants = new ArrayList<Plants>();
     public static List<Zombie> zombies = new ArrayList<Zombie>();
 
     public static void startGame(){
