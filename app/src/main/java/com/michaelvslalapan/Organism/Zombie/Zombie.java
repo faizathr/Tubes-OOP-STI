@@ -1,5 +1,6 @@
 package com.michaelvslalapan.Organism.Zombie;
 
+import java.awt.event.ActionListener;
 import java.lang.Math;
 import javax.swing.Timer;
 
@@ -35,7 +36,7 @@ public abstract class Zombie extends Organism {
     private int CoordY;
 
     private int getCoordYbyLane(int lane) {
-        
+        return lane;
     }
 
     public Zombie genrateRandomZombie(int lane) {
