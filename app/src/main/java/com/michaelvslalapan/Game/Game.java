@@ -6,7 +6,9 @@ import com.michaelvslalapan.Organism.Tanaman.Plants;
 import com.michaelvslalapan.Organism.Zombie.Zombie;
 
 public class Game {
-    private static boolean isGameOver = false;
+    private static boolean isGameStarted = false;
+    private static boolean isPlaying = true;
+    private static boolean isWinning = false;
     private static long startTime = System.currentTimeMillis();
     private static int sun = 0;
     // plantdeck
@@ -22,8 +24,8 @@ public class Game {
 
     }
 
-    public static boolean getIsGameOver(){
-        return isGameOver;
+    public static boolean getIsGameStarted(){
+        return isGameStarted;
     }
 
     public static long getStartTime(){
