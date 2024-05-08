@@ -11,6 +11,9 @@ public abstract class Plants extends Organism {
     private static boolean[][] isSlotFilled = new int[9][6];
     private static Point[][] MapSlot = new Point[9][6];
     private double cooldown;
+    private Timer peaTimer;
+    private Timer repeaterPeaTimer;
+    private Timer sunDropTimer;
 
     public Plants(String name, int cost, double health, double attackDamage, double attackSpeed, int range, double cooldown, Boolean is_aquatic) {
         super(name, health, attackDamage, attackSpeed, is_aquatic);
@@ -69,4 +72,6 @@ public abstract class Plants extends Organism {
     public static void setMapSlot(int x, int y){
         MapSlot[x][y] = new Point();
     }
+
+    this.get_Attack_Speed()
 }

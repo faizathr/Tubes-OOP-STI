@@ -43,15 +43,22 @@ public abstract class Zombie extends Organism {
     }
 
     public Zombie genrateRandomZombie(int LaneY) {
-        Zombie[] ZombieInventory = new Zombie[] {
-            new BucketheadZombie(LaneY),    
-            new DuckyTubeZombie(LaneY),
+        Zombie zombie;
+        Zombie[] NonAquaticZombieInventory = new Zombie[] {
+            new BucketheadZombie(LaneY), 
             new ConeheadZombie(LaneY),
             new NormalZombie(LaneY),
-            new DolphinRiderZombie(LaneY),
             new PoleVaultingZombie(LaneY)
         };
-        Zombie zombie = ZombieInventory[(int)(Math.random() * ZombieInventory.length)];
+        Zombie[] AquaticZombieInventory = new Zombie[] {
+            new DuckyTubeZombie(LaneY),
+            new DolphinRiderZombie(LaneY)
+        };
+        if (LaneY <= 1 && LaneY >= 4) {
+            zombie = NonAquaticZombieInventory[(int)(Math.random() * NonAquaticZombieInventory.length)];
+        } else if (LaneY >= 2 && LaneY <= 3) {
+            zombie = AquaticZombieInventory[(int)(Math.random() * AquaticZombieInventory.length)];
+        }
         return zombie;
     }
 
@@ -96,7 +103,7 @@ public abstract class Zombie extends Organism {
         zombieAttackTimer.setInitialDelay(200);
     }
 
-    public void attack(){
+    public void attackOrMove(){
         LaneXEat = getLaneXEat();
         if (Plants.getIsSlotFilled(LaneXEat, LaneY) != false){
             IterateGamePlants: for(Plants plant: Game.plants){
