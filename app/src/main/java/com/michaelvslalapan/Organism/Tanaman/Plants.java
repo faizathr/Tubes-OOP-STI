@@ -7,6 +7,9 @@ public abstract class Plants extends Organism {
 
     private int cost;
     private int range;
+    private int LaneX, LaneY; // [9][6]
+    private static boolean[][] isSlotFilled = new int[9][6];
+    private static Point[][] MapSlot = new Point[9][6];
     private double cooldown;
 
     public Plants(String name, int cost, double health, double attackDamage, double attackSpeed, int range, double cooldown, Boolean is_aquatic) {
@@ -45,4 +48,25 @@ public abstract class Plants extends Organism {
     public void zombie_Attack_Plants(Zombie z) {
         z.decreaseHealth(this.get_Attack_Damage());
     } // buat plant melakukan attack ke zombie 
+
+    public int getLaneX() {
+        return LaneX;
+    }
+    public int getLaneY() {
+        return LaneY;
+    }
+
+    public static int getIsSlotFilled(int x, int y) {
+        return isSlotFilled[x][y];
+    }
+    public static Point getMapSlot(int x, int y) {
+        return MapSlot[x][y];
+    }
+
+    public static void emptySlot(int x, int y){
+        isSlotFilled[x][y] = false;
+    }
+    public static void setMapSlot(int x, int y){
+        MapSlot[x][y] = new Point();
+    }
 }

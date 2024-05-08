@@ -65,6 +65,10 @@ public abstract class Organism {
         this.health -= health;
     }
 
+    public boolean isDead(){
+        return health <= (double) 0;
+    }
+
     public long getStartTime(){
         return startTime;
     }
