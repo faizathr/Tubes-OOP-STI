@@ -18,6 +18,10 @@ public class PlantInventory {
         plantCatalog.add(new Lilypad());
         plantCatalog.add(new Squash());
         plantCatalog.add(new SnowPea());
+        plantCatalog.add(new PotatoMine());
+        plantCatalog.add(new ExplodeONut());
+        plantCatalog.add(new FumeShroom());
+        plantCatalog.add(new Repeater());
     }
 
     public ArrayList<Plants> getPlantCatalog() {
