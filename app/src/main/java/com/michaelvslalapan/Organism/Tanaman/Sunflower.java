@@ -51,8 +51,7 @@ public final class Sunflower extends Plants implements Runnable {
 
         System.out.println("Waktu Mulai Test 2 : " + test2.startTime%10);
         
-        
-
+    
         while(true){
             System.out.println(Game.getSun());
             // getting the group of the threads/
