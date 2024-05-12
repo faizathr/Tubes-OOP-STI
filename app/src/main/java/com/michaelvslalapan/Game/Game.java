@@ -13,12 +13,10 @@ public class Game {
     private static int sun = 0;
     // plantdeck
     // gamemap
-
-    private static int zombieCount = 0;
-    //public final static int maxZombie = 50;
-
+    
     public static List<Plants> plants = new ArrayList<Plants>();
     public static List<Zombie> zombies = new ArrayList<Zombie>();
+    public static List<Sun> suns = new ArrayList<Sun>();
 
     public static void startGame(){
 
@@ -46,13 +44,5 @@ public class Game {
 
     public int getZombieCount() {
         return zombieCount;
-    }
-
-    public void increaseZombieCount() {
-        zombieCount++;
-    }
-
-    public void decreaseZombieCount() {
-        zombieCount--;
     }
 }

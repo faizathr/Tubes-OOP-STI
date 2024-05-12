@@ -1,14 +1,17 @@
 package com.michaelvslalapan.Organism.Tanaman;
 
+import javax.swing.Timer;
+
 import com.michaelvslalapan.Organism.Organism;
 import com.michaelvslalapan.Organism.Zombie.Zombie;
+import com.michaelvslalapan.ADT.Point;
 
 public abstract class Plants extends Organism {
 
     private int cost;
     private int range;
     private int LaneX, LaneY; // [9][6]
-    private static boolean[][] isSlotFilled = new int[9][6];
+    private static boolean[][] isSlotFilled = new boolean[9][6];
     private static Point[][] MapSlot = new Point[9][6];
     private double cooldown;
     private Timer peaTimer;
@@ -59,7 +62,7 @@ public abstract class Plants extends Organism {
         return LaneY;
     }
 
-    public static int getIsSlotFilled(int x, int y) {
+    public static boolean getIsSlotFilled(int x, int y) {
         return isSlotFilled[x][y];
     }
     public static Point getMapSlot(int x, int y) {
@@ -72,6 +75,4 @@ public abstract class Plants extends Organism {
     public static void setMapSlot(int x, int y){
         MapSlot[x][y] = new Point();
     }
-
-    this.get_Attack_Speed()
 }
