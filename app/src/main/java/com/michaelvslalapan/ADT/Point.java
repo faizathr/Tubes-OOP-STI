@@ -1,3 +1,5 @@
+package com.michaelvslalapan.ADT;
+
 import java.lang.Math;
 
 public class Point {
