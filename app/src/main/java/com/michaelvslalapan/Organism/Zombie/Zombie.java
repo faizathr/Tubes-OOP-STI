@@ -1,9 +1,11 @@
 package com.michaelvslalapan.Organism.Zombie;
 
+import java.awt.event.ActionEvent;  
 import java.awt.event.ActionListener;
 import java.lang.Math;
 import javax.swing.Timer;
 
+import com.michaelvslalapan.Game.Game;
 import com.michaelvslalapan.Organism.Organism;
 import com.michaelvslalapan.Organism.Tanaman.Plants;
 
@@ -21,8 +23,8 @@ public abstract class Zombie extends Organism {
         p.decreaseHealth(this.get_Attack_Damage());
     } // buat zombie melakukan attack ke tanaman
 
-    public void setZombieSpeed (double zombieSpeed){
-        this.zombieSpeed = zombieSpeed;
+    public void settimePerLaneMove(double timePerLaneMove){
+        this.timePerLaneMove = timePerLaneMove;
     }
 
     // No additional attributes needed for basic Zombie
@@ -31,8 +33,8 @@ public abstract class Zombie extends Organism {
 
     private static Timer zombieSpawningTimer, zombieAttackTimer;
     private static boolean isReachedHouse = false;
-    private float CoordX;
-    private int CoordY;
+    private static int zombieCount = 0;
+    //public final static int maxZombie = 50;
 
     private int getCoordYbyLaneY(int LaneY) {
 
@@ -42,7 +44,7 @@ public abstract class Zombie extends Organism {
         return (float) (1 / timePerLaneMove);
     }
 
-    public Zombie genrateRandomZombie(int LaneY) {
+    public static Zombie genrateRandomZombie(int LaneY) {
         Zombie zombie;
         Zombie[] NonAquaticZombieInventory = new Zombie[] {
             new BucketheadZombie(LaneY), 
@@ -56,7 +58,8 @@ public abstract class Zombie extends Organism {
         };
         if (LaneY <= 1 && LaneY >= 4) {
             zombie = NonAquaticZombieInventory[(int)(Math.random() * NonAquaticZombieInventory.length)];
-        } else if (LaneY >= 2 && LaneY <= 3) {
+        } else {
+            // if (LaneY >= 2 && LaneY <= 3) {
             zombie = AquaticZombieInventory[(int)(Math.random() * AquaticZombieInventory.length)];
         }
         return zombie;
@@ -66,10 +69,10 @@ public abstract class Zombie extends Organism {
         zombieSpawningTimer = new Timer(1000, new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 //if (getZombieCount() < maxZombie){
-                for (int lane = 0; lane < 6; lane++) {
+                for (int LaneY = 0; LaneY < 6; LaneY++) {
                     if ((int)(Math.random() * 3) == 1) {
-                        increaseZombieCount();
-                        Game.zombies.add(genrateRandomZombie(lane));
+                        zombieCount++;
+                        Game.zombies.add(genrateRandomZombie(LaneY));
                     }   
                 }
             }
@@ -88,7 +91,7 @@ public abstract class Zombie extends Organism {
 
     // Initialization Block
     {
-        zombieAttackTimer = new Timer(this.get_Attack_Speed() * 1000, new ActionListener(){
+        zombieAttackTimer = new Timer((int) (this.get_Attack_Speed() * 1000), new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 for(Plants plant: Game.plants){
                     if (plant.getLaneX() == LaneXEat && plant.getLaneY() == LaneY){
@@ -111,7 +114,7 @@ public abstract class Zombie extends Organism {
                     zombieAttackTimer.start();
                     if (plant.isDead()){
                         plant.stop();
-                        Plant.emptySlot(LaneXEat, LaneY);
+                        Plants.emptySlot(LaneXEat, LaneY);
                         zombieAttackTimer.stop();
                         Game.plants.remove(plant);
                         break IterateGamePlants;

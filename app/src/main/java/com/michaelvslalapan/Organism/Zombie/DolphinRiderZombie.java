@@ -3,8 +3,8 @@ package com.michaelvslalapan.Organism.Zombie;
 public class DolphinRiderZombie extends Zombie {
     private boolean isAlreadyJumped;
 
-    public DolphinRiderZombie(){
-        super("Dolphin Rider Zombie", 175, 100, 1, true);
+    public DolphinRiderZombie(int LaneY){
+        super("Dolphin Rider Zombie", 175, 100, 1, true, LaneY);
         isAlreadyJumped = false;
     }
 

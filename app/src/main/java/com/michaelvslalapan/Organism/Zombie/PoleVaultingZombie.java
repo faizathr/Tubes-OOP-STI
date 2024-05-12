@@ -3,8 +3,8 @@ package com.michaelvslalapan.Organism.Zombie;
 public class PoleVaultingZombie extends Zombie {
     private boolean isPoleVaultingUsed;
 
-    public PoleVaultingZombie(){
-        super("Pole Vaulting Zombie", 175, 100, 1, false);
+    public PoleVaultingZombie(int LaneY){
+        super("Pole Vaulting Zombie", 175, 100, 1, false, LaneY);
         isPoleVaultingUsed = false;
     }
 
