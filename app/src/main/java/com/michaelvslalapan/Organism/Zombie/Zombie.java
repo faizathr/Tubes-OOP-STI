@@ -33,11 +33,10 @@ public abstract class Zombie extends Organism {
 
     private static Timer zombieSpawningTimer, zombieAttackTimer;
     private static boolean isReachedHouse = false;
-    private static int zombieCount = 0;
     //public final static int maxZombie = 50;
 
     private int getCoordYbyLaneY(int LaneY) {
-
+        
     }
 
     public float getZombieSpeed(double timePerLaneMove) {

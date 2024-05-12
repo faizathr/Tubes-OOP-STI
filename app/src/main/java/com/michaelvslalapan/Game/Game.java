@@ -42,7 +42,4 @@ public class Game {
         Game.sun -= sun;
     }
 
-    public int getZombieCount() {
-        return zombieCount;
-    }
 }
