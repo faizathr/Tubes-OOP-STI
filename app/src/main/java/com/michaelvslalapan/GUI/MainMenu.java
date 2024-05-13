@@ -7,17 +7,23 @@ public class MainMenu {
     public MainMenu(){
         JFrame frameMainMenu = new JFrame();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); // Cari Screen Size device (buat pastiin ratio window ke screen size ya sama di semua device)
+        int height = (int) (screenSize.getWidth()/3);
 
-        ImageIcon startPopUpImage = new ImageIcon(getClass().getResource("/app/src/main/java/com/michaelvslalapan/Assets/StartPopUpMenu.png").toString());
-        
-        JLabel startPopUpLabel = new JLabel(startPopUpImage);
-        startPopUpLabel.setSize((int) screenSize.getWidth()/3, (int) (screenSize.getWidth()/3));
-        frameMainMenu.setSize((int) screenSize.getWidth()/3, (int) (screenSize.getWidth()/3));
+        ImageIcon startPopUpImage = new ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\com\\michaelvslalapan\\Assets\\StartPopUpMenu.png");
+        ImageIcon scaledStartPopUpImage = new ImageIcon(startPopUpImage.getImage().getScaledInstance(height, height, Image.SCALE_DEFAULT));
+
+
+        JLabel startPopUpLabel = new JLabel(scaledStartPopUpImage);
+
+        frameMainMenu.setSize(height,height);
         frameMainMenu.add(startPopUpLabel);
+        frameMainMenu.pack();
 
-        JButton button = new JButton("Start Playing");
-        button.setBounds(130,100,100,40);
-        button.setIcon(new ImageIcon(""));
+        JButton button = new JButton();
+        button.setBounds(100,100,(int) (height*48/28/5), (int) (height*28/48/5));
+
+        button.setIcon(new ImageIcon ((new ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\com\\michaelvslalapan\\Assets\\Start.gif")).getImage().getScaledInstance((int) (height*48/28/5), (int) (height*28/48/5), Image.SCALE_DEFAULT)));
+        
 
         frameMainMenu.add(button);
         frameMainMenu.setLayout(null);
