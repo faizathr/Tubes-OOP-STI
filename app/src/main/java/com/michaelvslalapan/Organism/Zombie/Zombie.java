@@ -36,7 +36,7 @@ public abstract class Zombie extends Organism {
     //public final static int maxZombie = 50;
 
     private int getCoordYbyLaneY(int LaneY) {
-        
+        return CoordY;
     }
 
     public float getZombieSpeed(double timePerLaneMove) {
@@ -70,7 +70,7 @@ public abstract class Zombie extends Organism {
                 //if (getZombieCount() < maxZombie){
                 for (int LaneY = 0; LaneY < 6; LaneY++) {
                     if ((int)(Math.random() * 3) == 1) {
-                        zombieCount++;
+                        // zombieCount++;
                         Game.zombies.add(genrateRandomZombie(LaneY));
                     }   
                 }
@@ -80,12 +80,12 @@ public abstract class Zombie extends Organism {
         //zombieSpawningTimer.setDelay(1000);
     }
 
-    public int getLaneX() {
-
+    public float getLaneX() {
+        return CoordX;
     }
 
     public int getLaneXEat() {
-
+        return LaneXEat;
     }
 
     // Initialization Block
@@ -94,9 +94,9 @@ public abstract class Zombie extends Organism {
             public void actionPerformed(ActionEvent e) {
                 for(Plants plant: Game.plants){
                     if (plant.getLaneX() == LaneXEat && plant.getLaneY() == LaneY){
-                        if(!AudioManager.isEating() && !isReachedHouse){
-                            AudioManager.eat();
-                        }
+                        // if(!AudioManager.isEating() && !isReachedHouse){
+                        //     AudioManager.eat();
+                        // }
                         zombie_Attack_Plants(plant);
                     }
                 }
@@ -112,7 +112,7 @@ public abstract class Zombie extends Organism {
                 if (plant.getLaneX() == LaneXEat && plant.getLaneY() == LaneY){
                     zombieAttackTimer.start();
                     if (plant.isDead()){
-                        plant.stop();
+                        // plant.stop();
                         Plants.emptySlot(LaneXEat, LaneY);
                         zombieAttackTimer.stop();
                         Game.plants.remove(plant);
