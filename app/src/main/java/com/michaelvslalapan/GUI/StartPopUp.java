@@ -1,6 +1,5 @@
 package com.michaelvslalapan.GUI;
 
-import com.michaelvslalapan.GUI.GameMainMenu;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -29,7 +28,7 @@ public class StartPopUp {
 
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                GameMainMenu test = new GameMainMenu();
+                new GameMainMenu();
                 frameStartPopUp.dispatchEvent(new WindowEvent(frameStartPopUp, WindowEvent.WINDOW_CLOSING));
 
             }
@@ -44,6 +43,6 @@ public class StartPopUp {
     }
 
     public static void main(String[] args) {
-        StartPopUp test = new StartPopUp();
+        new StartPopUp();
     }
 }

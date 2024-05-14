@@ -2,7 +2,6 @@ package com.michaelvslalapan.GUI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.FlowLayout.*;
 
 public class GameMainMenu {
     public GameMainMenu(){
