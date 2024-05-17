@@ -5,7 +5,7 @@ public class ExplodeONut extends Plants{
     private boolean isAreaDamaged;
     Thread threadToExplode;
     public ExplodeONut(){
-        super("Explode-O-Nut", 100, 1000, 1800, 0, 1, 20, false);
+        super("Explode-O-Nut", 150, 1000, 1800, 0, 1, 20, false);
         isExploded = false;
         isAreaDamaged = false;
         threadToExplode = new Thread(new waitToExplode());

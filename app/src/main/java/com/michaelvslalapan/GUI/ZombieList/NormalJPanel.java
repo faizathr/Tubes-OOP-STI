@@ -2,21 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.michaelvslalapan.GUI;
+package com.michaelvslalapan.GUI.ZombieList;
+
+import com.michaelvslalapan.GUI.StartUpFrame;
 
 /**
  *
  * @author David
  */
-public class HelpJPanel extends javax.swing.JPanel {
+public class NormalJPanel extends javax.swing.JPanel {
     StartUpFrame mainframe;
-    
     /**
-     * Creates new form HelpJPanel
+     * Creates new form SunflowerJPanel
      * @param mainframe
      */
-    
-    public HelpJPanel(StartUpFrame mainframe) {
+    public NormalJPanel(StartUpFrame mainframe) {
         initComponents();
         this.mainframe = mainframe;
     }
@@ -30,13 +30,15 @@ public class HelpJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
         jLabel2 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setLayout(null);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ZombieResized/NormalZombie.gif"))); // NOI18N
+        add(jLabel2);
+        jLabel2.setBounds(280, 110, 60, 100);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BackButton.png"))); // NOI18N
         jButton2.setBorderPainted(false);
@@ -50,29 +52,14 @@ public class HelpJPanel extends javax.swing.JPanel {
         add(jButton2);
         jButton2.setBounds(20, 20, 90, 40);
 
-        jTextPane1.setEditable(false);
-        jTextPane1.setFont(new java.awt.Font("Inter", 0, 18)); // NOI18N
-        jTextPane1.setText("Michael vs Lalapan merupakan representasi dari game Plants vs Zombie.  \n\nPlants vs Zombies adalah game strategi, di mana pemain menanam tanaman  untuk melawan zombie yang sedang menyerang. Terdapat 2 mode saat  sedang bermain, yaitu mode pagi hari dan malam hari. Zombie hanya dapat  muncul di detik ke 20 sampai 160. \n\nKamu dapat langsung memainkan game ini dengan cara mengklik tombol PLAY NOW di menu utama.  \n\nKamu dapat melihat daftar zombie yang ada dengan cara mengklik tombol ZOMBIE LIST di menu utama.  \n\nKamu dapat melihat daftar tanaman yang ada dengan cara mengklik tombol PLANTS LIST di menu utama.  \n\nKamu dapat menutup permainan dengan menutup window atau mengklik tombol EXIT di menu utama.");
-        jTextPane1.setCaretPosition(0);
-        jTextPane1.setRequestFocusEnabled(false);
-        jScrollPane2.setViewportView(jTextPane1);
-
-        add(jScrollPane2);
-        jScrollPane2.setBounds(130, 120, 340, 440);
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HelpButton.png"))); // NOI18N
-        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        add(jLabel2);
-        jLabel2.setBounds(240, 40, 110, 60);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MainMenu.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NormalZombie.png"))); // NOI18N
         add(jLabel1);
         jLabel1.setBounds(0, 0, 600, 600);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        mainframe.clickMainMenu();
-// TODO add your handling code here:
+        mainframe.clickZombieListMenu();
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
@@ -80,7 +67,5 @@ public class HelpJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }
