@@ -10,13 +10,13 @@ import com.michaelvslalapan.GUI.StartUpFrame;
  *
  * @author David
  */
-public class SquashJPanel extends javax.swing.JPanel {
+public class ExplodeONutJPanel extends javax.swing.JPanel {
     StartUpFrame mainframe;
     /**
      * Creates new form SunflowerJPanel
      * @param mainframe
      */
-    public SquashJPanel(StartUpFrame mainframe) {
+    public ExplodeONutJPanel(StartUpFrame mainframe) {
         initComponents();
         this.mainframe = mainframe;
     }
@@ -36,7 +36,7 @@ public class SquashJPanel extends javax.swing.JPanel {
 
         setLayout(null);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Squash.gif"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ExplodeONut.gif"))); // NOI18N
         add(jLabel2);
         jLabel2.setBounds(260, 110, 80, 100);
 
@@ -52,7 +52,7 @@ public class SquashJPanel extends javax.swing.JPanel {
         add(jButton2);
         jButton2.setBounds(20, 20, 90, 40);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Squash.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ExplodeONut.png"))); // NOI18N
         add(jLabel1);
         jLabel1.setBounds(0, 0, 600, 600);
     }// </editor-fold>//GEN-END:initComponents

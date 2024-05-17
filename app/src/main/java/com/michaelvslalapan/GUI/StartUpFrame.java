@@ -40,6 +40,12 @@ public class StartUpFrame extends javax.swing.JFrame {
         repaint();
     }
     
+    public void clickZombieListMenu(){
+        setContentPane(new ZombieListJPanel(this));
+        revalidate();
+        repaint();
+    }
+    
     public void click(JPanel panel){
         setContentPane(panel);
         revalidate();

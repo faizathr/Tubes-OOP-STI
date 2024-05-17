@@ -10,12 +10,12 @@ import com.michaelvslalapan.GUI.StartUpFrame;
  *
  * @author David
  */
-public class SunflowerJPanel extends javax.swing.JPanel {
+public class RepeaterJPanel extends javax.swing.JPanel {
     StartUpFrame mainframe;
     /**
      * Creates new form SunflowerJPanel
      */
-    public SunflowerJPanel(StartUpFrame mainframe) {
+    public RepeaterJPanel(StartUpFrame mainframe) {
         initComponents();
         this.mainframe = mainframe;
     }
@@ -35,7 +35,7 @@ public class SunflowerJPanel extends javax.swing.JPanel {
 
         setLayout(null);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sunflower.gif"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Repeater.gif"))); // NOI18N
         add(jLabel2);
         jLabel2.setBounds(260, 110, 80, 100);
 
@@ -51,7 +51,7 @@ public class SunflowerJPanel extends javax.swing.JPanel {
         add(jButton2);
         jButton2.setBounds(20, 20, 90, 40);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sunflower.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Repeater.png"))); // NOI18N
         add(jLabel1);
         jLabel1.setBounds(0, 0, 600, 600);
     }// </editor-fold>//GEN-END:initComponents

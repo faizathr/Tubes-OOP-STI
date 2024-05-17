@@ -21,7 +21,7 @@
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Squash.gif"/>
+          <Image iconType="3" name="/ExplodeONut.gif"/>
         </Property>
       </Properties>
       <Constraints>
@@ -53,7 +53,7 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Squash.png"/>
+          <Image iconType="3" name="/ExplodeONut.png"/>
         </Property>
       </Properties>
       <Constraints>

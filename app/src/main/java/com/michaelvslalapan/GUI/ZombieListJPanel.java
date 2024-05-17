@@ -4,18 +4,18 @@
  */
 package com.michaelvslalapan.GUI;
 
-import com.michaelvslalapan.GUI.PlantList.*;
+import com.michaelvslalapan.GUI.ZombieList.*;
 
 /**
  *
  * @author David
  */
-public class PlantListJPanel extends javax.swing.JPanel {
+public class ZombieListJPanel extends javax.swing.JPanel {
     StartUpFrame mainframe;
     /**
      * Creates new form PlantListJPanel
      */
-    public PlantListJPanel(StartUpFrame mainframe) {
+    public ZombieListJPanel(StartUpFrame mainframe) {
         initComponents();
         this.mainframe = mainframe;
     }
@@ -45,13 +45,13 @@ public class PlantListJPanel extends javax.swing.JPanel {
 
         setLayout(null);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlantsListButton.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ZombieListButton.png"))); // NOI18N
         add(jLabel2);
-        jLabel2.setBounds(170, 60, 236, 80);
+        jLabel2.setBounds(170, 60, 235, 80);
 
         jButton5.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Snowpea.gif"))); // NOI18N
-        jButton5.setText("Snow Pea");
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ZombieResized/BucketheadZombie.gif"))); // NOI18N
+        jButton5.setText("Buckethead");
         jButton5.setBorderPainted(false);
         jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -65,8 +65,8 @@ public class PlantListJPanel extends javax.swing.JPanel {
         jButton5.setBounds(450, 170, 120, 110);
 
         jButton4.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/WallnutFull.gif"))); // NOI18N
-        jButton4.setText("Wallnut");
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ZombieResized/PoleVaultingZombie.gif"))); // NOI18N
+        jButton4.setText("Pole Vaulting");
         jButton4.setBorderPainted(false);
         jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -80,8 +80,8 @@ public class PlantListJPanel extends javax.swing.JPanel {
         jButton4.setBounds(310, 170, 120, 110);
 
         jButton1.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Peahooter.gif"))); // NOI18N
-        jButton1.setText("Peashooter");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ZombieResized/ConeheadZombie.gif"))); // NOI18N
+        jButton1.setText("Conehead");
         jButton1.setBorderPainted(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -95,8 +95,8 @@ public class PlantListJPanel extends javax.swing.JPanel {
         jButton1.setBounds(170, 170, 120, 110);
 
         jButton3.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sunflower.gif"))); // NOI18N
-        jButton3.setText("Sunflower");
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ZombieResized/NormalZombie.gif"))); // NOI18N
+        jButton3.setText("Normal");
         jButton3.setBorderPainted(false);
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -152,8 +152,8 @@ public class PlantListJPanel extends javax.swing.JPanel {
         jButton7.setBounds(310, 300, 120, 110);
 
         jButton8.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Lilypad.gif"))); // NOI18N
-        jButton8.setText("Lilypad");
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ZombieResized/DolphinRider.gif"))); // NOI18N
+        jButton8.setText("Dolphin Rider");
         jButton8.setBorderPainted(false);
         jButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -168,7 +168,7 @@ public class PlantListJPanel extends javax.swing.JPanel {
 
         jButton9.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Squash.gif"))); // NOI18N
-        jButton9.setText("Squash");
+        jButton9.setText("Ducky Tube");
         jButton9.setBorderPainted(false);
         jButton9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -222,23 +222,23 @@ public class PlantListJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        mainframe.click(new PeashooterJPanel(mainframe));
-        // TODO add your handling code here:
+        mainframe.click(new ConeheadJPanel(mainframe));
+// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       mainframe.click(new SunflowerJPanel(mainframe)); 
-       // TODO add your handling code here:
+        mainframe.click(new NormalJPanel(mainframe));
+// TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        mainframe.click(new WallnutJPanel(mainframe));
-        // TODO add your handling code here:
+        mainframe.click(new PoleVaultingJPanel(mainframe));
+// TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        mainframe.click(new SnowPeaJPanel(mainframe));
-        // TODO add your handling code here:
+        mainframe.click(new BucketheadJPanel(mainframe));
+// TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -250,12 +250,11 @@ public class PlantListJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        mainframe.click(new LilypadJPanel(mainframe));
-        // TODO add your handling code here:
+        mainframe.click(new DolphinRiderJPanel(mainframe));
+// TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        mainframe.click(new SquashJPanel(mainframe));
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
 

@@ -3,7 +3,7 @@ package com.michaelvslalapan.Organism.Tanaman;
  */
 public class Repeater extends Plants{
     public Repeater(){
-        super("Repeater", 200, 100, 25, 8, -1, 10, false);
+        super("Repeater", 200, 100, 25, 2, -1, 10, false);
     }
     
 }

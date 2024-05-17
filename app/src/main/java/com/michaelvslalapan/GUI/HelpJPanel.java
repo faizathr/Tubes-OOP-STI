@@ -53,7 +53,8 @@ public class HelpJPanel extends javax.swing.JPanel {
         jTextPane1.setEditable(false);
         jTextPane1.setFont(new java.awt.Font("Inter", 0, 18)); // NOI18N
         jTextPane1.setText("Michael vs Lalapan merupakan representasi dari game Plants vs Zombie.  \n\nPlants vs Zombies adalah game strategi, di mana pemain menanam tanaman  untuk melawan zombie yang sedang menyerang. Terdapat 2 mode saat  sedang bermain, yaitu mode pagi hari dan malam hari. Zombie hanya dapat  muncul di detik ke 20 sampai 160. \n\nKamu dapat langsung memainkan game ini dengan cara mengklik tombol PLAY NOW di menu utama.  \n\nKamu dapat melihat daftar zombie yang ada dengan cara mengklik tombol ZOMBIE LIST di menu utama.  \n\nKamu dapat melihat daftar tanaman yang ada dengan cara mengklik tombol PLANTS LIST di menu utama.  \n\nKamu dapat menutup permainan dengan menutup window atau mengklik tombol EXIT di menu utama.");
-        jTextPane1.setAutoscrolls(false);
+        jTextPane1.setCaretPosition(0);
+        jTextPane1.setRequestFocusEnabled(false);
         jScrollPane2.setViewportView(jTextPane1);
 
         add(jScrollPane2);

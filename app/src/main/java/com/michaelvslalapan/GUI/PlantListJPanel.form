@@ -153,12 +153,13 @@
     <Component class="javax.swing.JButton" name="jButton6">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Inter" size="12" style="1"/>
+          <Font name="Inter" size="11" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Sunflower.gif"/>
+          <Image iconType="3" name="/ExplodeONut.gif"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Sunflower"/>
+        <Property name="text" type="java.lang.String" value="Explode-O-Nut"/>
+        <Property name="actionCommand" type="java.lang.String" value="ExplodeONut"/>
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Hand Cursor"/>
@@ -181,9 +182,9 @@
           <Font name="Inter" size="12" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Sunflower.gif"/>
+          <Image iconType="3" name="/Repeater.gif"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Sunflower"/>
+        <Property name="text" type="java.lang.String" value="Repeater"/>
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Hand Cursor"/>

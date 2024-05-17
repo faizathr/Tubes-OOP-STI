@@ -121,9 +121,10 @@ public class PlantListJPanel extends javax.swing.JPanel {
         add(jButton2);
         jButton2.setBounds(20, 20, 90, 40);
 
-        jButton6.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sunflower.gif"))); // NOI18N
-        jButton6.setText("Sunflower");
+        jButton6.setFont(new java.awt.Font("Inter", 1, 11)); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ExplodeONut.gif"))); // NOI18N
+        jButton6.setText("Explode-O-Nut");
+        jButton6.setActionCommand("ExplodeONut");
         jButton6.setBorderPainted(false);
         jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -137,8 +138,8 @@ public class PlantListJPanel extends javax.swing.JPanel {
         jButton6.setBounds(450, 300, 120, 110);
 
         jButton7.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sunflower.gif"))); // NOI18N
-        jButton7.setText("Sunflower");
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Repeater.gif"))); // NOI18N
+        jButton7.setText("Repeater");
         jButton7.setBorderPainted(false);
         jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -242,11 +243,13 @@ public class PlantListJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+        mainframe.click(new ExplodeONutJPanel(mainframe));
+// TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        mainframe.click(new RepeaterJPanel(mainframe));
+// TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
