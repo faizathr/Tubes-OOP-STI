@@ -32,7 +32,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "com.michaelvslalapan.Organism.Tanaman.Sunflower"
+    mainClass = "com.michaelvslalapan.GUI.StartUpFrame"
 }
 
 tasks.named<JavaExec>("run") {
