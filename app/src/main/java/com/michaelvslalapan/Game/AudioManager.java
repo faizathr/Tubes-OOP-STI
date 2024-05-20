@@ -8,7 +8,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip; 
 
 public class AudioManager{
-    private static Clip[] AudioClip = new Clip[20]; 
+    private static Clip[] AudioClip = new Clip[27]; 
     private static Timer AudioTimer;
 
     static{
@@ -34,17 +34,18 @@ public class AudioManager{
                 "Groan1",
                 "Groan2",
                 "Groan3",
-                "Yuck.wav",
-                "Yuck2.wav",
-                "Splat.wav",
-                "Shieldhit.wav",
-                "Cherry_enlarge.wav",
-                "Cherrybomb.wav",
-                "Points.wav"
+                "Yuck",
+                "Yuck2",
+                "Splat",
+                "Shieldhit",
+                "Cherry_enlarge",
+                "Cherrybomb",
+                "Points"
             };
-            for (int i = 0; i < wavfilenames.length; i++){
+
+            for (int i = 0; i < (wavfilenames.length-1); i++){
                 AudioClip[i] = AudioSystem.getClip();
-                AudioClip[i].open(AudioSystem.getAudioInputStream(AudioManager.class.getResource(("Assets/wav/" + wavfilenames[i] + ".wav"))));
+                AudioClip[i].open(AudioSystem.getAudioInputStream(AudioManager.class.getResource(("/wav/" + wavfilenames[i] + ".wav"))));
             }
         } catch(Exception ex) { 
             ex.printStackTrace();

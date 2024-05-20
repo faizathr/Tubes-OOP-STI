@@ -28,8 +28,9 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 import com.michaelvslalapan.ADT.Point;
-import com.michaelvslalapan.Organism.Tanaman.Plants;
 import com.michaelvslalapan.Organism.Tanaman.Sunflower;
+import com.michaelvslalapan.Organism.Tanaman.Plants;
+import com.michaelvslalapan.Organism.Tanaman.Plants.*;
 import com.michaelvslalapan.Organism.Zombie.Zombie;
 
 public class Game extends JPanel implements ActionListener{
@@ -231,7 +232,7 @@ public class Game extends JPanel implements ActionListener{
 
     private void loadMainMenu() {
         try {
-            MainMenu = toolkit.getImage(getClass().getResource("Assets/img/Menu.jpg"));
+            MainMenu = toolkit.getImage(getClass().getResource("/img/Menu.jpg"));
         } catch(Exception ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Cannot open image!");
@@ -243,7 +244,7 @@ public class Game extends JPanel implements ActionListener{
         try {
             for (int i = 0; i < imgfilenames.length; i++) {
                 errfile = imgfilenames[i];
-                img[i] = toolkit.getImage(getClass().getResource("Assets/img/" + imgfilenames[i]));
+                img[i] = toolkit.getImage(getClass().getResource("/img/" + imgfilenames[i]));
             }
         } catch(Exception ex) {
             ex.printStackTrace();
@@ -253,7 +254,7 @@ public class Game extends JPanel implements ActionListener{
 
     private void loadFont() {
         try {
-            font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResource("Assets/font/Chalkboard.ttc").openStream()).deriveFont(Font.BOLD, 20f);
+            font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResource("/font/Chalkboard.ttc").openStream()).deriveFont(Font.BOLD, 20f);
             GraphicsEnvironment GUIEnv = GraphicsEnvironment.getLocalGraphicsEnvironment();
             GUIEnv.registerFont(font);
         } catch (Exception ex) {

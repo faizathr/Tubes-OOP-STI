@@ -7,9 +7,9 @@ import java.lang.Math;
 import javax.swing.Timer;
 
 import com.michaelvslalapan.Game.Game;
-import com.michaelvslalapan.Game.AudioManager;
 import com.michaelvslalapan.Organism.Organism;
 import com.michaelvslalapan.Organism.Tanaman.Plants;
+import com.michaelvslalapan.Game.AudioManager;
 
 public class Zombie extends Organism implements Comparable<Zombie> {
     private static Timer zombieSpawningTimer, zombieAttackTimer, zombieSlowedTimer;

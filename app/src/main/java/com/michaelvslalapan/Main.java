@@ -1,3 +1,5 @@
+package com.michaelvslalapan;
+
 import javax.swing.JFrame;
 
 import com.michaelvslalapan.Game.Game;

@@ -7,11 +7,11 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
 import com.michaelvslalapan.Organism.Organism;
-import com.michaelvslalapan.Organism.Zombie.Zombie;
 import com.michaelvslalapan.ADT.Point;
 import com.michaelvslalapan.Game.Game;
 import com.michaelvslalapan.Game.Pea;
 import com.michaelvslalapan.Game.Sun;
+import com.michaelvslalapan.Organism.Zombie.Zombie;
 
 public class Plants<PlantID> extends Organism {
     private PlantID ID;
@@ -34,7 +34,7 @@ public class Plants<PlantID> extends Organism {
     private boolean isExploded = false;
     private boolean isEnlarging = false;
 
-    private Plants<Integer> newPlant = new Sunflower(0, 0);
+    private Plants<Integer> newPlant;
 
     public Plants(PlantID ID, String name, int cost, double health, double attackDamage, double attackSpeed, int range, double cooldown, Boolean is_aquatic, int LaneX, int LaneY) {
         super(name, health, attackDamage, attackSpeed, is_aquatic);
@@ -52,23 +52,23 @@ public class Plants<PlantID> extends Organism {
         }
     }
 
-    /*
-    public void setNewPlants(int PlantID, int LaneX, int LaneY) {
-        Plants<Integer>[] plantConstructor = new Plants<Integer>[] {
-            new Sunflower(LaneX, LaneY),
-            new Peashooter(LaneX, LaneY),
-            new Wallnut(LaneX, LaneY),
-            new SnowPea(LaneX, LaneY),
-            new Squash(LaneX, LaneY),
-            new Lilypad(LaneX, LaneY),
-            new Repeater(LaneX, LaneY),
-            new ExplodeONut(LaneX, LaneY),
-            new CherryBomb(LaneX, LaneY),
-            new Puffshroom(LaneX, LaneY),
-        };
-        newPlant = plantConstructor[PlantID];
-    }
-     */
+    // /*
+    // public void setNewPlants(int PlantID, int LaneX, int LaneY) {
+    //     Plants<Integer>[] plantConstructor = new Plants<Integer>[] {
+    //         new Sunflower(LaneX, LaneY),
+    //         new Peashooter(LaneX, LaneY),
+    //         new Wallnut(LaneX, LaneY),
+    //         new SnowPea(LaneX, LaneY),
+    //         new Squash(LaneX, LaneY),
+    //         new Lilypad(LaneX, LaneY),
+    //         new Repeater(LaneX, LaneY),
+    //         new ExplodeONut(LaneX, LaneY),
+    //         new CherryBomb(LaneX, LaneY),
+    //         new Puffshroom(LaneX, LaneY),
+    //     };
+    //     newPlant = plantConstructor[PlantID];
+    // }
+    //  */
 
 
     public void setNewPlants(int PlantID, int LaneX, int LaneY) {
