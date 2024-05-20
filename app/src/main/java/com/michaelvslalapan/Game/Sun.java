@@ -28,10 +28,11 @@ public class Sun {
         isFromSunflower = true;
     }
 
-    public static void start(){
+    public static void startTimer() {
         timerNonSunflowerDrop = new Timer(5000, new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 Game.suns.add(new Sun());
+                timerNonSunflowerDrop.setDelay(((int)(Math.random() * 6) + 5) * 1000);
             }
         });
         timerNonSunflowerDrop.setRepeats(true);
@@ -48,7 +49,7 @@ public class Sun {
             } catch (InterruptedException e) {}
         }
     } 
-    public void startTimer(){
+    public void startThread(){
         sunDropThread.start();
     }
 
@@ -74,7 +75,7 @@ public class Sun {
         return isWaiting;
     }
 
-    public void setE(Ellipse2D sunObj){
+    public void setSunObj(Ellipse2D sunObj){
         this.sunObj = sunObj;
     }
     public void setWaiting() {
