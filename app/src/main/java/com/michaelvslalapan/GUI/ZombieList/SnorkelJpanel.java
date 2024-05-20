@@ -10,13 +10,13 @@ import com.michaelvslalapan.GUI.StartUpFrame;
  *
  * @author David
  */
-public class ConeheadJPanel extends javax.swing.JPanel {
+public class SnorkelJPanel extends javax.swing.JPanel {
     StartUpFrame mainframe;
     /**
      * Creates new form SunflowerJPanel
      * @param mainframe
      */
-    public ConeheadJPanel(StartUpFrame mainframe) {
+    public SnorkelJPanel(StartUpFrame mainframe) {
         initComponents();
         this.mainframe = mainframe;
     }
@@ -36,7 +36,7 @@ public class ConeheadJPanel extends javax.swing.JPanel {
 
         setLayout(null);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ZombieResized/ConeheadZombie.gif"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ZombieResized/SnorkelZombie.gif"))); // NOI18N
         add(jLabel2);
         jLabel2.setBounds(280, 110, 60, 100);
 
@@ -52,7 +52,7 @@ public class ConeheadJPanel extends javax.swing.JPanel {
         add(jButton2);
         jButton2.setBounds(20, 20, 90, 40);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ConeheadZombie.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SnorkelZombie.png"))); // NOI18N
         add(jLabel1);
         jLabel1.setBounds(0, 0, 600, 600);
     }// </editor-fold>//GEN-END:initComponents

@@ -21,7 +21,7 @@
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/ZombieResized/ConeheadZombie.gif"/>
+          <Image iconType="3" name="/ZombieResized/SnorkelZombie.gif"/>
         </Property>
       </Properties>
       <Constraints>
@@ -53,7 +53,7 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/ConeheadZombie.png"/>
+          <Image iconType="3" name="/SnorkelZombie.png"/>
         </Property>
       </Properties>
       <Constraints>
