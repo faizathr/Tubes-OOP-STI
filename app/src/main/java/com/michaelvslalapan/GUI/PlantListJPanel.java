@@ -95,9 +95,10 @@ public class PlantListJPanel extends javax.swing.JPanel {
         jButton1.setBounds(170, 170, 120, 110);
 
         jButton3.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sunflower.gif"))); // NOI18N
-        jButton3.setText("Sunflower");
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SunflowerListButton.gif"))); // NOI18N
+        // jButton3.setText("Sunflower");
         jButton3.setBorderPainted(false);
+        jButton3.setContentAreaFilled(false);
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);

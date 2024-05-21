@@ -46,7 +46,7 @@ public class StartUpJPanel extends javax.swing.JPanel {
         add(jButton1);
         jButton1.setBounds(200, 200, 210, 90);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/StartPopUpMenu.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/StartPop.png"))); // NOI18N
         add(jLabel1);
         jLabel1.setBounds(0, 0, 600, 600);
     }// </editor-fold>//GEN-END:initComponents
