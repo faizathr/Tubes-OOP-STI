@@ -168,8 +168,8 @@ public class Game extends JPanel implements ActionListener{
     private int[] PlantDeck = new int[]{-1, -1, -1, -1, -1, -1};
     private int prevPlantDeck = -1;
     private boolean isPlantSelectedOnDeck(int PlantID) {
-        for (int i = 0; i < 6; i++) {
-            if (PlantDeck[i] == PlantID) {
+        for (int PlantDeckID = 0; PlantDeckID < 6; PlantDeckID++) {
+            if (PlantDeck[PlantDeckID] == PlantID) {
                 return true;
             }
         }
@@ -197,20 +197,10 @@ public class Game extends JPanel implements ActionListener{
     private float plantCatalogSlideVal = -376f;
     private boolean isSliding = false;
 
-    // Plant Deck
-    private boolean plantDeckSelection = false;
-    private boolean isPlantSelected(int PlantID) {
-        for (int PlantDeckID = 0; PlantDeckID < 6; PlantDeckID++) {
-            if (PlantDeck[PlantDeckID] == PlantID) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     //Game
     private Timer gameTimer, secondsTimer;
     private Toolkit toolkit = Toolkit.getDefaultToolkit();
+    private boolean plantDeckSelection = false;
     private boolean isGameStarted = false;
     private boolean isNight = false;
     private boolean isPlaying = true;
@@ -297,9 +287,11 @@ public class Game extends JPanel implements ActionListener{
 
     public void startDeckSelection() {
         plantDeckSelection = true;
+        loadFont();
 
         startGameButton = new Rectangle(343, 50, 338, 100);
 
+        loadImage();
         plantCatalogSlideTimer = new Timer(48, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 plantCatalogSlideVal += 9.024f;
@@ -309,12 +301,10 @@ public class Game extends JPanel implements ActionListener{
 
     public void startGame() {
         sunChanges = sunCredits;
-        loadFont();
 
         Sun.startTimer();
         Zombie.startSpawning();
         
-        loadImage();
         init();
         
         AudioManager.begin();
