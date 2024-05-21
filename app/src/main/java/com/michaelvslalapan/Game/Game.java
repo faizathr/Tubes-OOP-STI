@@ -167,7 +167,7 @@ public class Game extends JPanel implements ActionListener{
     private int selectedCatalogPlantID = -1, selectedDeckPlantID = -1;
     private int[] PlantDeck = new int[]{-1, -1, -1, -1, -1, -1};
     private int prevPlantDeck = -1;
-    private boolean isPlantDeckSelected(int PlantID) {
+    private boolean isPlantSelectedOnDeck(int PlantID) {
         for (int i = 0; i < 6; i++) {
             if (PlantDeck[i] == PlantID) {
                 return true;
@@ -198,7 +198,7 @@ public class Game extends JPanel implements ActionListener{
     private boolean isSliding = false;
 
     // Plant Deck
-    private boolean plantDeckSelected = false;
+    private boolean plantDeckSelection = false;
     private boolean isPlantSelected(int PlantID) {
         for (int PlantDeckID = 0; PlantDeckID < 6; PlantDeckID++) {
             if (PlantDeck[PlantDeckID] == PlantID) {
@@ -211,7 +211,6 @@ public class Game extends JPanel implements ActionListener{
     //Game
     private Timer gameTimer, secondsTimer;
     private Toolkit toolkit = Toolkit.getDefaultToolkit();
-    private boolean isPlantDeckSelected = false;
     private boolean isGameStarted = false;
     private boolean isNight = false;
     private boolean isPlaying = true;
@@ -297,6 +296,8 @@ public class Game extends JPanel implements ActionListener{
     }
 
     public void startDeckSelection() {
+        plantDeckSelection = true;
+
         startGameButton = new Rectangle(343, 50, 338, 100);
 
         plantCatalogSlideTimer = new Timer(48, new ActionListener() {
@@ -375,7 +376,7 @@ public class Game extends JPanel implements ActionListener{
         Image FinalWave = img[30];
         Image HugeWave = img[31];
 
-        if (!isPlantDeckSelected) {
+        if (!plantDeckSelection) {
             GUI.drawImage(MainMenu, 0, 0, 1024, 625, this);
         } else if (!isGameStarted) {
             GUI.drawImage(background[2], (int) plantCatalogSlideVal, 0, 1400, 625, this);
@@ -764,7 +765,7 @@ public class Game extends JPanel implements ActionListener{
     private class MouseListener extends MouseAdapter {
         @Override
         public void mousePressed(MouseEvent e) {
-            if (!plantDeckSelected) {
+            if (!plantDeckSelection) {
                 if(startDeckSelectionButton.contains(e.getPoint())) {
                     AudioManager.evillaugh();
                     startDeckSelectionButton = null;
@@ -774,7 +775,7 @@ public class Game extends JPanel implements ActionListener{
                 for (int i = 0; i < 6; i++) {
                     if (PlantDeckClickArea[i].contains(e.getPoint())) {
                         if (selectedCatalogPlantID > -1) {
-                            if (!isPlantDeckSelected(selectedCatalogPlantID)) {
+                            if (!isPlantSelectedOnDeck(selectedCatalogPlantID)) {
                                 PlantDeck[i] = selectedCatalogPlantID;
                                 selectedCatalogPlantID = -1;
                             } else {
