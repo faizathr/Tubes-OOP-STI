@@ -39,7 +39,7 @@ public class SunflowerJPanel extends javax.swing.JPanel {
         add(jLabel2);
         jLabel2.setBounds(260, 110, 80, 100);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BackButton.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/StartAndMenuButton/BackButton.png"))); // NOI18N
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
