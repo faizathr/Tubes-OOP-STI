@@ -110,7 +110,8 @@ public class Game extends JPanel implements ActionListener{
         "PoleVaultingZombieJumpSlow.gif",
         "Tryagain.png",
         "Trophy.png",
-        "Playagain.png"
+        "Playagain.png",
+        "SaveExitButton.png"
     };
     private Shape[][] fieldClickArea = new Shape[9][6];
     private Image[] img = new Image[imgfilenames.length];
