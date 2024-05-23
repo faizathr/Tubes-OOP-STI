@@ -1144,4 +1144,6 @@ public class Game extends JPanel implements ActionListener{
     public static void reduceZombieInMapCount() {
         zombieInMap--;
     }
+
+    
 }

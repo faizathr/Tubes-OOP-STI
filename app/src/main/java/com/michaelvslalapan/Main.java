@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import com.michaelvslalapan.Game.Game;
 
 public class Main{
+    public static Game maingame;
     public static void main(String[] args){
         int inset=38;
         if(System.getProperty("os.name").equals("Mac OS X")){
@@ -14,7 +15,8 @@ public class Main{
         }
         
         JFrame frame = new JFrame();
-        frame.add(new Game());
+        Main.maingame = new Game();
+        frame.add(maingame);
         frame.setTitle("Michael vs Lalapan");
         frame.setBounds(127, 0, 1024, 625+inset);
         frame.setResizable(false);

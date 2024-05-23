@@ -6,32 +6,24 @@ import java.net.URL;
 import java.io.File;
 import java.nio.file.Paths;
 import java.io.FileWriter;
-
+import com.michaelvslalapan.Main;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Save {
-    public void whenWriteStringUsingBufferedWritter_thenCorrect()  {
+    public void saveGame() throws JsonProcessingException, IOException  {
+        ObjectMapper mapper = new ObjectMapper();
 
-        try{
+        String JSONsave = mapper.writeValueAsString(Main.maingame);
 
-            String str = "Hello";
+        FileWriter writer = new FileWriter("SaveFile.json");
 
-            FileWriter writer = new FileWriter("SaveFile.txt");
-            
-            writer.write("Hello");
-            writer.write("\nHello");
-            
-            writer.close();
-            System.out.println("sukses");
-        }
-        catch(Exception e){
-            System.out.println("gagal");
-            e.printStackTrace();
-        }
+        writer.write(JSONsave);
 
+        writer.close();
     }
 
     public static void main(String args[]) {
-        Save test = new Save();
-        test.whenWriteStringUsingBufferedWritter_thenCorrect();
+        
     }
 }
