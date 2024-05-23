@@ -34,8 +34,6 @@ public class Plants<PlantID> extends Organism {
     private boolean isExploded = false;
     private boolean isEnlarging = false;
 
-    private Plants<Integer> newPlant;
-
     public Plants(PlantID ID, String name, int cost, double health, double attackDamage, double attackSpeed, int range, double cooldown, Boolean is_aquatic, int LaneX, int LaneY) {
         super(name, health, attackDamage, attackSpeed, is_aquatic);
         this.ID = ID;  
@@ -50,52 +48,9 @@ public class Plants<PlantID> extends Organism {
             plantHeight = 74;
             plantWidth = 76;
         }
+        this.LaneX = LaneX;
+        this.LaneY = LaneY;
     }
-
-    // /*
-    // public void setNewPlants(int PlantID, int LaneX, int LaneY) {
-    //     Plants<Integer>[] plantConstructor = new Plants<Integer>[] {
-    //         new Sunflower(LaneX, LaneY),
-    //         new Peashooter(LaneX, LaneY),
-    //         new Wallnut(LaneX, LaneY),
-    //         new SnowPea(LaneX, LaneY),
-    //         new Squash(LaneX, LaneY),
-    //         new Lilypad(LaneX, LaneY),
-    //         new Repeater(LaneX, LaneY),
-    //         new ExplodeONut(LaneX, LaneY),
-    //         new CherryBomb(LaneX, LaneY),
-    //         new Puffshroom(LaneX, LaneY),
-    //     };
-    //     newPlant = plantConstructor[PlantID];
-    // }
-    //  */
-
-
-    public void setNewPlants(int PlantID, int LaneX, int LaneY) {
-        switch (PlantID) {
-            case 0:
-                newPlant = new Sunflower(LaneX, LaneY);
-            case 1:
-                newPlant = new Peashooter(LaneX, LaneY);
-            case 2:
-                newPlant = new Wallnut(LaneX, LaneY);
-            case 3:
-                newPlant = new SnowPea(LaneX, LaneY);
-            case 4:
-                newPlant = new Squash(LaneX, LaneY);
-            case 5:
-                newPlant = new Lilypad(LaneX, LaneY);
-            case 6:
-                newPlant = new Repeater(LaneX, LaneY);
-            case 7:
-                newPlant = new ExplodeONut(LaneX, LaneY);
-            case 8:
-                newPlant = new CherryBomb(LaneX, LaneY);
-            case 9:
-                newPlant = new Puffshroom(LaneX, LaneY);
-        }
-    }
-    
 
     // Getter Methods
     public int getCost() {
@@ -197,11 +152,41 @@ public class Plants<PlantID> extends Organism {
         this.isThreaten = isThreaten;
     }
 
-    public boolean plant(int LaneX, int LaneY, PlantID ID){
+    public boolean plant(int LaneX, int LaneY, int PlantID){
         if(!isSlotFilled[LaneX][LaneY]){
             isSlotFilled[LaneX][LaneY] = true;
-            setNewPlants((int) ID, LaneX, LaneY);
-            Game.plants.add(newPlant);
+            switch (PlantID) {
+                case 0:
+                    Game.plants.add(new Sunflower(LaneX, LaneY));
+                    break;
+                case 1:
+                    Game.plants.add(new Peashooter(LaneX, LaneY));
+                    break;
+                case 2:
+                    Game.plants.add(new Wallnut(LaneX, LaneY));
+                    break;
+                case 3:
+                    Game.plants.add(new SnowPea(LaneX, LaneY));
+                    break;
+                case 4:
+                    Game.plants.add(new Squash(LaneX, LaneY));
+                    break;
+                case 5:
+                    Game.plants.add(new Lilypad(LaneX, LaneY));
+                    break;
+                case 6:
+                    Game.plants.add(new Repeater(LaneX, LaneY));
+                    break;
+                case 7:
+                    Game.plants.add(new ExplodeONut(LaneX, LaneY));
+                    break;
+                case 8:
+                    Game.plants.add(new CherryBomb(LaneX, LaneY));
+                    break;
+                case 9:
+                    Game.plants.add(new Puffshroom(LaneX, LaneY));
+                    break;
+            }
             return true;
         } else return false;
     }
@@ -254,7 +239,7 @@ public class Plants<PlantID> extends Organism {
     {
         peaTimer = new Timer(2000, new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                Game.peas.add(new Pea(LaneX, LaneY, attackDamage, 1));
+                Game.peas.add(new Pea(LaneX, LaneY, attackDamage, (int) ID));
             }
         });
         

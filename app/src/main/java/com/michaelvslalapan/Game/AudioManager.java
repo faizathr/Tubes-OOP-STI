@@ -12,6 +12,7 @@ public class AudioManager{
     private static Timer AudioTimer;
 
     static{
+        String errfile = "";
         try{
             String wavfilenames[] = new String[] {
                 "Menu", 
@@ -43,13 +44,14 @@ public class AudioManager{
                 "Points"
             };
 
-            for (int i = 0; i < (wavfilenames.length-1); i++){
+            for (int i = 0; i < wavfilenames.length; i++){
+                errfile = wavfilenames[i] + ".wav";
                 AudioClip[i] = AudioSystem.getClip();
                 AudioClip[i].open(AudioSystem.getAudioInputStream(AudioManager.class.getResource(("/wav/" + wavfilenames[i] + ".wav"))));
             }
         } catch(Exception ex) { 
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Cannot open audio!");
+            JOptionPane.showMessageDialog(null, "Cannot open audio! : " + errfile);
         } 
 
         //play zombies coming after 20 seconds

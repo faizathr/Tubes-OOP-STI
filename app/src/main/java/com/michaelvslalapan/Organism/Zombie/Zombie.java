@@ -114,7 +114,7 @@ public class Zombie extends Organism implements Comparable<Zombie> {
                 }
             }
         });
-        zombieSpawningTimer.setInitialDelay(16 * 1000);
+        zombieSpawningTimer.setInitialDelay(20 * 1000);
         zombieSpawningTimer.start();
     }
 
