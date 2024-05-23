@@ -6,12 +6,19 @@ import java.awt.event.ActionListener;
 import java.lang.Math;
 import javax.swing.Timer;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.michaelvslalapan.Organism.Tanaman.Plants;
 
+
+@JsonIgnoreProperties({"sunObj"})
 public class Sun {
     private int CoordX, CoordY, CoordYLimit;
     private boolean isFromSunflower, isWaiting = false;
+
+    @JsonIgnore
     private Ellipse2D sunObj;
+
     private static Timer timerNonSunflowerDrop;
     private Thread sunDropThread = new Thread(new waitSunDropping());
 
@@ -67,6 +74,8 @@ public class Sun {
     public boolean isFromSunflower() {
         return isFromSunflower;
     }
+
+    @JsonIgnore
     public Ellipse2D getObj() {
         return sunObj;
     }
@@ -77,6 +86,7 @@ public class Sun {
         return isWaiting;
     }
 
+    @JsonIgnore
     public void setSunObj(Ellipse2D sunObj){
         this.sunObj = sunObj;
     }

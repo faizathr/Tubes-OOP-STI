@@ -1,29 +1,49 @@
 package com.michaelvslalapan.SaveAndLoad;
- 
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.net.URL;
-import java.io.File;
-import java.nio.file.Paths;
-import java.io.FileWriter;
-import com.michaelvslalapan.Main;
-import com.fasterxml.jackson.core.JsonProcessingException;
+
+import com.fasterxml.jackson.core.util.DefaultIndenter;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.michaelvslalapan.Game.Game;
+import com.michaelvslalapan.Main;
+import java.util.ArrayList;
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Save {
-    public void saveGame() throws JsonProcessingException, IOException  {
+    public static void saveGame() throws Exception {
         ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
 
-        String JSONsave = mapper.writeValueAsString(Main.maingame);
+        // Register any necessary modules (e.g., custom serializers if needed)
+        SimpleModule module = new SimpleModule();
+        mapper.registerModule(module);
 
-        FileWriter writer = new FileWriter("SaveFile.json");
+        String directory = System.getProperty("user.dir") + "/src/main/resources/SaveFiles/SaveFile.json";
 
-        writer.write(JSONsave);
+        // Configure the pretty printer
+        DefaultPrettyPrinter prettyPrinter = new DefaultPrettyPrinter();
+        DefaultPrettyPrinter.Indenter indenter = new DefaultIndenter("  ", "\n");
+        prettyPrinter.indentArraysWith(indenter);
+        prettyPrinter.indentObjectsWith(indenter);
 
-        writer.close();
-    }
+        // Create a map to hold all lists
+        Map<String, Object> gameData = new HashMap<>();
+        gameData.put("plants", Game.plants);
+        gameData.put("zombies", Game.zombies);
+        gameData.put("suns", Game.suns);
+        gameData.put("peas", Game.peas);
+        gameData.put("sunCredits", Main.maingame.getSunCredits());
+        gameData.put("secondsTimer", Main.maingame.getSecondsTimer());
+        // gameData.put("gameTimer", Main.maingame.getGameTimer());
+        gameData.put("zombieInMap", Game.getZombieInMapCount());
+        gameData.put("zombieWave", Game.getWave());
+        gameData.put("isNight", Main.maingame.getIsNight());
 
-    public static void main(String args[]) {
-        
+        // Serialize the map and write to the file
+        mapper.writer(prettyPrinter).writeValue(new File(directory), gameData);
     }
 }

@@ -1090,6 +1090,10 @@ public class Game extends JPanel implements ActionListener{
         zombieWave = w;
     }
 
+    public static void setZombieInMapCount(int w){
+        zombieInMap = w;
+    }
+
     public static int getSecondsTime() {
         return secondsTime;
     }
@@ -1138,6 +1142,14 @@ public class Game extends JPanel implements ActionListener{
         return zombieInMap;
     }
 
+    public static int getWave() {
+        return zombieWave;
+    }
+
+    public boolean getIsNight() {
+        return isNight;
+    }
+
     public static void addZombieInMapCount() {
         zombieInMap++;
     }
@@ -1146,5 +1158,32 @@ public class Game extends JPanel implements ActionListener{
         zombieInMap--;
     }
 
-    
+
+    public Timer getSecondsTimer(){
+        return secondsTimer;
+    }
+
+    public Timer getGameTimer(){
+        return gameTimer;
+    }
+
+    public void setSunCredits(int sun){
+        sunCredits = sun;
+    }
+
+    public void setSecondsTimer(Timer second){
+        secondsTimer = second;
+    }
+
+    public void setGameTimer(Timer second){
+        gameTimer = second;
+    }
+
+    public void setIsNight(boolean condition){
+        isNight = condition;
+    }
+
+    public void setPlantDeckSelection(boolean condition){
+        plantDeckSelection = true;
+    }
 }

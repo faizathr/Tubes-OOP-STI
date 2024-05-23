@@ -1,0 +1,52 @@
+{
+  "sunCredits" : 0,
+  "suns" : [
+    {
+      "coordY" : 108,
+      "coordX" : 250,
+      "waiting" : true,
+      "fromSunflower" : true,
+      "tsunAlive" : true,
+      "coordYLimit" : 0
+    }
+  ],
+  "peas" : [ ],
+  "plants" : [
+    {
+      "startTime" : 1716488422,
+      "cost" : 50,
+      "range" : 0,
+      "isThreaten" : false,
+      "isIdle" : true,
+      "cooldown" : 10.0,
+      "plantHeight" : 66,
+      "plantWidth" : 62,
+      "isExploded" : false,
+      "threadToExplodeAlive" : false,
+      "laneY" : 1,
+      "plantID" : 0,
+      "laneX" : 0,
+      "dead" : false,
+      "_Health" : 100.0,
+      "_is_aquatic" : false,
+      "_Attack_Damage" : 0.0,
+      "_Attack_Speed" : 0.0,
+      "_name" : "Sunflower"
+    }
+  ],
+  "isNight" : false,
+  "zombieInMap" : 0,
+  "zombieWave" : 0,
+  "zombies" : [ ],
+  "secondsTimer" : {
+    "initialDelay" : 1000,
+    "delay" : 1000,
+    "repeats" : true,
+    "coalesce" : true,
+    "actionCommand" : null,
+    "actionListeners" : [
+      { }
+    ],
+    "running" : true
+  }
+}

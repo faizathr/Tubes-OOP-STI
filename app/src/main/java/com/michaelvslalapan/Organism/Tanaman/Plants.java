@@ -7,6 +7,8 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
 import com.michaelvslalapan.Organism.Organism;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.michaelvslalapan.ADT.Point;
 import com.michaelvslalapan.Game.Game;
 import com.michaelvslalapan.Game.Pea;
@@ -30,10 +32,12 @@ public class Plants<PlantID> extends Organism {
     private Timer sunDropTimer;
     private double attackDamage;
     private int plantHeight = 66, plantWidth = 62;
+    
+    @JsonIgnore
     Thread threadToExplode;
     private boolean isExploded = false;
 
-    public Plants(PlantID ID, String name, int cost, double health, double attackDamage, double attackSpeed, int range, double cooldown, Boolean is_aquatic, int LaneX, int LaneY) {
+    public Plants(@JsonProperty("plantID")PlantID ID, @JsonProperty("_name")String name, @JsonProperty("cost")int cost, @JsonProperty("_Health")double health, @JsonProperty("_Attack_Damage")double attackDamage, @JsonProperty("_Attack_Speed")double attackSpeed, @JsonProperty("range")int range, @JsonProperty("cooldown")double cooldown, @JsonProperty("_is_aquatic")Boolean is_aquatic, @JsonProperty("laneX")int LaneX, @JsonProperty("laneY")int LaneY) {
         super(name, health, attackDamage, attackSpeed, is_aquatic);
         this.ID = ID;  
         this.cost = cost;
@@ -226,7 +230,7 @@ public class Plants<PlantID> extends Organism {
         threadToExplode.start();
     }
     public boolean isthreadToExplodeAlive(){
-        return threadToExplode.isAlive();
+        return threadToExplode != null && threadToExplode.isAlive();
     }
 
     //initialization block
