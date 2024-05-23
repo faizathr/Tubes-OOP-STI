@@ -118,7 +118,7 @@ public class Game extends JPanel implements ActionListener{
     private Image MainMenu;
     private Ellipse2D shovel2D;
     private Point mouse = new Point();
-    private Rectangle endScreen, startDeckSelectionButton, startGameButton, playAgainButton;
+    private Rectangle endScreen, startDeckSelectionButton, startGameButton, playAgainButton, saveAndExitButton;
     private Rectangle[] plantCatalogClickArea = new Rectangle[6];
 
     //Zombie
@@ -327,6 +327,8 @@ public class Game extends JPanel implements ActionListener{
             }
         });
         secondsTimer.start();
+
+        saveAndExitButton = new Rectangle(824, 575, 200, 58);
     }
 
     private void drawPlantCost(Graphics2D GUI_2D) {
@@ -673,6 +675,10 @@ public class Game extends JPanel implements ActionListener{
                 GUI_2D.drawImage(plantCatalogImg[selectedPlant], mouse.getX() - 31, mouse.getY() - 33, 62, 66, this);
                 GUI_2D.setComposite(AlphaComposite.SrcOver.derive(1f));
             }
+
+            // save and exit
+            GUI.drawImage(img[79], 824, 575, 200, 58, this);
+
 
             if (isPlaying) {
                 Iterator<Pea> iteratedPea = peas.iterator();
@@ -1036,6 +1042,10 @@ public class Game extends JPanel implements ActionListener{
                     } else if(shovel2D.contains(e.getPoint())) {
                         setShovel(true);
                         AudioManager.shovel();
+                    }
+
+                    if (saveAndExitButton.contains(e.getPoint())) {
+                        System.out.println("Save and Exit Button Pressed");
                     }
                 } 
                 /*
