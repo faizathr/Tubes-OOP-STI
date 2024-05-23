@@ -42,6 +42,7 @@ public class Zombie extends Organism implements Comparable<Zombie> {
         super(name, health, attackDamage, attackSpeed, is_aquatic);
         this.LaneY = LaneY;
         CoordY = getLaneYCoord(LaneY);
+        this.ZombieID = ZombieID;
     }
 
     public void settimePerLaneMove(double timePerLaneMove){
@@ -92,11 +93,16 @@ public class Zombie extends Organism implements Comparable<Zombie> {
             new DuckyTubeZombie(LaneY),
             new DolphinRiderZombie(LaneY)
         };
-        if (LaneY <= 1 && LaneY >= 4) {
-            zombie = NonAquaticZombieInventory[(int)(Math.random() * NonAquaticZombieInventory.length)];
+        //System.out.println("LaneY: " + LaneY);
+        if (LaneY <= 1 || LaneY >= 4) {
+            int randSeed = (int)(Math.random() * NonAquaticZombieInventory.length);
+            //System.out.println("NonAquaticZombieInventory randSeed: " + randSeed);
+            zombie = NonAquaticZombieInventory[randSeed];
         } else {
             // if (LaneY >= 2 && LaneY <= 3) {
-            zombie = AquaticZombieInventory[(int)(Math.random() * AquaticZombieInventory.length)];
+            int randSeed = (int)(Math.random() * AquaticZombieInventory.length);
+            //System.out.println("AquaticZombieInventory randSeed: " + randSeed);
+            zombie = AquaticZombieInventory[randSeed];
         }
         return zombie;
     }
@@ -207,7 +213,7 @@ public class Zombie extends Organism implements Comparable<Zombie> {
 
     @Override
 	public int compareTo(Zombie z) {
-		return LaneX - z.getLaneX();
+		return LaneY - z.getLaneY();
 	}
 
     public boolean isGameOver() {
