@@ -18,11 +18,11 @@ public class Plants<PlantID> extends Organism {
     private int cost, range, LaneX, LaneY; // [9][6]
     private boolean isThreaten = false, isIdle = true;
 
-    private static boolean[][] isSlotFilled = new boolean[9][6];
+    private static boolean[][] isSlotFilled = new boolean[10][6];
     private static Point[][] MapSlot = new Point[9][6];
 
-    private static boolean[][] isLilypadSlotFilled = new boolean[9][6];
-    private static Point[][] LilypadMapSlot = new Point[9][6];
+    private static boolean[][] isLilypadSlotFilled = new boolean[10][6];
+    private static Point[][] LilypadMapSlot = new Point[10][6];
 
     private double cooldown;
     private Timer peaTimer;
@@ -32,7 +32,6 @@ public class Plants<PlantID> extends Organism {
     private int plantHeight = 66, plantWidth = 62;
     Thread threadToExplode;
     private boolean isExploded = false;
-    private boolean isEnlarging = false;
 
     public Plants(PlantID ID, String name, int cost, double health, double attackDamage, double attackSpeed, int range, double cooldown, Boolean is_aquatic, int LaneX, int LaneY) {
         super(name, health, attackDamage, attackSpeed, is_aquatic);
@@ -71,10 +70,6 @@ public class Plants<PlantID> extends Organism {
 
     public boolean getIsExploded(){
         return isExploded;
-    }
-
-    public boolean getIsEnlarging(){
-        return isEnlarging;
     }
 
     public int getLaneX() {
@@ -206,7 +201,6 @@ public class Plants<PlantID> extends Organism {
     }
 
     public void enlargeExplodingPlant(){
-        isEnlarging = true;
         plantWidth+=1; plantHeight+=1;
     }
 
@@ -250,7 +244,7 @@ public class Plants<PlantID> extends Organism {
         });
         repeaterPeaTimer.setInitialDelay(2200);
 
-        sunDropTimer = new Timer(10000, new ActionListener(){
+        sunDropTimer = new Timer(3 * 1000, new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 Game.suns.add(new Sun(LaneX, LaneY));
             }

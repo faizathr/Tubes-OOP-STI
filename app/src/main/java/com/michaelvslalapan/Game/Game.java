@@ -1,36 +1,33 @@
 package com.michaelvslalapan.Game;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseMotionAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.AlphaComposite;
 import java.awt.Color;
-import java.awt.Image;
-import java.awt.Toolkit;
-import java.awt.Shape;
-import java.awt.Rectangle;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Font;
 import java.awt.FontMetrics;
-import java.awt.geom.Ellipse2D;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GraphicsEnvironment;
-
-import java.lang.Math;
+import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.Shape;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Iterator;
+import java.util.List;
 
-import javax.swing.JPanel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import com.michaelvslalapan.ADT.Point;
-import com.michaelvslalapan.Organism.Tanaman.Sunflower;
 import com.michaelvslalapan.Organism.Tanaman.Plants;
-import com.michaelvslalapan.Organism.Tanaman.Plants.*;
+import com.michaelvslalapan.Organism.Tanaman.Sunflower;
 import com.michaelvslalapan.Organism.Zombie.Zombie;
 
 public class Game extends JPanel implements ActionListener{
@@ -111,7 +108,9 @@ public class Game extends JPanel implements ActionListener{
         "ScreendoorZombieSlow.gif",
         "DolphinRiderZombieJumpSlow.gif",
         "PoleVaultingZombieJumpSlow.gif",
-        "Tryagain.png"
+        "Tryagain.png",
+        "Trophy.png",
+        "Playagain.png"
     };
     private Shape[][] fieldClickArea = new Shape[9][6];
     private Image[] img = new Image[imgfilenames.length];
@@ -132,7 +131,7 @@ public class Game extends JPanel implements ActionListener{
     private int plantLaneY;
 
     // Player
-    private int sunCredits = 25, sunChanges, selectedPlant = -1;
+    private int sunCredits = 50, sunChanges, selectedPlant = -1;
     private boolean isUsingShovel = false;
     private Font font;
     private String[] PlantID = new String[]{
@@ -208,6 +207,7 @@ public class Game extends JPanel implements ActionListener{
     private boolean isClickingSun = false;
     private boolean zombieFlagDead = false;
     private boolean isFinalWave = false;
+    private static int zombieInMap = 0;
     private static int zombieWave = 0;
     
     private Plants<Integer> plant = new Sunflower(0, 0);
@@ -304,6 +304,7 @@ public class Game extends JPanel implements ActionListener{
                 }
             }
         });
+        AudioManager.selectPlant();
     }
 
     public void startGame() {
@@ -340,6 +341,13 @@ public class Game extends JPanel implements ActionListener{
                 }
             }
         }
+    }
+
+    private void drawTime(Graphics2D GUI_2D, int time) {
+        GUI_2D.setFont(font); 
+        if (time >= 100) GUI_2D.setColor(Color.WHITE);
+        else GUI_2D.setColor(Color.BLACK);
+        GUI_2D.drawString(Integer.toString(time) + " s", 385, 605);
     }
 
     @Override
@@ -467,8 +475,8 @@ public class Game extends JPanel implements ActionListener{
                     if (!plant.isDead()) {
                         GUI.drawImage(plantGif[7], 265 + 82 * plant.getLaneX(), 75 + 88 * plant.getLaneY(), plant.getPlantWidth(), plant.getPlantHeight(), this);
                     } else {
-                        if (!plant.getIsEnlarging()) { //enlarge
-                            GUI.drawImage(plantGif[7], plantCoordX, plantCoordY, plant.getPlantWidth(), plant.getPlantWidth(), this);
+                        if (plant.getPlantWidth() < 110) { //enlarge
+                            GUI.drawImage(plantGif[7], plantCoordX - (plant.getPlantWidth() - 62) / 2, plantCoordY - (plant.getPlantHeight() - 66) / 2, plant.getPlantWidth(), plant.getPlantWidth(), this);
                             plant.enlargeExplodingPlant();
                             AudioManager.cherryEnlarge();
                         } else {
@@ -488,6 +496,7 @@ public class Game extends JPanel implements ActionListener{
                                     && zombie.getLaneX() <= (plantLaneX+1) && zombie.getLaneX() >= (plantLaneX-1)) {
                                         zombie.stopAttackingPlant();
                                         iteratedZombie.remove();
+                                        reduceZombieInMapCount();
                                     }
                                 }
                             }
@@ -499,8 +508,8 @@ public class Game extends JPanel implements ActionListener{
                         }
                     }
                 } else if(plant.getPlantID().equals(8)) { // Cherrybomb
-                    if (!plant.getIsEnlarging()) { //enlarge
-                        GUI.drawImage(plantGif[8], plantCoordX, plantCoordY, plant.getPlantWidth(), plant.getPlantWidth(), this);
+                    if (plant.getPlantWidth() < 110) { //enlarge
+                        GUI.drawImage(plantGif[8], plantCoordX - (plant.getPlantWidth() - 76) / 2, plantCoordY - (plant.getPlantHeight() - 74) / 2, plant.getPlantWidth(), plant.getPlantWidth(), this);
                         plant.enlargeExplodingPlant();
                         AudioManager.cherryEnlarge();
                     } else {
@@ -520,6 +529,7 @@ public class Game extends JPanel implements ActionListener{
                                 && zombie.getLaneX() <= (plantLaneX+1) && zombie.getLaneX() >= (plantLaneX-1)) {
                                     zombie.stopAttackingPlant();
                                     iteratedZombie.remove();
+                                    reduceZombieInMapCount();
                                 }
                             }
                         }
@@ -572,6 +582,8 @@ public class Game extends JPanel implements ActionListener{
             Iterator<Zombie> iteratedZombie = zombies.iterator(); 
             while (iteratedZombie.hasNext()){
                 Zombie zombie = iteratedZombie.next();
+
+                zombie.attackOrMove();
                 
                 zombieCoordX = zombie.getCoordX();
                 zombieLaneY = zombie.getLaneY();
@@ -579,9 +591,13 @@ public class Game extends JPanel implements ActionListener{
                 Image[] zombieSlowedOrNotImg = new Image[]{zombieImg[zombie.getZombieID()], zombieImgSlowed[zombie.getZombieID()]};
                 int isZombieImgSlowed = zombie.getIsSlowed() ? 1 : 0;
 
+                //System.out.println("zombie.getZombieID(): " + zombie.getZombieID());
+                //System.out.println("isZombieImgSlowed: " + isZombieImgSlowed);
+                //System.out.println("zombieCoordX: " + zombieCoordX);
+                
                 //draw zombie
                 GUI.drawImage(zombieSlowedOrNotImg[isZombieImgSlowed], Math.round(zombieCoordX), zombie.getCoordY(), zombie.getWidth(), zombie.getHeight(), this);
-
+                
                 //check if zombie intersects pea
                 Iterator<Pea> iteratedPea = peas.iterator(); 
                 while (iteratedPea.hasNext()){
@@ -600,10 +616,12 @@ public class Game extends JPanel implements ActionListener{
                     zombie.stopAttackingPlant();
                     AudioManager.yuck();
                     iteratedZombie.remove();
+                    reduceZombieInMapCount();
                 }
                 
                 if (zombie.isGameOver()){
                     isPlaying = false;
+                    isWinning = false;
                     if(zombieCoordX <= 23){
                         iteratedZombie.remove();
                     }
@@ -646,6 +664,8 @@ public class Game extends JPanel implements ActionListener{
                 //draw shovel following mouse position
                 GUI.drawImage(shovelImg[0], mouse.getX(), mouse.getY()-70, 68, 70, this);
             }
+
+            drawTime(GUI_2D, secondsTime);
 
             if (getSelectedPlant() > -1) {
                 GUI_2D.setComposite(AlphaComposite.SrcOver.derive(0.7f));
@@ -725,40 +745,41 @@ public class Game extends JPanel implements ActionListener{
                 for(Plants plant: plants){
                     plant.stop();
                 }
+                secondsTimer.stop();
                 Zombie.stopAttackingPlant();
                 Sun.stop();
                 suns.clear();
                 peas.clear();
 
                 if(isWinning){
-                    if (endSoundPlaying) {
-                        endSoundPlaying = false;
-                    }
-                    
+                    if (!endSoundPlaying) {
+                        AudioManager.win();
+                        endSoundPlaying = true;
+                    }                    
                     GUI_2D.setColor(Color.WHITE);
                     GUI_2D.setComposite(AlphaComposite.SrcOver.derive(0.6f));
                     GUI_2D.fill(endScreen);
                     GUI_2D.setComposite(AlphaComposite.SrcOver.derive(1f));
                     
-                    playAgainButton = new Rectangle(442, 410, 140, 65);
+                    //playAgainButton = new Rectangle(442, 410, 140, 65);
 
-                    //GUI.drawImage(img[16],263,130,500,250,this);
-                    GUI.drawImage(img[17],442,410,140,65,this);
+                    GUI.drawImage(img[77],430,187,166,136,this);
+                    //GUI.drawImage(img[78],442,410,140,65,this);
                     
                 } else {
-                    if(endSoundPlaying){
+                    if(!endSoundPlaying){
                         AudioManager.lose();
-                        endSoundPlaying = false;
+                        endSoundPlaying = true;
                     }
                     GUI_2D.setColor(Color.WHITE);
                     GUI_2D.setComposite(AlphaComposite.SrcOver.derive(0.6f));
                     GUI_2D.fill(endScreen);
                     GUI_2D.setComposite(AlphaComposite.SrcOver.derive(1f));
-                    playAgainButton = new Rectangle(400, 395, 220, 45);
+                    //playAgainButton = new Rectangle(400, 395, 220, 45);
                     
                     GUI.drawImage(losingGameImg[0],425,85,180,210,this); //brain image
                     GUI.drawImage(losingGameImg[1],365,190,this); //lose image
-                    GUI.drawImage(losingGameImg[2],410,405,200,25,this); //try again image
+                    //GUI.drawImage(losingGameImg[2],410,405,200,25,this); //try again image
                 }
             }
         }
@@ -782,9 +803,11 @@ public class Game extends JPanel implements ActionListener{
                             if (!isPlantSelectedOnDeck(selectedCatalogPlantID)) {
                                 PlantDeck[i] = selectedCatalogPlantID;
                                 selectedCatalogPlantID = -1;
+                                AudioManager.shovel();
                             } else {
                                 selectedCatalogPlantID = -1;
                                 selectedDeckPlantID = -1;
+                                AudioManager.buzzer();
                             }
                         } else if (selectedDeckPlantID > -1) {
                             if (PlantDeck[i] > -1 && prevPlantDeck > -1) {
@@ -797,13 +820,16 @@ public class Game extends JPanel implements ActionListener{
                                 selectedDeckPlantID = -1;
                                 prevPlantDeck = -1;
                             }
+                            AudioManager.shovel();
                         } else if (PlantDeck[i] > -1) {
                             selectedDeckPlantID = PlantDeck[i];
                             PlantDeck[i] = -1;
                             prevPlantDeck = i;
+                            AudioManager.shovel();
                         } else {
                             selectedCatalogPlantID = -1;
                             selectedDeckPlantID = -1;
+                            AudioManager.buzzer();
                         }
                     }
                 }
@@ -812,11 +838,14 @@ public class Game extends JPanel implements ActionListener{
                         if (selectedDeckPlantID > -1) {
                             selectedCatalogPlantID = -1;
                             selectedDeckPlantID = -1;
+                            AudioManager.remove();
                         } else {
                             if (selectedCatalogPlantID == -1) {
                                 selectedCatalogPlantID = i;
+                                AudioManager.shovel();
                             } else {
                                 selectedCatalogPlantID = -1;
+                                AudioManager.remove();
                             }
                         }
                     }
@@ -1007,7 +1036,9 @@ public class Game extends JPanel implements ActionListener{
                         setShovel(true);
                         AudioManager.shovel();
                     }
-                } else {
+                } 
+                /*
+                else {
                     if (playAgainButton.contains(e.getPoint())) {
                         isPlaying = true;
                         isWinning = false;
@@ -1030,6 +1061,7 @@ public class Game extends JPanel implements ActionListener{
                         Zombie.startSpawning();   
                     }
                 }
+                 */
             }
         }
     }
@@ -1099,5 +1131,17 @@ public class Game extends JPanel implements ActionListener{
 
     public void emptyPlantSelection() {
         selectedPlant = -1;
+    }
+
+    public static int getZombieInMapCount() {
+        return zombieInMap;
+    }
+
+    public static void addZombieInMapCount() {
+        zombieInMap++;
+    }
+
+    public static void reduceZombieInMapCount() {
+        zombieInMap--;
     }
 }

@@ -8,7 +8,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip; 
 
 public class AudioManager{
-    private static Clip[] AudioClip = new Clip[27]; 
+    private static Clip[] AudioClip = new Clip[28]; 
     private static Timer AudioTimer;
 
     static{
@@ -41,7 +41,8 @@ public class AudioManager{
                 "Shieldhit",
                 "Cherry_enlarge",
                 "Cherrybomb",
-                "Points"
+                "Points",
+                "PlantCatalog"
             };
 
             for (int i = 0; i < wavfilenames.length; i++){
@@ -70,12 +71,13 @@ public class AudioManager{
     }
     public static void evillaugh(){
         AudioClip[0].stop();
-        AudioClip[0]=null;
+        AudioClip[0] = null;
         AudioClip[9].start(); 
     }
 
     public static void begin(){
-        AudioClip[9]=null;
+        AudioClip[27].stop();
+        AudioClip[27] = null;
         AudioClip[2].stop();
         AudioClip[3].stop();
         
@@ -184,11 +186,17 @@ public class AudioManager{
         AudioClip[24].start();
     }
     public static void cherryExplode(){
+        AudioClip[24].stop();
         AudioClip[25].setMicrosecondPosition(0);
         AudioClip[25].start();
     }
     public static void sunPoints(){
         AudioClip[26].setMicrosecondPosition(0);
         AudioClip[26].start();
+    }
+    public static void selectPlant(){
+        AudioClip[9] = null;
+        AudioClip[27].start(); 
+        AudioClip[27].loop(Clip.LOOP_CONTINUOUSLY);
     }
 }

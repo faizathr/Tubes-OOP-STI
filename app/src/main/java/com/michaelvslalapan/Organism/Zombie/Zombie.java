@@ -19,8 +19,8 @@ public class Zombie extends Organism implements Comparable<Zombie> {
     private int zombieWidth = 73;
     private int zombieHeight = 119;
     private int LaneX, LaneY, CoordY;
-    private double timePerLaneMove = 5;
-    private float CoordX = 1020f;
+    private double timePerLaneMove = 10;
+    private float CoordX = 1000f;
     private boolean isSlowed;
     private boolean isPoleVaultingUsed = false;
     private boolean isDolphinJumped = false;
@@ -102,14 +102,17 @@ public class Zombie extends Organism implements Comparable<Zombie> {
     }
 
     public static void startSpawning() {
-        zombieSpawningTimer = new Timer(1000, new ActionListener(){
+        zombieSpawningTimer = new Timer(3 * 1000, new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 if (Game.getSecondsTime() >= 20 && Game.getSecondsTime() <= 160) {
-                    for (int LaneY = 0; LaneY < 6; LaneY++) {
-                        if ((int)(Math.random() * 3) == 1) {
-                            Game.zombies.add(genrateRandomZombie(LaneY));
-                            Collections.sort(Game.zombies);
-                        }   
+                    if (Game.getZombieInMapCount() < 10) {
+                        for (int LaneY = 0; LaneY < 6; LaneY++) {
+                            if ((int)(Math.random() * 10) < 3) {
+                                Game.zombies.add(genrateRandomZombie(LaneY));
+                                Game.addZombieInMapCount();
+                                Collections.sort(Game.zombies);
+                            }   
+                        }
                     }
                 }
             }
@@ -161,7 +164,8 @@ public class Zombie extends Organism implements Comparable<Zombie> {
         this.isDolphinJumped = true;
     }
 
-    public void attackOrMove(){
+    public void attackOrMove() {
+        LaneX = getLaneX();
         if (Plants.getIsSlotFilled(LaneX, LaneY) != false){
             IterateGamePlants: for(Plants<Integer> plant: Game.plants){
                 if (plant.getLaneX() == LaneX && plant.getLaneY() == LaneY && !plant.getPlantID().equals(5)){
@@ -194,7 +198,7 @@ public class Zombie extends Organism implements Comparable<Zombie> {
     }
     
     public void move(){
-        CoordX -= getZombieSpeed(timePerLaneMove) * (isSlowed ? 0.5 : 1);
+        CoordX -= getZombieSpeed(timePerLaneMove) * (isSlowed ? 0.5f : 1f);
     }
 
     public static void stopAttackingPlant() {
