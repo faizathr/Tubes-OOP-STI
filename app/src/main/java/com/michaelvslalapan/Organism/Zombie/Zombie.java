@@ -147,8 +147,10 @@ public class Zombie extends Organism implements Comparable<Zombie> {
             zombieSlowedTimer = new Timer(3000, new ActionListener(){
                 public void actionPerformed(ActionEvent e) {
                     isSlowed = false;
+                    zombieSlowedTimer.stop();
                 }
             });
+            zombieSlowedTimer.start();
         } else {
             zombieSlowedTimer.restart();
         }
@@ -176,7 +178,7 @@ public class Zombie extends Organism implements Comparable<Zombie> {
             IterateGamePlants: for(Plants<Integer> plant: Game.plants){
                 if (plant.getLaneX() == LaneX && plant.getLaneY() == LaneY && !plant.getPlantID().equals(5)){
                     zombieAttackTimer.start();
-                    if (plant.isDead() && !plant.getPlantID().equals(7)) {
+                    if (plant.isDead()) {
                         plant.stop();
                         Plants.emptySlot(LaneX, LaneY);
                         zombieAttackTimer.stop();

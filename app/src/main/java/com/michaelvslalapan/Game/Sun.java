@@ -20,12 +20,14 @@ public class Sun {
         CoordY = -85;
         CoordYLimit = (int) (Math.random() * (470 - 200 + 1) + 200);
         isFromSunflower = false;
+        sunObj = new Ellipse2D.Float(CoordX, CoordY, 80, 80);
     }
 
-    public Sun(int CoordX, int CoordY){
-        this.CoordX = Plants.getMapSlot(CoordX, CoordY).getX() - 15;
-        this.CoordY = Plants.getMapSlot(CoordX, CoordY).getY() - 30;
+    public Sun(int LaneX, int LaneY){
+        CoordX = Plants.getMapSlot(LaneX, LaneY).getX() - 15;
+        CoordY = Plants.getMapSlot(LaneX, LaneY).getY() - 30;
         isFromSunflower = true;
+        sunObj = new Ellipse2D.Float(CoordX, CoordY, 80, 80);
     }
 
     public static void startTimer() {
