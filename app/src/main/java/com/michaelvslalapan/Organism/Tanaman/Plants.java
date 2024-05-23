@@ -35,6 +35,7 @@ public class Plants<PlantID> extends Organism {
     
     @JsonIgnore
     Thread threadToExplode;
+
     private boolean isExploded = false;
 
     public Plants(@JsonProperty("plantID")PlantID ID, @JsonProperty("_name")String name, @JsonProperty("cost")int cost, @JsonProperty("_Health")double health, @JsonProperty("_Attack_Damage")double attackDamage, @JsonProperty("_Attack_Speed")double attackSpeed, @JsonProperty("range")int range, @JsonProperty("cooldown")double cooldown, @JsonProperty("_is_aquatic")Boolean is_aquatic, @JsonProperty("laneX")int LaneX, @JsonProperty("laneY")int LaneY) {
@@ -229,8 +230,10 @@ public class Plants<PlantID> extends Organism {
     public void startTimer(){
         threadToExplode.start();
     }
+
+    @JsonIgnore
     public boolean isthreadToExplodeAlive(){
-        return threadToExplode != null && threadToExplode.isAlive();
+        return threadToExplode.isAlive();
     }
 
     //initialization block

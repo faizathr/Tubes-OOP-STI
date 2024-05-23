@@ -8,6 +8,7 @@ import javax.swing.Timer;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.michaelvslalapan.Organism.Tanaman.Plants;
 
 
@@ -34,6 +35,14 @@ public class Sun {
         CoordX = Plants.getMapSlot(LaneX, LaneY).getX() - 15;
         CoordY = Plants.getMapSlot(LaneX, LaneY).getY() - 30;
         isFromSunflower = true;
+        sunObj = new Ellipse2D.Float(CoordX, CoordY, 80, 80);
+    }
+
+    public Sun(@JsonProperty("coordX")int CoordX, @JsonProperty("coordY")int CoordY, @JsonProperty("fromSunflower")boolean isFromSun, @JsonProperty("waiting") boolean IsWaiting){
+        this.CoordX = CoordX;
+        this.CoordY = CoordY;
+        isFromSunflower = isFromSun;
+        isWaiting = IsWaiting;
         sunObj = new Ellipse2D.Float(CoordX, CoordY, 80, 80);
     }
 
@@ -68,6 +77,7 @@ public class Sun {
     public int getCoordY() {
         return CoordY;
     }
+    @JsonIgnore
     public int getCoordYLimit() {
         return CoordYLimit;
     }
@@ -79,6 +89,7 @@ public class Sun {
     public Ellipse2D getObj() {
         return sunObj;
     }
+    @JsonIgnore
     public boolean isTsunAlive() {
         return sunDropThread.isAlive();
     }

@@ -210,6 +210,7 @@ public class Game extends JPanel implements ActionListener{
     private boolean isFinalWave = false;
     private static int zombieInMap = 0;
     private static int zombieWave = 0;
+    public static boolean isUsingPreviousGame;
     
     private Plants<Integer> plant = new Sunflower(0, 0);
     private Pea pea;
@@ -268,7 +269,8 @@ public class Game extends JPanel implements ActionListener{
         }
     }
 
-    public Game() {
+    public Game(boolean isUsingPreviousGame) {
+        Game.isUsingPreviousGame = isUsingPreviousGame;
         gameTimer = new Timer(25, this);
         loadMainMenu();
 
@@ -296,7 +298,6 @@ public class Game extends JPanel implements ActionListener{
         plantCatalogSlideTimer = new Timer(48, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 plantCatalogSlideVal += 9.024f;
-
                 for (int i = 0; i < zombieDisplayMultiplier; i++) {
                     for (int zombieDisplay = 0; zombieDisplay < zombieCategory; zombieDisplay++) {
                         Point zombiePoint = zombieDisplayCoord[zombieDisplay][i];
@@ -305,6 +306,12 @@ public class Game extends JPanel implements ActionListener{
                 }
             }
         });
+
+        if(isUsingPreviousGame){
+            startGameButton = null;
+            isSliding = true;
+            plantCatalogSlideTimer.start();
+        }
         AudioManager.selectPlant();
     }
 
@@ -313,7 +320,6 @@ public class Game extends JPanel implements ActionListener{
 
         Sun.startTimer();
         Zombie.startSpawning();
-        
         init();
         
         AudioManager.begin();
@@ -1195,5 +1201,13 @@ public class Game extends JPanel implements ActionListener{
 
     public void setPlantDeckSelection(boolean condition){
         plantDeckSelection = true;
+    }
+
+    public int[] getPlantDeck(){
+        return PlantDeck;
+    }
+    
+    public void setPlantDeck(int[] deck){
+        PlantDeck = deck;
     }
 }

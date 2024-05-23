@@ -32,17 +32,17 @@ public class Load {
 
         Map<String, Object> gameData = mapper.readValue(new File(directory), new TypeReference<Map<String, Object>>() {});
 
+        Main.maingame.setPlantDeck(mapper.convertValue(gameData.get("plantDeck"), new TypeReference<int[]>() {}));
         Game.plants = mapper.convertValue(gameData.get("plants"), new TypeReference<List<Plants<Integer>>>() {});
         Game.zombies = mapper.convertValue(gameData.get("zombies"), new TypeReference<List<Zombie>>() {});
         Game.suns = mapper.convertValue(gameData.get("suns"), new TypeReference<List<Sun>>() {});
         Game.peas = mapper.convertValue(gameData.get("peas"), new TypeReference<List<Pea>>() {});
         Main.maingame.setSunCredits(mapper.convertValue(gameData.get("sunCredits"), Integer.class));
-        Main.maingame.setSecondsTimer(mapper.convertValue(gameData.get("secondsTimer"), Timer.class));
+        // Main.maingame.setSecondsTimer(mapper.convertValue(gameData.get("secondsTimer"), Timer.class));
         // Main.maingame.setGameTimer(mapper.convertValue(gameData.get("gameTimer"), Timer.class));
         Game.setZombieInMapCount(mapper.convertValue(gameData.get("zombieInMap"), Integer.class));
         Game.setWave(mapper.convertValue(gameData.get("zombieWave"), Integer.class));
         Main.maingame.setIsNight(mapper.convertValue(gameData.get("isNight"), Boolean.class));
-        Main.maingame.setPlantDeckSelection(true);
 
     }
 
