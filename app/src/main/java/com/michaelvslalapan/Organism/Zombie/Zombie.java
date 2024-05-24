@@ -82,8 +82,16 @@ public class Zombie extends Organism implements Comparable<Zombie> {
         //zombieAttackTimer.setInitialDelay(200);
     }
 
-    public Zombie(@JsonProperty("zombieID")int ZombieID, @JsonProperty("_name")String name, @JsonProperty("_Health")double health, @JsonProperty("_Attack_Damage")double attackDamage, @JsonProperty("_Attack_Speed")double attackSpeed, @JsonProperty("_is_aquatic")boolean is_aquatic, @JsonProperty("coordY") int coordY, @JsonProperty("isSlowed") boolean slowed, @JsonProperty("coordX") float coordX, @JsonProperty("laneX")int laneX, @JsonProperty("laneY")int laneY) {
+    public Zombie(@JsonProperty("zombieID")int ZombieID, @JsonProperty("_name")String name, @JsonProperty("_Health")double health, @JsonProperty("_Attack_Damage")double attackDamage, @JsonProperty("_Attack_Speed")double attackSpeed, @JsonProperty("_is_aquatic")boolean is_aquatic, @JsonProperty("coordY") int coordY, @JsonProperty("isSlowed") boolean slowed, @JsonProperty("coordX") float coordX, @JsonProperty("laneX")int laneX, @JsonProperty("laneY")int laneY, @JsonProperty("isPoleVaultingUsed") boolean ispoleused, @JsonProperty("haveTargettoJump") boolean havetargettojump, @JsonProperty("isDolphinJumped") boolean isdophinjumped
+    ,@JsonProperty("jumpHeight") int jumpheight, @JsonProperty("jumpDisplacement") int jumpd, @JsonProperty("jumpKillTarget") Point jumptarget) {
         super(name, health, attackDamage, attackSpeed, is_aquatic);
+        isPoleVaultingUsed = ispoleused;
+        isDolphinJumped = isdophinjumped;
+        jumpDisplacement = jumpd;
+        jumpKillTarget = jumptarget;
+
+        jumpHeight = jumpheight;
+        haveTargettoJump = havetargettojump;
         this.LaneY = laneY;
         CoordY = coordY;
         CoordX = coordX;
@@ -324,7 +332,7 @@ public class Zombie extends Organism implements Comparable<Zombie> {
     public void startAttackingPlant() {
         zombieAttackTimer.start();
     }
-
+    @JsonIgnore
     public boolean isAttackingPlantStarted() {
         return zombieAttackTimer.isRunning();
     }

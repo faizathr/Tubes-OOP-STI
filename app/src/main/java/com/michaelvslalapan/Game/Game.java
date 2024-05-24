@@ -306,11 +306,9 @@ public class Game extends JPanel implements ActionListener{
 
         AudioManager.menu();
         gameTimer.start();
-        stopThread = false;
     }
 
     public void startDeckSelection() {
-        stopThread = false;
         plantDeckSelection = true;
         loadFont();
 
@@ -966,10 +964,10 @@ public class Game extends JPanel implements ActionListener{
                     GUI_2D.fill(endScreen);
                     GUI_2D.setComposite(AlphaComposite.SrcOver.derive(1f));
                     
-                    //playAgainButton = new Rectangle(442, 410, 140, 65);
+                    playAgainButton = new Rectangle(442, 410, 140, 65);
 
                     GUI.drawImage(img[77],430,187,166,136,this);
-                    //GUI.drawImage(img[78],442,410,140,65,this);
+                    GUI.drawImage(img[78],442,410,140,65,this);
                     
                 } else {
                     if(!endSoundPlaying){
@@ -1260,8 +1258,8 @@ public class Game extends JPanel implements ActionListener{
                             int SaveGame = JOptionPane.showConfirmDialog(Main.frame, "Do You Want to Save The Current Game and Exit?", "Save Confirmation", JOptionPane.YES_NO_OPTION);
                             if(JOptionPane.YES_OPTION == SaveGame){
                                 Save.saveGame();
-                                Main.restartGame();
                                 stopThread = true;
+                                Main.restartGame();
                                 System.out.println("Save Berhasil");
                             }
                         } catch (Exception e1) {
@@ -1269,8 +1267,13 @@ public class Game extends JPanel implements ActionListener{
                             e1.printStackTrace();
                         }
                         
+                    } 
+                }else{
+                    if (playAgainButton.contains(e.getPoint())){
+                        stopThread = true;
+                        Main.restartGame();
                     }
-                } 
+                }
                 /*
                 else {
                     if (playAgainButton.contains(e.getPoint())) {
@@ -1441,8 +1444,20 @@ public class Game extends JPanel implements ActionListener{
                         Game.isUsingPreviousGame = true;
                         Load.loadGame();
                         System.out.println("Starting a Previous Game !");
+                        stopThread = false;
                     }else if(JOptionPane.NO_OPTION == isContinueGameSaved){
+                        Game.isUsingPreviousGame = false;
+                        Game.setZombieInMapCount(0);
+                        Game.setZombieWave(0);
+                        Game.setRealCoolDownList(new ArrayList<Double>());
+                        Game.plants = new ArrayList<Plants<Integer>>();
+                        Game.zombies = new ArrayList<Zombie>();
+                        Game.suns = new ArrayList<Sun>();
+                        Game.peas = new ArrayList<Pea>();
+                        secondsTime = 0;
+
                         System.out.println("Starting a New Game");
+                        stopThread = false;
                     }  
                 } catch (Exception e){
                     e.printStackTrace();
@@ -1470,5 +1485,9 @@ public class Game extends JPanel implements ActionListener{
 
     public static void setRealCoolDownList(List<Double> realcooldownlist){
         realCooldownPlantList =  realcooldownlist;
+    }
+
+    public static void setZombieWave(int wave){
+        zombieWave = wave;
     }
 }

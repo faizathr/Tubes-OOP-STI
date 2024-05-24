@@ -2,7 +2,13 @@ package com.michaelvslalapan;
 
 import javax.swing.JFrame;
 import com.michaelvslalapan.Game.Game;
+import com.michaelvslalapan.Game.Pea;
+import com.michaelvslalapan.Game.Sun;
+import com.michaelvslalapan.Organism.Tanaman.Plants;
+import com.michaelvslalapan.Organism.Zombie.Zombie;
+
 import java.io.File;
+import java.util.ArrayList;
 
 public class Main{
     public static Game maingame;
@@ -16,7 +22,6 @@ public class Main{
         Main.frame.repaint();
         Main.frame.revalidate();
         Main.previousGameFile = new File(directory);
-        Game.stopThread = false;
     }
     public static void main(String[] args){
         int inset=38;
