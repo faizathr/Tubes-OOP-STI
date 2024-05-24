@@ -5,6 +5,6 @@ Puffshroom (mirip dengan peashooter, tetapi hanya bisa dipanggil di malam hari)
 */
 public class Puffshroom extends Plants<Integer> {
     public Puffshroom(int LaneX, int LaneY){
-        super(9, "Puffshroom", 0, 0, 25, 4, 3, 7, false, LaneX, LaneY);
+        super(9, "Puffshroom", 0, 75, 25, 4, 3, 7, false, LaneX, LaneY);
     }
 }
