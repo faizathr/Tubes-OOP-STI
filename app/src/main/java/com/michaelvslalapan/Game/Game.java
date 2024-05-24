@@ -27,6 +27,7 @@ import javax.swing.Timer;
 
 import com.michaelvslalapan.Main;
 import com.michaelvslalapan.ADT.Point;
+import com.michaelvslalapan.Organism.Tanaman.PlantInventory;
 import com.michaelvslalapan.Organism.Tanaman.Plants;
 import com.michaelvslalapan.Organism.Tanaman.Sunflower;
 import com.michaelvslalapan.Organism.Zombie.Zombie;
@@ -133,6 +134,8 @@ public class Game extends JPanel implements ActionListener{
     private int plantCoordY;
     private int plantLaneX;
     private int plantLaneY;
+    private static List<Double> cooldownPlantList = new ArrayList<Double>(); 
+    private static List<Double> realCooldownPlantList = new ArrayList<Double>(); 
 
     // Player
     private int sunCredits = 50, sunChanges, selectedPlant = -1;
@@ -153,6 +156,7 @@ public class Game extends JPanel implements ActionListener{
     private int[] PlantCost = new int[]{
         50, 100, 50, 175, 50, 25, 200, 100, 150, 0
     };
+    
     public int getPlantID(String PlantName) {
         for (int i = 0; i < PlantID.length; i++) {
             if (PlantName.equals(PlantID[i])) return i;
@@ -161,6 +165,10 @@ public class Game extends JPanel implements ActionListener{
     }
     public int getCostByPlantID(int PlantID) {
         return PlantCost[PlantID];
+    }
+
+    public double getCooldownByPlantID(int PlantID) {
+        return (PlantInventory.getPlantCatalog().get(PlantID).getCooldown());
     }
 
     // Plant Catalog
@@ -319,6 +327,21 @@ public class Game extends JPanel implements ActionListener{
     }
 
     public void startGame() {
+        for(int i = 0; i < 6; i++){
+            cooldownPlantList.add(getCooldownByPlantID(i));
+            realCooldownPlantList.add(0.0);
+        }
+
+        if(isUsingPreviousGame){
+            for(int i = 0; i < 6; i++){
+                if(realCooldownPlantList.get(i) != 0.0){
+                    timerForCooldown(i);
+                }
+            }
+        }
+
+        // System.out.println(cooldownPlantList.toString());
+
         sunChanges = sunCredits;
 
         Sun.startTimer();
@@ -659,7 +682,7 @@ public class Game extends JPanel implements ActionListener{
 
             //draw black&white plant menu
             for (int i = 0; i < 6; i++) {
-                if (getSunCredits() >= PlantCost[PlantDeck[i]]) {
+                if (getSunCredits() >= PlantCost[PlantDeck[i]] && realCooldownPlantList.get(i) == 0.0) {
                     GUI.drawImage(plantCatalogImg[PlantDeck[i]], 40, 156 + 74 * i, 62, 66, this);
                 } else {
                     GUI.drawImage(plantCatalogImgDark[PlantDeck[i]], 40, 156 + 74 * i, 62, 66, this);
@@ -762,7 +785,7 @@ public class Game extends JPanel implements ActionListener{
                     plant.stop();
                 }
                 secondsTimer.stop();
-                Zombie.stopAttackingPlant();
+                Zombie.stopSpawning();
                 Sun.stop();
                 suns.clear();
                 peas.clear();
@@ -895,7 +918,7 @@ public class Game extends JPanel implements ActionListener{
                     }
                     if (!isClickingSun) {
                         if (plantCatalogClickArea[0].contains(e.getPoint())) {
-                            if (getSunCredits() >= getCostByPlantID(PlantDeck[0])) {
+                            if (getSunCredits() >= getCostByPlantID(PlantDeck[0]) && realCooldownPlantList.get(0) == 0.0) {
                                 AudioManager.seedlift();
                                 selectPlant((getSelectedPlant() == PlantDeck[0]) ? -1 : PlantDeck[0]);
                             } else {
@@ -903,7 +926,7 @@ public class Game extends JPanel implements ActionListener{
                                 selectPlant(-1);
                             }
                         } else if (plantCatalogClickArea[1].contains(e.getPoint())) {
-                            if (getSunCredits() >= getCostByPlantID(PlantDeck[1])) {
+                            if (getSunCredits() >= getCostByPlantID(PlantDeck[1])&& realCooldownPlantList.get(1) == 0.0) {
                                 AudioManager.seedlift();
                                 selectPlant((getSelectedPlant() == PlantDeck[1]) ? -1 : PlantDeck[1]);
                             } else {
@@ -911,7 +934,7 @@ public class Game extends JPanel implements ActionListener{
                                 selectPlant(-1);
                             }
                         } else if (plantCatalogClickArea[2].contains(e.getPoint())) {
-                            if (getSunCredits() >= getCostByPlantID(PlantDeck[2])) {
+                            if (getSunCredits() >= getCostByPlantID(PlantDeck[2]) && realCooldownPlantList.get(2) == 0.0) {
                                 AudioManager.seedlift();
                                 selectPlant((getSelectedPlant() == PlantDeck[2]) ? -1 : PlantDeck[2]);
                             } else {
@@ -919,7 +942,7 @@ public class Game extends JPanel implements ActionListener{
                                 selectPlant(-1);
                             }
                         } else if (plantCatalogClickArea[3].contains(e.getPoint())) {
-                            if (getSunCredits() >= getCostByPlantID(PlantDeck[3])) {
+                            if (getSunCredits() >= getCostByPlantID(PlantDeck[3]) && realCooldownPlantList.get(3) == 0.0) {
                                 AudioManager.seedlift();
                                 selectPlant((getSelectedPlant() == PlantDeck[3]) ? -1 : PlantDeck[3]);
                             } else {
@@ -927,7 +950,7 @@ public class Game extends JPanel implements ActionListener{
                                 selectPlant(-1);
                             }
                         } else if (plantCatalogClickArea[4].contains(e.getPoint())) {
-                            if (getSunCredits() >= getCostByPlantID(PlantDeck[4])) {
+                            if (getSunCredits() >= getCostByPlantID(PlantDeck[4]) && realCooldownPlantList.get(4) == 0.0) {
                                 AudioManager.seedlift();
                                 selectPlant((getSelectedPlant() == PlantDeck[4]) ? -1 : PlantDeck[4]);
                             } else {
@@ -935,7 +958,7 @@ public class Game extends JPanel implements ActionListener{
                                 selectPlant(-1);
                             }
                         } else if (plantCatalogClickArea[5].contains(e.getPoint())) {
-                            if (getSunCredits() >= getCostByPlantID(PlantDeck[5])) {
+                            if (getSunCredits() >= getCostByPlantID(PlantDeck[5]) && realCooldownPlantList.get(5) == 0.0) {
                                 AudioManager.seedlift();
                                 selectPlant((getSelectedPlant() == PlantDeck[5]) ? -1 : PlantDeck[5]);
                             } else {
@@ -978,6 +1001,8 @@ public class Game extends JPanel implements ActionListener{
                                                     if(plant.plant(LaneX, LaneY, getSelectedPlant())){
                                                         AudioManager.plant();
                                                         plantSelected();
+                                                        timerForCooldown(getSelectedPlant());
+                                                        realCooldownPlantList.set(getSelectedPlant(), cooldownPlantList.get(getSelectedPlant()));
                                                     } else {
                                                         AudioManager.buzzer();
                                                     }
@@ -988,6 +1013,8 @@ public class Game extends JPanel implements ActionListener{
                                                 if(plant.plant(LaneX, LaneY, getSelectedPlant())){
                                                     AudioManager.plant();
                                                     plantSelected();
+                                                    timerForCooldown(getSelectedPlant());
+                                                    realCooldownPlantList.set(getSelectedPlant(), cooldownPlantList.get(getSelectedPlant()));
                                                 } else {
                                                     AudioManager.buzzer();
                                                 }
@@ -1242,5 +1269,25 @@ public class Game extends JPanel implements ActionListener{
                 }
             }while((isContinueGameSaved != JOptionPane.YES_OPTION) && (isContinueGameSaved != JOptionPane.NO_OPTION));
         }
+    }
+
+    private static void timerForCooldown(int PlantID){
+        Timer coolDown = new Timer((int) (1000), new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                realCooldownPlantList.set(PlantID, realCooldownPlantList.get(PlantID) - 1);
+                if(realCooldownPlantList.get(PlantID) == 0){
+                    ((Timer)e.getSource()).stop();
+                }
+            }
+        });
+        coolDown.start();
+    }
+
+    public static List<Double> getRealCoolDownList(){
+        return realCooldownPlantList;
+    }
+
+    public static void setRealCoolDownList(List<Double> realcooldownlist){
+        realCooldownPlantList =  realcooldownlist;
     }
 }

@@ -1,5 +1,5 @@
 {
-  "sunCredits" : 25,
+  "sunCredits" : 275,
   "plantDeck" : [
     0,
     1,
@@ -10,10 +10,10 @@
   ],
   "suns" : [
     {
-      "coordX" : 751,
-      "coordY" : 295,
+      "coordX" : 290,
+      "coordY" : 203,
       "fromSunflower" : false,
-      "waiting" : false
+      "waiting" : true
     },
     {
       "coordX" : 250,
@@ -22,16 +22,54 @@
       "waiting" : true
     },
     {
-      "coordX" : 593,
-      "coordY" : -73,
-      "fromSunflower" : false,
-      "waiting" : false
+      "coordX" : 250,
+      "coordY" : 372,
+      "fromSunflower" : true,
+      "waiting" : true
     }
   ],
   "peas" : [ ],
   "plants" : [
     {
-      "startTime" : 1716520828,
+      "plantID" : 0,
+      "_name" : "Sunflower",
+      "cost" : 50,
+      "_Health" : 100.0,
+      "_Attack_Damage" : 0.0,
+      "_Attack_Speed" : 0.0,
+      "range" : 0,
+      "cooldown" : 10.0,
+      "_is_aquatic" : false,
+      "laneX" : 0,
+      "laneY" : 1,
+      "startTime" : 1716532911,
+      "isThreaten" : false,
+      "isIdle" : true,
+      "plantHeight" : 66,
+      "plantWidth" : 62,
+      "isExploded" : false
+    },
+    {
+      "plantID" : 0,
+      "_name" : "Sunflower",
+      "cost" : 50,
+      "_Health" : 100.0,
+      "_Attack_Damage" : 0.0,
+      "_Attack_Speed" : 0.0,
+      "range" : 0,
+      "cooldown" : 10.0,
+      "_is_aquatic" : false,
+      "laneX" : 0,
+      "laneY" : 4,
+      "startTime" : 1716532926,
+      "isThreaten" : false,
+      "isIdle" : true,
+      "plantHeight" : 66,
+      "plantWidth" : 62,
+      "isExploded" : false
+    },
+    {
+      "startTime" : 1716533176,
       "cost" : 50,
       "range" : 0,
       "isThreaten" : false,
@@ -40,17 +78,31 @@
       "plantHeight" : 66,
       "plantWidth" : 62,
       "isExploded" : false,
-      "laneX" : 0,
+      "laneX" : 1,
+      "laneY" : 4,
       "plantID" : 0,
-      "laneY" : 1,
-      "_Health" : 100.0,
-      "_Attack_Damage" : 0.0,
       "_Attack_Speed" : 0.0,
+      "_Attack_Damage" : 0.0,
       "_is_aquatic" : false,
-      "_name" : "Sunflower"
+      "_name" : "Sunflower",
+      "_Health" : 100.0
     }
   ],
   "isNight" : false,
+  "realCooldownPlantList" : [
+    8.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
   "zombieInMap" : 0,
   "zombieWave" : 0,
   "zombies" : [ ]
