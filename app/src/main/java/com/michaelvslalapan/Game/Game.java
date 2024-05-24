@@ -1234,10 +1234,9 @@ public class Game extends JPanel implements ActionListener{
                         Game.isUsingPreviousGame = true;
                         Load.loadGame();
                         System.out.println("Starting a Previous Game !");
-                    }else if(JOptionPane.YES_NO_OPTION == isContinueGameSaved){
+                    }else if(JOptionPane.NO_OPTION == isContinueGameSaved){
                         System.out.println("Starting a New Game");
                     }  
-                    
                 } catch (Exception e){
                     e.printStackTrace();
                 }
