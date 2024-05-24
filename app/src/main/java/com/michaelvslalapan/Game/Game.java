@@ -347,6 +347,8 @@ public class Game extends JPanel implements ActionListener{
         Sun.startTimer();
         Zombie.startSpawning();
         init();
+
+        Plants.fillPlantSlot();
         
         AudioManager.begin();
         gameTimer.start();
@@ -977,6 +979,8 @@ public class Game extends JPanel implements ActionListener{
                                                 if(plant.plantLilypad(LaneX, LaneY)){
                                                     AudioManager.plant();
                                                     plantSelected();
+                                                    timerForCooldown(getSelectedPlant());
+                                                    realCooldownPlantList.set(getSelectedPlant(), cooldownPlantList.get(getSelectedPlant()));
                                                 } else {
                                                     AudioManager.buzzer();
                                                 }
@@ -1153,6 +1157,10 @@ public class Game extends JPanel implements ActionListener{
 
     public static int getSecondsTime() {
         return secondsTime;
+    }
+
+    public static void setSecondsTime(int seconds) {
+        secondsTime = seconds;
     }
 
     public int getSunCredits() {
