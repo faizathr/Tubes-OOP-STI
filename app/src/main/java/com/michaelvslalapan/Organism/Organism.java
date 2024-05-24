@@ -2,6 +2,8 @@ package com.michaelvslalapan.Organism;
 
 import java.util.concurrent.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public abstract class Organism {
     private String name;
     private double health;
@@ -61,10 +63,11 @@ public abstract class Organism {
         this.is_aquatic = is_aquatic;
     }
 
-    public void decreaseHealth(double health){
-        this.health -= health;
+    public void decreaseHealth(double attackDamage){
+        this.health -= attackDamage;
     }
 
+    @JsonIgnore
     public boolean isDead(){
         return health <= (double) 0;
     }

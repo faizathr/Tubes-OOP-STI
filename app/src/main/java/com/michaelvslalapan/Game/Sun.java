@@ -6,12 +6,20 @@ import java.awt.event.ActionListener;
 import java.lang.Math;
 import javax.swing.Timer;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.michaelvslalapan.Organism.Tanaman.Plants;
 
+
+@JsonIgnoreProperties({"sunObj"})
 public class Sun {
     private int CoordX, CoordY, CoordYLimit;
     private boolean isFromSunflower, isWaiting = false;
+
+    @JsonIgnore
     private Ellipse2D sunObj;
+
     private static Timer timerNonSunflowerDrop;
     private Thread sunDropThread = new Thread(new waitSunDropping());
 
@@ -20,18 +28,29 @@ public class Sun {
         CoordY = -85;
         CoordYLimit = (int) (Math.random() * (470 - 200 + 1) + 200);
         isFromSunflower = false;
+        sunObj = new Ellipse2D.Float(CoordX, CoordY, 80, 80);
     }
 
-    public Sun(int CoordX, int CoordY){
-        this.CoordX = Plants.getMapSlot(CoordX, CoordY).getX() - 15;
-        this.CoordY = Plants.getMapSlot(CoordX, CoordY).getY() - 30;
+    public Sun(int LaneX, int LaneY){
+        CoordX = Plants.getMapSlot(LaneX, LaneY).getX() - 15;
+        CoordY = Plants.getMapSlot(LaneX, LaneY).getY() - 30;
         isFromSunflower = true;
+        sunObj = new Ellipse2D.Float(CoordX, CoordY, 80, 80);
     }
 
-    public static void start(){
+    public Sun(@JsonProperty("coordX")int CoordX, @JsonProperty("coordY")int CoordY, @JsonProperty("fromSunflower")boolean isFromSun, @JsonProperty("waiting") boolean IsWaiting){
+        this.CoordX = CoordX;
+        this.CoordY = CoordY;
+        isFromSunflower = isFromSun;
+        isWaiting = IsWaiting;
+        sunObj = new Ellipse2D.Float(CoordX, CoordY, 80, 80);
+    }
+
+    public static void startTimer() {
         timerNonSunflowerDrop = new Timer(5000, new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 Game.suns.add(new Sun());
+                timerNonSunflowerDrop.setDelay(((int)(Math.random() * 6) + 5) * 1000);
             }
         });
         timerNonSunflowerDrop.setRepeats(true);
@@ -48,7 +67,7 @@ public class Sun {
             } catch (InterruptedException e) {}
         }
     } 
-    public void startTimer(){
+    public void startThread(){
         sunDropThread.start();
     }
 
@@ -58,15 +77,19 @@ public class Sun {
     public int getCoordY() {
         return CoordY;
     }
+    @JsonIgnore
     public int getCoordYLimit() {
         return CoordYLimit;
     }
     public boolean isFromSunflower() {
         return isFromSunflower;
     }
+
+    @JsonIgnore
     public Ellipse2D getObj() {
         return sunObj;
     }
+    @JsonIgnore
     public boolean isTsunAlive() {
         return sunDropThread.isAlive();
     }
@@ -74,7 +97,8 @@ public class Sun {
         return isWaiting;
     }
 
-    public void setE(Ellipse2D sunObj){
+    @JsonIgnore
+    public void setSunObj(Ellipse2D sunObj){
         this.sunObj = sunObj;
     }
     public void setWaiting() {

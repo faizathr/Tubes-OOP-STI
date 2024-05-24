@@ -21,6 +21,8 @@ dependencies {
 
     // This dependency is used by the application.
     implementation(libs.guava)
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.17.1")
+
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -32,7 +34,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "com.michaelvslalapan.SaveAndLoad.Load"
+    mainClass = "com.michaelvslalapan.Main"
 }
 
 tasks.named<JavaExec>("run") {
