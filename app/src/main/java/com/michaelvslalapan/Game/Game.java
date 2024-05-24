@@ -694,7 +694,102 @@ public class Game extends JPanel implements ActionListener{
                 //System.out.println("zombieCoordX: " + zombieCoordX);
                 
                 //draw zombie
-                GUI.drawImage(zombieSlowedOrNotImg[isZombieImgSlowed], Math.round(zombieCoordX), zombie.getCoordY(), zombie.getWidth(), zombie.getHeight(), this);
+                if (zombie.getZombieID() == 2) {
+                    if (!zombie.getHaveTargettoJump()) {
+                        if (!zombie.getIsPoleVaultingUsed()) {
+                            IterateGamePlants: for(Plants<Integer> plant: plants){
+                                if(plant.getLaneY() == zombie.getLaneY() && plant.getLaneX() == zombie.getLaneX()){
+                                    zombie.setHaveTargettJump();
+                                    zombie.setJumpKillTarget(plant.getLaneX(), plant.getLaneY());
+                                    break IterateGamePlants;
+                                }
+                            }
+                            GUI.drawImage(zombieSlowedOrNotImg[isZombieImgSlowed], Math.round(zombieCoordX), zombie.getCoordY(), zombie.getWidth(), zombie.getHeight(), this);
+                        } else {
+                            GUI.drawImage(zombieSlowedOrNotImg[isZombieImgSlowed], Math.round(zombieCoordX), zombie.getCoordY(), zombie.getWidth(), zombie.getHeight(), this);
+                        }
+                    } else {
+                        if (zombie.isAttackingPlantStarted()) zombie.stopAttackingPlant();
+                        if (zombie.getJumpHeight() < 44 && !zombie.getIsPoleVaultingUsed()) {
+                            zombie.addJumpHeight();
+                            zombie.addJumpDisplacement();
+                        }
+                        if (zombie.getJumpHeight() == 44) {
+                            zombie.usePoleVault();
+                        }
+                        if (zombie.getJumpHeight() > 0 && zombie.getIsPoleVaultingUsed()) {
+                            zombie.reduceJumpHeight();
+                            zombie.addJumpDisplacement();
+                        }
+                        if (zombie.getJumpHeight() == 0 && zombie.getIsPoleVaultingUsed()) {
+                            zombie.removeHaveTargettJump();
+                            zombie.setCoordX(zombieCoordX - 88);
+                            IterateGamePlants: for(Plants<Integer> plant: plants){
+                                if(plant.getLaneX() == zombie.getJumpKillTarget().getX() && plant.getLaneY() == zombie.getJumpKillTarget().getY()){
+                                    plant.stop();
+                                    Plants.emptySlot(zombie.getJumpKillTarget().getX(), zombie.getJumpKillTarget().getY());
+                                    Game.plants.remove(plant);
+                                    break IterateGamePlants;
+                                }
+                            }
+                        }
+
+                        GUI.drawImage(zombie.getIsSlowed() ? zombieImgSlowed[11] : zombieImg[11], Math.round(zombieCoordX) - zombie.getJumpDisplacement(), zombie.getCoordY() - zombie.getJumpHeight(), zombie.getWidth(), zombie.getHeight(), this);
+                    }
+                } else if (zombie.getZombieID() == 5) {
+                    if (!zombie.getHaveTargettoJump()) {
+                        if (!zombie.getIsDolphinJumped()) {
+                            IterateGamePlants: for(Plants<Integer> plant: plants){
+                                if(plant.getLaneY() == zombie.getLaneY() && plant.getLaneX() == zombie.getLaneX()){
+                                    zombie.setHaveTargettJump();
+                                    zombie.setJumpKillTarget(plant.getLaneX(), plant.getLaneY());
+                                    break IterateGamePlants;
+                                }
+                            }
+                            GUI.drawImage(zombieSlowedOrNotImg[isZombieImgSlowed], Math.round(zombieCoordX), zombie.getCoordY(), zombie.getWidth(), zombie.getHeight(), this);
+                        } else {
+                            GUI.drawImage(zombieSlowedOrNotImg[isZombieImgSlowed], Math.round(zombieCoordX), zombie.getCoordY(), zombie.getWidth(), zombie.getHeight(), this);
+                        }
+                    } else {
+                        if (zombie.isAttackingPlantStarted()) zombie.stopAttackingPlant();
+                        if (zombie.getJumpHeight() < 44 && !zombie.getIsDolphinJumped()) {
+                            zombie.addJumpHeight();
+                            zombie.addJumpDisplacement();
+                        }
+                        if (zombie.getJumpHeight() == 44) {
+                            zombie.useDolphin();
+                        }
+                        if (zombie.getJumpHeight() > 0 && zombie.getIsDolphinJumped()) {
+                            zombie.reduceJumpHeight();
+                            zombie.addJumpDisplacement();
+                        }
+                        if (zombie.getJumpHeight() == 0 && zombie.getIsDolphinJumped()) {
+                            zombie.removeHaveTargettJump();
+                            zombie.setCoordX(zombieCoordX - 88);
+                            if (Plants.getIsSlotFilled(isZombieImgSlowed, isZombieImgSlowed)) {
+                                IterateGamePlants: for(Plants<Integer> plant: plants){
+                                    if(plant.getLaneX() == zombie.getJumpKillTarget().getX() && plant.getLaneY() == zombie.getJumpKillTarget().getY()){
+                                        plant.stop();
+                                        Plants.emptySlot(zombie.getJumpKillTarget().getX(), zombie.getJumpKillTarget().getY());
+                                        Game.plants.remove(plant);
+                                        break IterateGamePlants;
+                                    }
+                                }
+                            }
+                            IterateGamePlants: for(Plants<Integer> plant: plants){
+                                if(plant.getLaneX() == zombie.getJumpKillTarget().getX() && plant.getLaneY() == zombie.getJumpKillTarget().getY()){
+                                    plant.stop();
+                                    Plants.emptySlot(zombie.getJumpKillTarget().getX(), zombie.getJumpKillTarget().getY());
+                                    Game.plants.remove(plant);
+                                    break IterateGamePlants;
+                                }
+                            }
+                        }
+                        GUI.drawImage(zombie.getIsSlowed() ? zombieImgSlowed[10] : zombieImg[10], Math.round(zombieCoordX) - zombie.getJumpDisplacement(), zombie.getCoordY() - zombie.getJumpHeight(), zombie.getWidth(), zombie.getHeight(), this);
+                    }
+                } else {
+                    GUI.drawImage(zombieSlowedOrNotImg[isZombieImgSlowed], Math.round(zombieCoordX), zombie.getCoordY(), zombie.getWidth(), zombie.getHeight(), this);
+                }
                 
                 //check if zombie intersects pea
                 Iterator<Pea> iteratedPea = peas.iterator(); 

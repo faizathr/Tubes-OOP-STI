@@ -11,6 +11,7 @@ import com.michaelvslalapan.Organism.Organism;
 import com.michaelvslalapan.Organism.Tanaman.Plants;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.michaelvslalapan.ADT.Point;
 import com.michaelvslalapan.Game.AudioManager;
 
 public class Zombie extends Organism implements Comparable<Zombie> {
@@ -33,7 +34,11 @@ public class Zombie extends Organism implements Comparable<Zombie> {
     private float CoordX = 1000f;
     private boolean isSlowed;
     private boolean isPoleVaultingUsed = false;
+    private boolean haveTargettoJump = false;
     private boolean isDolphinJumped = false;
+    private int jumpHeight = 0;
+    private int jumpDisplacement = 0;
+    private Point jumpKillTarget;
 
     private String[] ZombieIDCatalog = new String[]{
         "NormalZombie",
@@ -111,6 +116,10 @@ public class Zombie extends Organism implements Comparable<Zombie> {
         return CoordX;
     }
 
+    public void setCoordX(float CoordX) {
+        this.CoordX = CoordX;
+    }
+
     public int getLaneY() {
         return LaneY;
     }
@@ -134,14 +143,18 @@ public class Zombie extends Organism implements Comparable<Zombie> {
     public static Zombie genrateRandomZombie(int LaneY) {
         Zombie zombie;
         Zombie[] NonAquaticZombieInventory = new Zombie[] {
-            new BucketheadZombie(LaneY), 
-            new ConeheadZombie(LaneY),
             new NormalZombie(LaneY),
-            new PoleVaultingZombie(LaneY)
+            new ConeheadZombie(LaneY),
+            new PoleVaultingZombie(LaneY),
+            new BucketheadZombie(LaneY),
+            new FootballZombie(LaneY),
+            new WallnutZombie(LaneY),
+            new ScreenDoorZombie(LaneY)
         };
         Zombie[] AquaticZombieInventory = new Zombie[] {
             new DuckyTubeZombie(LaneY),
-            new DolphinRiderZombie(LaneY)
+            new DolphinRiderZombie(LaneY),
+            new SnorkelZombie(LaneY)
         };
         if (LaneY <= 1 || LaneY >= 4) {
             int randSeed = (int)(Math.random() * NonAquaticZombieInventory.length);
@@ -215,6 +228,26 @@ public class Zombie extends Organism implements Comparable<Zombie> {
         this.isDolphinJumped = true;
     }
 
+    public boolean getHaveTargettoJump() {
+        return haveTargettoJump;
+    }
+
+    public void setHaveTargettJump() {
+        this.haveTargettoJump = true;
+    }
+
+    public void removeHaveTargettJump() {
+        this.haveTargettoJump = false;
+    }
+
+    public void setJumpKillTarget(int x, int y) {
+        jumpKillTarget = new Point(x, y);
+    }
+
+    public Point getJumpKillTarget() {
+        return jumpKillTarget;
+    }
+
     public void attackOrMove() {
         LaneX = this.getLaneX();
         if (Plants.getIsSlotFilled(LaneX, LaneY) != false){
@@ -252,8 +285,36 @@ public class Zombie extends Organism implements Comparable<Zombie> {
         CoordX -= getZombieSpeed(timePerLaneMove) * (isSlowed ? 0.5f : 1f);
     }
 
+    public int getJumpHeight() {
+        return jumpHeight;
+    }
+
+    public void addJumpHeight() {
+        jumpHeight += 2;
+    }
+    
+    public void reduceJumpHeight() {
+        jumpHeight -= 2;
+    }
+
+    public int getJumpDisplacement() {
+        return jumpDisplacement;
+    }
+
+    public void addJumpDisplacement() {
+        jumpDisplacement += 2;
+    }
+
     public static void stopSpawning() {
         zombieSpawningTimer.stop();
+    }
+
+    public void startAttackingPlant() {
+        zombieAttackTimer.start();
+    }
+
+    public boolean isAttackingPlantStarted() {
+        return zombieAttackTimer.isRunning();
     }
 
     public void stopAttackingPlant() {
