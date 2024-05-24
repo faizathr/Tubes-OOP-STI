@@ -17,7 +17,7 @@ public class StartUpFrame extends javax.swing.JFrame {
     
     public StartUpFrame() {
         initComponents();
-        setContentPane(new StartUpJPanel(this));
+        setContentPane(new MainMenuJPanel(this));
         revalidate();
         repaint();
     }

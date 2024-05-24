@@ -30,7 +30,6 @@ public class MainMenuJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
@@ -48,19 +47,7 @@ public class MainMenuJPanel extends javax.swing.JPanel {
             }
         });
         add(jButton1);
-        jButton1.setBounds(170, 270, 230, 60);
-
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/StartPlaying.gif"))); // NOI18N
-        jButton3.setBorderPainted(false);
-        jButton3.setContentAreaFilled(false);
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        add(jButton3);
-        jButton3.setBounds(120, 60, 320, 100);
+        jButton1.setBounds(170, 220, 230, 60);
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ExitButton.png"))); // NOI18N
         jButton4.setBorderPainted(false);
@@ -85,7 +72,7 @@ public class MainMenuJPanel extends javax.swing.JPanel {
             }
         });
         add(jButton5);
-        jButton5.setBounds(230, 360, 116, 60);
+        jButton5.setBounds(230, 330, 116, 60);
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlantsListButton.png"))); // NOI18N
         jButton6.setBorderPainted(false);
@@ -97,15 +84,12 @@ public class MainMenuJPanel extends javax.swing.JPanel {
             }
         });
         add(jButton6);
-        jButton6.setBounds(170, 190, 230, 70);
+        jButton6.setBounds(170, 90, 230, 70);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MainMenu.jpg"))); // NOI18N
         add(jLabel1);
         jLabel1.setBounds(0, 0, 600, 600);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         mainframe.dispose();
@@ -126,7 +110,6 @@ public class MainMenuJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
