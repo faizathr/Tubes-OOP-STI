@@ -256,7 +256,7 @@ public class ZombieListJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        mainframe.click(new SnorkelJPanel(mainframe));
+        mainframe.click(new SnorkelJpanel(mainframe));
     }//GEN-LAST:event_jButton11ActionPerformed
 
 
