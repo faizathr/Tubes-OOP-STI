@@ -1,7 +1,5 @@
 package com.michaelvslalapan.Organism;
 
-import java.util.concurrent.*;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public abstract class Organism {
@@ -18,7 +16,6 @@ public abstract class Organism {
         this.attackDamage = attackDamage;
         this.attackSpeed = attackSpeed;
         this.is_aquatic = is_aquatic;
-        startTime = TimeUnit.SECONDS.convert(System.currentTimeMillis(), TimeUnit.MILLISECONDS);
     }
 
     //Getter Method
