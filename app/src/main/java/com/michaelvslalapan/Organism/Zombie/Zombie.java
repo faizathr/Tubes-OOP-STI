@@ -9,6 +9,8 @@ import javax.swing.Timer;
 import com.michaelvslalapan.Game.Game;
 import com.michaelvslalapan.Organism.Organism;
 import com.michaelvslalapan.Organism.Tanaman.Plants;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.michaelvslalapan.Game.AudioManager;
 
 public class Zombie extends Organism implements Comparable<Zombie> {
@@ -68,6 +70,16 @@ public class Zombie extends Organism implements Comparable<Zombie> {
         });
         //zombieAttackTimer.setInitialDelay(200);
     }
+
+    public Zombie(@JsonProperty("zombieID")int ZombieID, @JsonProperty("_name")String name, @JsonProperty("_Health")double health, @JsonProperty("_Attack_Damage")double attackDamage, @JsonProperty("_Attack_Speed")double attackSpeed, @JsonProperty("_is_aquatic")boolean is_aquatic, @JsonProperty("coordY")int coordY, @JsonProperty("isSlowed") boolean slowed, @JsonProperty("coordX")int coordX, @JsonProperty("laneX")int laneX, @JsonProperty("laneY")int laneY) {
+        super(name, health, attackDamage, attackSpeed, is_aquatic);
+        this.LaneY = laneY;
+        CoordY = coordY;
+        CoordX = coordX;
+        this.ZombieID = ZombieID;
+        isSlowed = slowed;
+        this.LaneX = laneX;
+    }
     
     public void settimePerLaneMove(double timePerLaneMove){
         this.timePerLaneMove = timePerLaneMove;
@@ -96,11 +108,11 @@ public class Zombie extends Organism implements Comparable<Zombie> {
     public int getZombieID() {
         return ZombieID;
     }
-
+    @JsonIgnore
     public int getWidth() {
         return zombieWidth;
     }
-
+    @JsonIgnore
     public int getHeight() {
         return zombieHeight;
     }
@@ -126,7 +138,7 @@ public class Zombie extends Organism implements Comparable<Zombie> {
         }
         return zombie;
     }
-
+    @JsonIgnore
     public static void startSpawning() {
         zombieSpawningTimer = new Timer(3 * 1000, new ActionListener(){
             public void actionPerformed(ActionEvent e) {
@@ -146,7 +158,6 @@ public class Zombie extends Organism implements Comparable<Zombie> {
         zombieSpawningTimer.setInitialDelay(20 * 1000);
         zombieSpawningTimer.start();
     }
-
     public int getLaneX() {
         int calculateLaneX = 9;
         int[] fieldArr = {296,377,458,539,620,701,782,863,944};
@@ -235,7 +246,7 @@ public class Zombie extends Organism implements Comparable<Zombie> {
 	public int compareTo(Zombie z) {
 		return LaneY - z.getLaneY();
 	}
-
+    @JsonIgnore
     public boolean isGameOver() {
         if (CoordX < 210) {
             isReachedHouse = true;
