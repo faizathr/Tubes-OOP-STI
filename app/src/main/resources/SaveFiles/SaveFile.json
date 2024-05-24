@@ -1,13 +1,18 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
   "sunCredits" : -1200,
 =======
   "sunCredits" : 400,
 >>>>>>> bf9854315fd7d00c7c89ea341910229dbb268345
+=======
+  "sunCredits" : 700,
+>>>>>>> 2be1568e7e2fc179c022a097613d2db492b93d27
   "plantDeck" : [
     0,
     6,
     1,
+<<<<<<< HEAD
     7,
     4,
     5
@@ -77,37 +82,70 @@
 =======
       "coordX" : 450,
       "coordY" : 459,
+=======
+    6,
+    3,
+    5,
+    7
+  ],
+  "suns" : [
+    {
+      "coordX" : 283,
+      "coordY" : 439,
+>>>>>>> 2be1568e7e2fc179c022a097613d2db492b93d27
       "fromSunflower" : false,
-      "waiting" : true
+      "waiting" : false
+    },
+    {
+      "coordX" : 623,
+      "coordY" : 337,
+      "fromSunflower" : false,
+      "waiting" : false
+    },
+    {
+      "coordX" : 874,
+      "coordY" : 411,
+      "fromSunflower" : false,
+      "waiting" : false
+    },
+    {
+      "coordX" : 661,
+      "coordY" : 35,
+      "fromSunflower" : false,
+      "waiting" : false
     },
     {
       "coordX" : 250,
       "coordY" : 108,
       "fromSunflower" : true,
       "waiting" : true
-    },
-    {
-      "coordX" : 467,
-      "coordY" : -23,
-      "fromSunflower" : false,
-      "waiting" : false
     }
   ],
-  "secondsTime" : 47,
+  "secondsTime" : 120,
   "peas" : [
     {
       "spawnLaneX" : 1,
-      "spawnLaneY" : 1,
+      "spawnLaneY" : 0,
       "damage" : 25.0,
       "plantID" : 1,
-      "coordX" : 460,
-      "coordY" : 150
+      "coordX" : 520,
+      "coordY" : 62
     }
   ],
   "plants" : [
     {
+      "plantID" : 0,
+      "_name" : "Sunflower",
+      "cost" : 50,
+      "_Health" : 100.0,
+      "_Attack_Damage" : 0.0,
+      "_Attack_Speed" : 0.0,
+      "range" : 0,
+      "cooldown" : 10.0,
+      "_is_aquatic" : false,
       "laneX" : 0,
       "laneY" : 1,
+<<<<<<< HEAD
       "startTime" : 1716546266,
 >>>>>>> bf9854315fd7d00c7c89ea341910229dbb268345
       "cost" : 50,
@@ -116,6 +154,24 @@
       "isIdle" : true,
 <<<<<<< HEAD
 =======
+=======
+      "isExploded" : false,
+      "startTime" : 0,
+      "isThreaten" : false,
+      "isIdle" : true,
+      "plantHeight" : 66,
+      "plantWidth" : 62,
+      "jumpHeight" : 0,
+      "jumpDisplacement" : 0,
+      "isSquashJumped" : false
+    },
+    {
+      "startTime" : 0,
+      "cost" : 200,
+      "range" : -1,
+      "isThreaten" : true,
+      "isIdle" : false,
+>>>>>>> 2be1568e7e2fc179c022a097613d2db492b93d27
       "cooldown" : 10.0,
       "plantHeight" : 66,
       "plantWidth" : 62,
@@ -123,15 +179,17 @@
       "jumpDisplacement" : 0,
       "isSquashJumped" : false,
       "isExploded" : false,
-      "plantID" : 0,
+      "plantID" : 6,
+      "laneX" : 1,
+      "laneY" : 1,
       "_Health" : 100.0,
-      "_Attack_Damage" : 0.0,
-      "_Attack_Speed" : 0.0,
+      "_Attack_Damage" : 25.0,
+      "_Attack_Speed" : 8.0,
       "_is_aquatic" : false,
-      "_name" : "Sunflower"
+      "_name" : "Repeater"
     },
     {
-      "startTime" : 1716546310,
+      "startTime" : 0,
       "cost" : 100,
       "range" : -1,
       "isThreaten" : true,
@@ -144,9 +202,9 @@
       "jumpDisplacement" : 0,
       "isSquashJumped" : false,
       "isExploded" : false,
-      "laneY" : 1,
       "plantID" : 1,
       "laneX" : 1,
+<<<<<<< HEAD
 <<<<<<< HEAD
       "laneY" : 1,
       "plantID" : 0,
@@ -365,28 +423,125 @@
       "_is_aquatic" : false,
       "_name" : "Repeater"
 =======
+=======
+      "laneY" : 0,
+>>>>>>> 2be1568e7e2fc179c022a097613d2db492b93d27
       "_Health" : 100.0,
       "_Attack_Damage" : 25.0,
       "_Attack_Speed" : 4.0,
       "_is_aquatic" : false,
       "_name" : "Peashooter"
+<<<<<<< HEAD
 >>>>>>> bf9854315fd7d00c7c89ea341910229dbb268345
+=======
+    },
+    {
+      "startTime" : 0,
+      "cost" : 200,
+      "range" : -1,
+      "isThreaten" : true,
+      "isIdle" : false,
+      "cooldown" : 10.0,
+      "plantHeight" : 66,
+      "plantWidth" : 62,
+      "jumpHeight" : 0,
+      "jumpDisplacement" : 0,
+      "isSquashJumped" : false,
+      "isExploded" : false,
+      "plantID" : 6,
+      "laneX" : 1,
+      "laneY" : 4,
+      "_Health" : 100.0,
+      "_Attack_Damage" : 25.0,
+      "_Attack_Speed" : 8.0,
+      "_is_aquatic" : false,
+      "_name" : "Repeater"
+>>>>>>> 2be1568e7e2fc179c022a097613d2db492b93d27
     }
   ],
-  "isNight" : false,
+  "isNight" : true,
   "realCooldownPlantList" : [
 <<<<<<< HEAD
     0.0,
     0.0,
 =======
     0.0,
+<<<<<<< HEAD
     8.0,
 >>>>>>> bf9854315fd7d00c7c89ea341910229dbb268345
+=======
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    7.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+>>>>>>> 2be1568e7e2fc179c022a097613d2db492b93d27
     0.0,
     0.0,
     0.0,
     0.0
   ],
+<<<<<<< HEAD
 <<<<<<< HEAD
   "zombieInMap" : 12,
   "zombieWave" : 0,
@@ -403,25 +558,29 @@
       "coordY" : 2,
 =======
   "zombieInMap" : 10,
+=======
+  "zombieInMap" : 11,
+>>>>>>> 2be1568e7e2fc179c022a097613d2db492b93d27
   "zombieWave" : 0,
   "zombies" : [
     {
-      "startTime" : 1716546290,
-      "isSlowed" : false,
-      "isPoleVaultingUsed" : false,
-      "isDolphinJumped" : false,
-      "laneY" : 1,
-      "coordX" : 915.1207,
-      "coordY" : 90,
-      "laneX" : 8,
-      "zombieID" : 1,
-      "_Health" : 250.0,
+      "zombieID" : 3,
+      "_name" : "Pole Vaulting Zombie",
+      "_Health" : 75.0,
       "_Attack_Damage" : 100.0,
       "_Attack_Speed" : 1.0,
       "_is_aquatic" : false,
-      "_name" : "Conehead Zombie"
+      "coordY" : 2,
+      "isSlowed" : false,
+      "coordX" : 708.17126,
+      "laneX" : 6,
+      "laneY" : 0,
+      "startTime" : 0,
+      "isPoleVaultingUsed" : false,
+      "isDolphinJumped" : false
     },
     {
+<<<<<<< HEAD
       "startTime" : 1716546296,
       "isSlowed" : false,
       "isPoleVaultingUsed" : false,
@@ -556,13 +715,25 @@
       "laneX" : 8,
       "zombieID" : 3,
 >>>>>>> bf9854315fd7d00c7c89ea341910229dbb268345
+=======
+      "zombieID" : 3,
+      "_name" : "Buckethead Zombie",
+>>>>>>> 2be1568e7e2fc179c022a097613d2db492b93d27
       "_Health" : 300.0,
       "_Attack_Damage" : 100.0,
       "_Attack_Speed" : 1.0,
       "_is_aquatic" : false,
-      "_name" : "Buckethead Zombie"
+      "coordY" : 2,
+      "isSlowed" : false,
+      "coordX" : 718.7687,
+      "laneX" : 6,
+      "laneY" : 0,
+      "startTime" : 0,
+      "isPoleVaultingUsed" : false,
+      "isDolphinJumped" : false
     },
     {
+<<<<<<< HEAD
 <<<<<<< HEAD
       "startTime" : 1716536886,
       "isSlowed" : false,
@@ -591,8 +762,22 @@
       "coordY" : 90,
 =======
       "startTime" : 1716546299,
+=======
+      "zombieID" : 1,
+      "_name" : "Conehead Zombie",
+      "_Health" : 25.0,
+      "_Attack_Damage" : 100.0,
+      "_Attack_Speed" : 1.0,
+      "_is_aquatic" : false,
+      "coordY" : 90,
+>>>>>>> 2be1568e7e2fc179c022a097613d2db492b93d27
       "isSlowed" : false,
+      "coordX" : 697.074,
+      "laneX" : 5,
+      "laneY" : 1,
+      "startTime" : 0,
       "isPoleVaultingUsed" : false,
+<<<<<<< HEAD
       "isDolphinJumped" : false,
       "laneY" : 5,
       "coordX" : 950.4121,
@@ -600,13 +785,44 @@
       "laneX" : 9,
       "zombieID" : 3,
 >>>>>>> bf9854315fd7d00c7c89ea341910229dbb268345
+=======
+      "isDolphinJumped" : false
+    },
+    {
+      "zombieID" : 4,
+      "_name" : "Ducky Tube Zombie",
+      "_Health" : 100.0,
+      "_Attack_Damage" : 100.0,
+      "_Attack_Speed" : 1.0,
+      "_is_aquatic" : true,
+      "coordY" : 178,
+      "isSlowed" : false,
+      "coordX" : 697.074,
+      "laneX" : 5,
+      "laneY" : 2,
+      "startTime" : 0,
+      "isPoleVaultingUsed" : false,
+      "isDolphinJumped" : false
+    },
+    {
+      "zombieID" : 5,
+      "_name" : "Dolphin Rider Zombie",
+>>>>>>> 2be1568e7e2fc179c022a097613d2db492b93d27
       "_Health" : 175.0,
       "_Attack_Damage" : 100.0,
       "_Attack_Speed" : 1.0,
-      "_is_aquatic" : false,
-      "_name" : "Pole Vaulting Zombie"
+      "_is_aquatic" : true,
+      "coordY" : 266,
+      "isSlowed" : false,
+      "coordX" : 718.7687,
+      "laneX" : 6,
+      "laneY" : 3,
+      "startTime" : 0,
+      "isPoleVaultingUsed" : false,
+      "isDolphinJumped" : false
     },
     {
+<<<<<<< HEAD
 <<<<<<< HEAD
       "startTime" : 1716536898,
       "isSlowed" : false,
@@ -726,10 +942,102 @@
       "zombieID" : 1,
       "_Health" : 250.0,
 >>>>>>> bf9854315fd7d00c7c89ea341910229dbb268345
+=======
+      "zombieID" : 0,
+      "_name" : "Normal Zombie",
+      "_Health" : 75.0,
+>>>>>>> 2be1568e7e2fc179c022a097613d2db492b93d27
       "_Attack_Damage" : 100.0,
       "_Attack_Speed" : 1.0,
       "_is_aquatic" : false,
-      "_name" : "Conehead Zombie"
+      "coordY" : 354,
+      "isSlowed" : false,
+      "coordX" : 650.5853,
+      "laneX" : 5,
+      "laneY" : 4,
+      "startTime" : 0,
+      "isPoleVaultingUsed" : false,
+      "isDolphinJumped" : false
+    },
+    {
+      "zombieID" : 3,
+      "_name" : "Buckethead Zombie",
+      "_Health" : 300.0,
+      "_Attack_Damage" : 100.0,
+      "_Attack_Speed" : 1.0,
+      "_is_aquatic" : false,
+      "coordY" : 354,
+      "isSlowed" : false,
+      "coordX" : 708.17126,
+      "laneX" : 6,
+      "laneY" : 4,
+      "startTime" : 0,
+      "isPoleVaultingUsed" : false,
+      "isDolphinJumped" : false
+    },
+    {
+      "zombieID" : 0,
+      "_name" : "Normal Zombie",
+      "_Health" : 125.0,
+      "_Attack_Damage" : 100.0,
+      "_Attack_Speed" : 1.0,
+      "_is_aquatic" : false,
+      "coordY" : 442,
+      "isSlowed" : false,
+      "coordX" : 674.67944,
+      "laneX" : 5,
+      "laneY" : 5,
+      "startTime" : 0,
+      "isPoleVaultingUsed" : false,
+      "isDolphinJumped" : false
+    },
+    {
+      "zombieID" : 0,
+      "_name" : "Normal Zombie",
+      "_Health" : 125.0,
+      "_Attack_Damage" : 100.0,
+      "_Attack_Speed" : 1.0,
+      "_is_aquatic" : false,
+      "coordY" : 442,
+      "isSlowed" : false,
+      "coordX" : 685.9767,
+      "laneX" : 5,
+      "laneY" : 5,
+      "startTime" : 0,
+      "isPoleVaultingUsed" : false,
+      "isDolphinJumped" : false
+    },
+    {
+      "zombieID" : 3,
+      "_name" : "Buckethead Zombie",
+      "_Health" : 300.0,
+      "_Attack_Damage" : 100.0,
+      "_Attack_Speed" : 1.0,
+      "_is_aquatic" : false,
+      "coordY" : 442,
+      "isSlowed" : false,
+      "coordX" : 697.074,
+      "laneX" : 5,
+      "laneY" : 5,
+      "startTime" : 0,
+      "isPoleVaultingUsed" : false,
+      "isDolphinJumped" : false
+    },
+    {
+      "zombieID" : 3,
+      "_name" : "Buckethead Zombie",
+      "_Health" : 300.0,
+      "_Attack_Damage" : 100.0,
+      "_Attack_Speed" : 1.0,
+      "_is_aquatic" : false,
+      "coordY" : 442,
+      "isSlowed" : false,
+      "coordX" : 718.7687,
+      "laneX" : 6,
+      "laneY" : 5,
+      "startTime" : 0,
+      "isPoleVaultingUsed" : false,
+      "isDolphinJumped" : false
     }
   ]
 }

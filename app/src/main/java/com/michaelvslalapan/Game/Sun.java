@@ -51,6 +51,9 @@ public class Sun {
             public void actionPerformed(ActionEvent e) {
                 Game.suns.add(new Sun());
                 timerNonSunflowerDrop.setDelay(((int)(Math.random() * 6) + 5) * 1000);
+                if(Game.stopThread){
+                    ((Timer)e.getSource()).stop();
+                }
             }
         });
         timerNonSunflowerDrop.setRepeats(true);

@@ -1,6 +1,9 @@
 package com.michaelvslalapan.Organism.Tanaman;
 
+import javax.swing.Timer;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.michaelvslalapan.Game.Game;
 
 public class ExplodeONut extends Plants<Integer> {
     @JsonIgnore
@@ -38,6 +41,11 @@ public class ExplodeONut extends Plants<Integer> {
             try{
                 Thread.sleep(800);
             } catch (InterruptedException e) {}
+
+            if(Game.stopThread){
+                stop();
+            }
         }
+        
     }
 }
