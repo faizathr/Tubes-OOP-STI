@@ -16,6 +16,7 @@ public class Load {
                 System.out.println(data);
             }
             System.out.println("berhasil");
+            reader.close();
         }
         catch (Exception E){
             System.out.println("test");
