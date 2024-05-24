@@ -21,7 +21,6 @@ public class PlantInventory {
         plantCatalog.add(new ExplodeONut(-1,-1));
         plantCatalog.add(new CherryBomb(-1,-1));
         plantCatalog.add(new Puffshroom(-1,-1));
-        
     }
 
     public static ArrayList<Plants<Integer>> getPlantCatalog() {
