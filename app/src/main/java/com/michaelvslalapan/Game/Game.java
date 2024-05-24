@@ -27,6 +27,7 @@ import javax.swing.Timer;
 
 import com.michaelvslalapan.Main;
 import com.michaelvslalapan.ADT.Point;
+import com.michaelvslalapan.GUI.StartUpFrame;
 import com.michaelvslalapan.Organism.Tanaman.PlantInventory;
 import com.michaelvslalapan.Organism.Tanaman.Plants;
 import com.michaelvslalapan.Organism.Tanaman.Sunflower;
@@ -122,7 +123,7 @@ public class Game extends JPanel implements ActionListener{
     private Image MainMenu;
     private Ellipse2D shovel2D;
     private Point mouse = new Point();
-    private Rectangle endScreen, startDeckSelectionButton, startGameButton, playAgainButton, saveAndExitButton;
+    private Rectangle endScreen, startDeckSelectionButton, startGameButton, playAgainButton, saveAndExitButton, othersButton, exitButton;
     private Rectangle[] plantCatalogClickArea = new Rectangle[6];
 
     //Zombie
@@ -240,7 +241,7 @@ public class Game extends JPanel implements ActionListener{
 
     private void loadMainMenu() {
         try {
-            MainMenu = toolkit.getImage(getClass().getResource("/img/Menu.jpg"));
+            MainMenu = toolkit.getImage(getClass().getResource("/img/MenuAwal.png"));
         } catch(Exception ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Cannot open image!");
@@ -298,7 +299,9 @@ public class Game extends JPanel implements ActionListener{
             }
         });
 
-        startDeckSelectionButton = new Rectangle(445, 525, 135, 42);
+        startDeckSelectionButton = new Rectangle(410, 450, 210, 50);
+        othersButton = new Rectangle(440, 525, 147, 38);
+        exitButton = new Rectangle(440, 575, 153, 38);
 
         AudioManager.menu();
         gameTimer.start();
@@ -332,7 +335,7 @@ public class Game extends JPanel implements ActionListener{
     }
 
     public void startGame() {
-        for(int i = 0; i < 6; i++){
+        for(int i = 0; i < 10; i++){
             cooldownPlantList.add(getCooldownByPlantID(i));
             realCooldownPlantList.add(0.0);
         }
@@ -352,6 +355,8 @@ public class Game extends JPanel implements ActionListener{
         Sun.startTimer();
         Zombie.startSpawning();
         init();
+
+        Plants.fillPlantSlot();
         
         AudioManager.begin();
         gameTimer.start();
@@ -365,6 +370,10 @@ public class Game extends JPanel implements ActionListener{
         secondsTimer.start();
 
         saveAndExitButton = new Rectangle(805, 560, 200, 58);
+
+        for(Plants<Integer> p : plants){
+            p.setIsIdle(true);
+        }
     }
 
     private void drawPlantCost(Graphics2D GUI_2D) {
@@ -982,7 +991,13 @@ public class Game extends JPanel implements ActionListener{
                     AudioManager.evillaugh();
                     startDeckSelectionButton = null;
                     checkContinueGame();
+                    othersButton = null;
+                    exitButton = null;
                     startDeckSelection();
+                }else if(othersButton.contains(e.getPoint())){
+                    (new StartUpFrame()).setVisible(true);
+                }else if(exitButton.contains(e.getPoint())){
+                    System.exit(0);
                 }
             } else if (!isGameStarted) {
                 for (int i = 0; i < 6; i++) {
@@ -1125,6 +1140,8 @@ public class Game extends JPanel implements ActionListener{
                                                 if(plant.plantLilypad(LaneX, LaneY)){
                                                     AudioManager.plant();
                                                     plantSelected();
+                                                    timerForCooldown(getSelectedPlant());
+                                                    realCooldownPlantList.set(getSelectedPlant(), cooldownPlantList.get(getSelectedPlant()));
                                                 } else {
                                                     AudioManager.buzzer();
                                                 }
@@ -1301,6 +1318,10 @@ public class Game extends JPanel implements ActionListener{
 
     public static int getSecondsTime() {
         return secondsTime;
+    }
+
+    public static void setSecondsTime(int seconds) {
+        secondsTime = seconds;
     }
 
     public int getSunCredits() {

@@ -38,7 +38,7 @@ public class Plants<PlantID> extends Organism {
 
     private boolean isExploded = false;
 
-    public Plants(@JsonProperty("plantID")PlantID ID, @JsonProperty("_name")String name, @JsonProperty("cost")int cost, @JsonProperty("_Health")double health, @JsonProperty("_Attack_Damage")double attackDamage, @JsonProperty("_Attack_Speed")double attackSpeed, @JsonProperty("range")int range, @JsonProperty("cooldown")double cooldown, @JsonProperty("_is_aquatic")Boolean is_aquatic, @JsonProperty("laneX")int LaneX, @JsonProperty("laneY")int LaneY) {
+    public Plants(PlantID ID, String name, int cost, double health, double attackDamage, double attackSpeed, int range, double cooldown, Boolean is_aquatic, int LaneX, int LaneY) {
         super(name, health, attackDamage, attackSpeed, is_aquatic);
         this.ID = ID;  
         this.cost = cost;
@@ -57,6 +57,25 @@ public class Plants<PlantID> extends Organism {
         this.LaneX = LaneX;
         this.LaneY = LaneY;
     }
+
+    public Plants(@JsonProperty("plantID")PlantID ID, @JsonProperty("_name")String name, @JsonProperty("cost")int cost, @JsonProperty("_Health")double health, @JsonProperty("_Attack_Damage")double attackDamage, @JsonProperty("_Attack_Speed")double attackSpeed, @JsonProperty("range")int range, @JsonProperty("cooldown")double cooldown, @JsonProperty("_is_aquatic")Boolean is_aquatic, @JsonProperty("laneX")int LaneX, @JsonProperty("laneY")int LaneY, @JsonProperty("isExploded")Boolean isexploded) {
+        super(name, health, attackDamage, attackSpeed, is_aquatic);
+        this.ID = ID;  
+        this.cost = cost;
+        this.range = range;
+        this.cooldown = cooldown;
+        this.attackDamage = attackDamage;
+        if (ID.equals(7)) {
+            threadToKill = new Thread(new waitToKill());
+        } else if (ID.equals(8)) {
+            threadToKill = new Thread(new waitToKill());
+            plantHeight = 74;
+            plantWidth = 76;
+        }
+        this.LaneX = LaneX;
+        this.LaneY = LaneY;
+    }
+
 
     // Getter Methods
     public int getCost() {
@@ -120,6 +139,21 @@ public class Plants<PlantID> extends Organism {
 
     public void explodePlant(){ // tanaman meledak, setelah meledak, tanaman mati
         this.isExploded = true;
+    }
+
+    public static void printArrayIsSlotFilled(){
+        for (int i = 0; i < 6; i++){
+            for(int j = 0; j < 10; j++){
+                System.out.printf(String.valueOf(isSlotFilled[j][i])+", ");
+            }
+            System.out.println("");
+        }
+    }
+
+    public static void fillPlantSlot(){
+        for(Plants<Integer> p : Game.plants){
+            isSlotFilled[p.getLaneX()][p.getLaneY()] = true;
+        }
     }
 
     public static boolean getIsSlotFilled(int x, int y) {
@@ -220,6 +254,10 @@ public class Plants<PlantID> extends Organism {
         repeaterPeaTimer.stop();
         sunDropTimer.stop();
         isIdle = true;
+    }
+
+    public void setIsIdle(boolean condition){
+        isIdle = condition;
     }
 
     public class waitToKill implements Runnable { 

@@ -76,14 +76,28 @@ public class Zombie extends Organism implements Comparable<Zombie> {
         //zombieAttackTimer.setInitialDelay(200);
     }
 
-    public Zombie(@JsonProperty("zombieID")int ZombieID, @JsonProperty("_name")String name, @JsonProperty("_Health")double health, @JsonProperty("_Attack_Damage")double attackDamage, @JsonProperty("_Attack_Speed")double attackSpeed, @JsonProperty("_is_aquatic")boolean is_aquatic, @JsonProperty("coordY")int coordY, @JsonProperty("isSlowed") boolean slowed, @JsonProperty("coordX")int coordX, @JsonProperty("laneX")int laneX, @JsonProperty("laneY")int laneY) {
+    public Zombie(@JsonProperty("zombieID")int ZombieID, @JsonProperty("_name")String name, @JsonProperty("_Health")double health, @JsonProperty("_Attack_Damage")double attackDamage, @JsonProperty("_Attack_Speed")double attackSpeed, @JsonProperty("_is_aquatic")boolean is_aquatic, @JsonProperty("coordY") int coordY, @JsonProperty("isSlowed") boolean slowed, @JsonProperty("coordX") float coordX, @JsonProperty("laneX")int laneX, @JsonProperty("laneY")int laneY) {
         super(name, health, attackDamage, attackSpeed, is_aquatic);
         this.LaneY = laneY;
         CoordY = coordY;
         CoordX = coordX;
         this.ZombieID = ZombieID;
         isSlowed = slowed;
-        this.LaneX = laneX;
+        zombieAttackTimer = new Timer(((int) get_Attack_Speed()) * 1000, new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                for(Plants<Integer> plant: Game.plants){
+                    if (plant.getLaneX() == LaneX && plant.getLaneY() == LaneY) {
+                        if (LaneY == 2 || LaneY == 3) {
+                            if (Plants.getIsSlotFilled(LaneX, LaneY) && plant.getPlantID().equals(5)) continue;
+                        }
+                        if(!AudioManager.isEating() && !isReachedHouse){
+                            AudioManager.eat();
+                        }
+                        plant.decreaseHealth(get_Attack_Damage());
+                    }
+                }
+            }
+        });
     }
     
     public void settimePerLaneMove(double timePerLaneMove){
@@ -168,7 +182,11 @@ public class Zombie extends Organism implements Comparable<Zombie> {
                 }
             }
         });
-        zombieSpawningTimer.setInitialDelay(20 * 1000);
+        if(Game.isUsingPreviousGame){
+            zombieSpawningTimer.setInitialDelay((Game.getSecondsTime() - 20*1000 < 0) ? 0 : (Game.getSecondsTime() - 20*1000));
+        }else{
+            zombieSpawningTimer.setInitialDelay(20 * 1000);
+        }
         zombieSpawningTimer.start();
     }
     public int getLaneX() {
@@ -231,7 +249,7 @@ public class Zombie extends Organism implements Comparable<Zombie> {
     }
 
     public void attackOrMove() {
-        LaneX = getLaneX();
+        LaneX = this.getLaneX();
         if (Plants.getIsSlotFilled(LaneX, LaneY) != false){
             IterateGamePlants: for(Plants<Integer> plant: Game.plants){
                 if (plant.getLaneX() == LaneX && plant.getLaneY() == LaneY && !plant.getPlantID().equals(5)){
