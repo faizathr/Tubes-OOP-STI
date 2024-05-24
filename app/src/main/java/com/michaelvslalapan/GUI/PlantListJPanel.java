@@ -44,14 +44,15 @@ public class PlantListJPanel extends javax.swing.JPanel {
 
         setLayout(null);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlantsListButton.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/StartAndMenuButton/PlantsListButton.png"))); // NOI18N
         add(jLabel2);
-        jLabel2.setBounds(170, 60, 236, 80);
+        jLabel2.setBounds(200, 60, 200, 70);
 
         jButton5.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Snowpea.gif"))); // NOI18N
-        jButton5.setText("Snow Pea");
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlantsListButton/SnowpeaListButton.gif"))); // NOI18N
+        // jButton5.setText("Snow Pea");
         jButton5.setBorderPainted(false);
+        jButton5.setContentAreaFilled(false);
         jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -64,9 +65,10 @@ public class PlantListJPanel extends javax.swing.JPanel {
         jButton5.setBounds(450, 170, 120, 110);
 
         jButton4.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/WallnutFull.gif"))); // NOI18N
-        jButton4.setText("Wallnut");
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlantsListButton/WallNutListButton.gif"))); // NOI18N
+        // jButton4.setText("Wallnut");
         jButton4.setBorderPainted(false);
+        jButton4.setContentAreaFilled(false);
         jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -79,9 +81,10 @@ public class PlantListJPanel extends javax.swing.JPanel {
         jButton4.setBounds(310, 170, 120, 110);
 
         jButton1.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Peahooter.gif"))); // NOI18N
-        jButton1.setText("Peashooter");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlantsListButton/PeashooterListButton.gif"))); // NOI18N
+        // jButton1.setText("Peashooter");
         jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -94,7 +97,7 @@ public class PlantListJPanel extends javax.swing.JPanel {
         jButton1.setBounds(170, 170, 120, 110);
 
         jButton3.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SunflowerListButton.gif"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlantsListButton/SunflowerListButton.gif"))); // NOI18N
         // jButton3.setText("Sunflower");
         jButton3.setBorderPainted(false);
         jButton3.setContentAreaFilled(false);
@@ -109,7 +112,7 @@ public class PlantListJPanel extends javax.swing.JPanel {
         add(jButton3);
         jButton3.setBounds(30, 170, 120, 110);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BackButton.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/StartAndMenuButton/BackButton.png"))); // NOI18N
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -122,10 +125,11 @@ public class PlantListJPanel extends javax.swing.JPanel {
         jButton2.setBounds(20, 20, 90, 40);
 
         jButton6.setFont(new java.awt.Font("Inter", 1, 11)); // NOI18N
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ExplodeONut.gif"))); // NOI18N
-        jButton6.setText("Explode-O-Nut");
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlantsListButton/ExplodeONutListButton.gif"))); // NOI18N
+        // jButton6.setText("Explode-O-Nut");
         jButton6.setActionCommand("ExplodeONut");
         jButton6.setBorderPainted(false);
+        jButton6.setContentAreaFilled(false);
         jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -138,9 +142,10 @@ public class PlantListJPanel extends javax.swing.JPanel {
         jButton6.setBounds(450, 300, 120, 110);
 
         jButton7.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Repeater.gif"))); // NOI18N
-        jButton7.setText("Repeater");
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlantsListButton/RepeaterListButton.gif"))); // NOI18N
+        // jButton7.setText("Repeater");
         jButton7.setBorderPainted(false);
+        jButton7.setContentAreaFilled(false);
         jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -153,9 +158,10 @@ public class PlantListJPanel extends javax.swing.JPanel {
         jButton7.setBounds(310, 300, 120, 110);
 
         jButton8.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Lilypad.gif"))); // NOI18N
-        jButton8.setText("Lilypad");
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlantsListButton/LilypadListButton.gif"))); // NOI18N
+        // jButton8.setText("Lilypad");
         jButton8.setBorderPainted(false);
+        jButton8.setContentAreaFilled(false);
         jButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -168,9 +174,10 @@ public class PlantListJPanel extends javax.swing.JPanel {
         jButton8.setBounds(170, 300, 120, 110);
 
         jButton9.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Squash.gif"))); // NOI18N
-        jButton9.setText("Squash");
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlantsListButton/SquashListButton.gif"))); // NOI18N
+        // jButton9.setText("Squash");
         jButton9.setBorderPainted(false);
+        jButton9.setContentAreaFilled(false);
         jButton9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton9.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -183,9 +190,10 @@ public class PlantListJPanel extends javax.swing.JPanel {
         jButton9.setBounds(30, 300, 120, 110);
 
         jButton10.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sunflower.gif"))); // NOI18N
-        jButton10.setText("Sunflower");
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlantsListButton/PuffshroomListButton.gif"))); // NOI18N
+        // jButton10.setText("Sunflower");
         jButton10.setBorderPainted(false);
+        jButton10.setContentAreaFilled(false);
         jButton10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton10.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -198,9 +206,10 @@ public class PlantListJPanel extends javax.swing.JPanel {
         jButton10.setBounds(310, 430, 120, 110);
 
         jButton11.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sunflower.gif"))); // NOI18N
-        jButton11.setText("Sunflower");
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlantsListButton/CherryBombListButton.gif"))); // NOI18N
+        // jButton11.setText("Sunflower");
         jButton11.setBorderPainted(false);
+        jButton11.setContentAreaFilled(false);
         jButton11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton11.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
