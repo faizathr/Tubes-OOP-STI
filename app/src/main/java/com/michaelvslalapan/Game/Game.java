@@ -367,6 +367,10 @@ public class Game extends JPanel implements ActionListener{
         secondsTimer.start();
 
         saveAndExitButton = new Rectangle(805, 560, 200, 58);
+
+        for(Plants<Integer> p : plants){
+            p.setIsIdle(true);
+        }
     }
 
     private void drawPlantCost(Graphics2D GUI_2D) {

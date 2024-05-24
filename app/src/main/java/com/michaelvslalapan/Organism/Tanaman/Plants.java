@@ -66,9 +66,9 @@ public class Plants<PlantID> extends Organism {
         this.cooldown = cooldown;
         this.attackDamage = attackDamage;
         if (ID.equals(7)) {
-            threadToExplode = new Thread(new waitToExplode());
+            threadToKill = new Thread(new waitToKill());
         } else if (ID.equals(8)) {
-            threadToExplode = new Thread(new waitToExplode());
+            threadToKill = new Thread(new waitToKill());
             plantHeight = 74;
             plantWidth = 76;
         }
@@ -254,6 +254,10 @@ public class Plants<PlantID> extends Organism {
         repeaterPeaTimer.stop();
         sunDropTimer.stop();
         isIdle = true;
+    }
+
+    public void setIsIdle(boolean condition){
+        isIdle = condition;
     }
 
     public class waitToKill implements Runnable { 
