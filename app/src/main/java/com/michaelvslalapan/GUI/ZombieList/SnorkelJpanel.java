@@ -10,7 +10,7 @@ import com.michaelvslalapan.GUI.StartUpFrame;
  *
  * @author David
  */
-public class SnorkelJpanel extends javax.swing.JPanel {
+public class SnorkelJPanel extends javax.swing.JPanel {
     StartUpFrame mainframe;
     /**
      * Creates new form SunflowerJPanel
