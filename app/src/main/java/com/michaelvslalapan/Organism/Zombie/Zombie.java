@@ -120,7 +120,7 @@ public class Zombie extends Organism implements Comparable<Zombie> {
         }
         return zombie;
     }
-
+    @JsonIgnore
     public static void startSpawning() {
         zombieSpawningTimer = new Timer(3 * 1000, new ActionListener(){
             public void actionPerformed(ActionEvent e) {

@@ -25,10 +25,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import com.michaelvslalapan.Main;
 import com.michaelvslalapan.ADT.Point;
 import com.michaelvslalapan.Organism.Tanaman.Plants;
 import com.michaelvslalapan.Organism.Tanaman.Sunflower;
 import com.michaelvslalapan.Organism.Zombie.Zombie;
+import com.michaelvslalapan.SaveAndLoad.Load;
+import com.michaelvslalapan.SaveAndLoad.Save;
 
 public class Game extends JPanel implements ActionListener{
     private String[] imgfilenames = new String[] {
@@ -210,7 +213,8 @@ public class Game extends JPanel implements ActionListener{
     private boolean isFinalWave = false;
     private static int zombieInMap = 0;
     private static int zombieWave = 0;
-    public static boolean isUsingPreviousGame;
+    public static boolean isUsingPreviousGame = false;
+    public static int isContinueGameSaved;
     
     private Plants<Integer> plant = new Sunflower(0, 0);
     private Pea pea;
@@ -269,8 +273,7 @@ public class Game extends JPanel implements ActionListener{
         }
     }
 
-    public Game(boolean isUsingPreviousGame) {
-        Game.isUsingPreviousGame = isUsingPreviousGame;
+    public Game() {
         gameTimer = new Timer(25, this);
         loadMainMenu();
 
@@ -334,7 +337,7 @@ public class Game extends JPanel implements ActionListener{
         });
         secondsTimer.start();
 
-        saveAndExitButton = new Rectangle(824, 575, 200, 58);
+        saveAndExitButton = new Rectangle(805, 560, 200, 58);
     }
 
     private void drawPlantCost(Graphics2D GUI_2D) {
@@ -683,7 +686,7 @@ public class Game extends JPanel implements ActionListener{
             }
 
             // save and exit
-            GUI.drawImage(img[79], 824, 575, 200, 58, this);
+            GUI.drawImage(img[79], 805, 560, 200, 58, this);
 
 
             if (isPlaying) {
@@ -755,7 +758,7 @@ public class Game extends JPanel implements ActionListener{
 
             } else {
                 selectPlant(-1);
-                for(Plants plant: plants){
+                for(Plants<Integer> plant: plants){
                     plant.stop();
                 }
                 secondsTimer.stop();
@@ -807,6 +810,7 @@ public class Game extends JPanel implements ActionListener{
                 if(startDeckSelectionButton.contains(e.getPoint())) {
                     AudioManager.evillaugh();
                     startDeckSelectionButton = null;
+                    checkContinueGame();
                     startDeckSelection();
                 }
             } else if (!isGameStarted) {
@@ -1007,7 +1011,7 @@ public class Game extends JPanel implements ActionListener{
                                 if (fieldClickArea[LaneX][LaneY].contains(e.getPoint())) {
                                     if (Plants.getIsSlotFilled(LaneX, LaneY) != false) {
                                         Plants.emptySlot(LaneX, LaneY);
-                                        IterateGamePlants: for(Plants plant: plants){
+                                        IterateGamePlants: for(Plants<Integer> plant: plants){
                                             if(plant.getLaneX() == LaneX && plant.getLaneY() == LaneY && !plant.getPlantID().equals(5)){
                                                 plant.stop();
                                                 AudioManager.remove();
@@ -1024,7 +1028,7 @@ public class Game extends JPanel implements ActionListener{
                                         }
                                     } else if (LaneY == 2 || LaneY == 3) {
                                         if (Plants.getIsLilypadSlotFilled(LaneX, LaneY) != false) {
-                                            IterateGamePlants: for(Plants plant: plants){
+                                            IterateGamePlants: for(Plants<Integer> plant: plants){
                                                 if(plant.getLaneX() == LaneX && plant.getLaneY() == LaneY && plant.getPlantID().equals(5)){
                                                     plant.stop();
                                                     AudioManager.remove();
@@ -1051,7 +1055,17 @@ public class Game extends JPanel implements ActionListener{
                     }
 
                     if (saveAndExitButton.contains(e.getPoint())) {
-                        System.out.println("Save and Exit Button Pressed");
+                        try {
+                            int SaveGame = JOptionPane.showConfirmDialog(Main.frame, "Do You Want to Save The Current Game and Exit?", "Save Confirmation", JOptionPane.YES_NO_OPTION);
+                            if(JOptionPane.YES_OPTION == SaveGame){
+                                Save.saveGame();
+                                System.exit(0);
+                                System.out.println("Save Berhasil");
+                            }
+                        } catch (Exception e1) {
+                            System.out.println("Save Error!");
+                        }
+                        
                     }
                 } 
                 /*
@@ -1209,5 +1223,25 @@ public class Game extends JPanel implements ActionListener{
     
     public void setPlantDeck(int[] deck){
         PlantDeck = deck;
+    }
+
+    private void checkContinueGame(){
+        if(Main.previousGameFile.exists()){
+            do{
+                isContinueGameSaved = JOptionPane.showConfirmDialog(Main.frame, "Do You Want To Continue The Last Saved Game?", "Confirm Continue Last Game Dialog", JOptionPane.YES_NO_OPTION);
+                try {
+                    if(JOptionPane.YES_OPTION == isContinueGameSaved){
+                        Game.isUsingPreviousGame = true;
+                        Load.loadGame();
+                        System.out.println("Starting a Previous Game !");
+                    }else if(JOptionPane.YES_NO_OPTION == isContinueGameSaved){
+                        System.out.println("Starting a New Game");
+                    }  
+                    
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+            }while((isContinueGameSaved != JOptionPane.YES_OPTION) && (isContinueGameSaved != JOptionPane.NO_OPTION));
+        }
     }
 }

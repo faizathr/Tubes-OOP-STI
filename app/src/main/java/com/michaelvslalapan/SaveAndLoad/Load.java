@@ -1,13 +1,7 @@
 package com.michaelvslalapan.SaveAndLoad;
  
 import java.io.File;  // Import the File class
-import java.io.IOException;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.exc.StreamReadException;
-import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.michaelvslalapan.Main;
@@ -18,8 +12,6 @@ import com.michaelvslalapan.Organism.Tanaman.Plants;
 import com.michaelvslalapan.Organism.Zombie.Zombie;
 import java.util.Map;
 import java.util.List;
-import javax.swing.Timer;
-import com.fasterxml.jackson.core.type.TypeReference;
 
 public class Load {
     

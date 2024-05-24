@@ -3,10 +3,10 @@ package com.michaelvslalapan.Organism.Tanaman;
 import java.util.ArrayList;
 
 public class PlantInventory {
-    private final ArrayList<Plants> plantCatalog;
+    private final ArrayList<Plants<Integer>> plantCatalog;
 
     public PlantInventory() {
-        plantCatalog = new ArrayList<Plants>();
+        plantCatalog = new ArrayList<Plants<Integer>>();
         initializeCatalog();
     }
 
@@ -24,7 +24,7 @@ public class PlantInventory {
         plantCatalog.add(new Repeater(-1,-1));
     }
 
-    public ArrayList<Plants> getPlantCatalog() {
+    public ArrayList<Plants<Integer>> getPlantCatalog() {
         return plantCatalog;
     }
 }

@@ -3,9 +3,6 @@ package com.michaelvslalapan.Organism.Tanaman;
 import java.awt.event.ActionEvent;  
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
-import javax.sound.sampled.AudioSystem; 
-import javax.sound.sampled.Clip;
-
 import com.michaelvslalapan.Organism.Organism;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;

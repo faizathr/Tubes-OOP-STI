@@ -7,8 +7,6 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.michaelvslalapan.Game.Game;
 import com.michaelvslalapan.Main;
-import java.util.ArrayList;
-
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
