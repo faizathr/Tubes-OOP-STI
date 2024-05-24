@@ -35,7 +35,7 @@ public class Save {
         gameData.put("suns", Game.suns);
         gameData.put("peas", Game.peas);
         gameData.put("sunCredits", Main.maingame.getSunCredits());
-        // gameData.put("secondsTimer", Main.maingame.getSecondsTimer());
+        // gameData.put("secondsTime", Game.getSecondsTime());
         // gameData.put("gameTimer", Main.maingame.getGameTimer());
         gameData.put("zombieInMap", Game.getZombieInMapCount());
         gameData.put("zombieWave", Game.getWave());

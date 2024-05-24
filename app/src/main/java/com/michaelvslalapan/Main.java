@@ -1,11 +1,8 @@
 package com.michaelvslalapan;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import com.michaelvslalapan.Game.Game;
-import com.michaelvslalapan.SaveAndLoad.Load;
 import java.io.File;
-import java.io.FileNotFoundException;
 
 public class Main{
     public static Game maingame;

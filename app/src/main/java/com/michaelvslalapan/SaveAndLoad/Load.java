@@ -30,11 +30,11 @@ public class Load {
         Game.suns = mapper.convertValue(gameData.get("suns"), new TypeReference<List<Sun>>() {});
         Game.peas = mapper.convertValue(gameData.get("peas"), new TypeReference<List<Pea>>() {});
         Main.maingame.setSunCredits(mapper.convertValue(gameData.get("sunCredits"), Integer.class));
-        // Main.maingame.setSecondsTimer(mapper.convertValue(gameData.get("secondsTimer"), Timer.class));
         // Main.maingame.setGameTimer(mapper.convertValue(gameData.get("gameTimer"), Timer.class));
         Game.setZombieInMapCount(mapper.convertValue(gameData.get("zombieInMap"), Integer.class));
         Game.setWave(mapper.convertValue(gameData.get("zombieWave"), Integer.class));
         Main.maingame.setIsNight(mapper.convertValue(gameData.get("isNight"), Boolean.class));
+        // Main.maingame.setSecondsTime(mapper.convertValue(gameData.get("secondsTime"), Integer.class));
 
     }
 
