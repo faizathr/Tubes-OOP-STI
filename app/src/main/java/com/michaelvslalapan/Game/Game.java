@@ -978,11 +978,11 @@ public class Game extends JPanel implements ActionListener{
                     GUI_2D.setComposite(AlphaComposite.SrcOver.derive(0.6f));
                     GUI_2D.fill(endScreen);
                     GUI_2D.setComposite(AlphaComposite.SrcOver.derive(1f));
-                    //playAgainButton = new Rectangle(400, 395, 220, 45);
+                    playAgainButton = new Rectangle(400, 395, 220, 45);
                     
                     GUI.drawImage(losingGameImg[0],425,85,180,210,this); //brain image
                     GUI.drawImage(losingGameImg[1],365,190,this); //lose image
-                    //GUI.drawImage(losingGameImg[2],410,405,200,25,this); //try again image
+                    GUI.drawImage(losingGameImg[2],410,405,200,25,this); //try again image
                 }
             }
         }
