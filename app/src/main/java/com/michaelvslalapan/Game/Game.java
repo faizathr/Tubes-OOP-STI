@@ -253,6 +253,7 @@ public class Game extends JPanel implements ActionListener{
         try {
             for (int i = 0; i < imgfilenames.length; i++) {
                 errfile = imgfilenames[i];
+                System.out.println(errfile);
                 img[i] = toolkit.getImage(getClass().getResource("/img/" + imgfilenames[i]));
             }
         } catch(Exception ex) {
