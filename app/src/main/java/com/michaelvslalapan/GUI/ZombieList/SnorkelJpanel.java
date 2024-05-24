@@ -16,7 +16,7 @@ public class SnorkelJPanel extends javax.swing.JPanel {
      * Creates new form SunflowerJPanel
      * @param mainframe
      */
-    public SnorkelJPanel(StartUpFrame mainframe) {
+    public SnorkelJpanel(StartUpFrame mainframe) {
         initComponents();
         this.mainframe = mainframe;
     }
