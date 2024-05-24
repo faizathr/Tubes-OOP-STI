@@ -28,10 +28,13 @@ public class Plants<PlantID> extends Organism {
     private Timer repeaterPeaTimer;
     private Timer sunDropTimer;
     private double attackDamage;
-    private int plantHeight = 66, plantWidth = 62;
+    protected int plantHeight = 66, plantWidth = 62;
+    private int jumpHeight = 0;
+    private int jumpDisplacement = 0;
+    private boolean isSquashJumped = false;
     
     @JsonIgnore
-    Thread threadToExplode;
+    Thread threadToKill;
 
     private boolean isExploded = false;
 
@@ -42,10 +45,12 @@ public class Plants<PlantID> extends Organism {
         this.range = range;
         this.cooldown = cooldown;
         this.attackDamage = attackDamage;
-        if (ID.equals(7)) {
-            threadToExplode = new Thread(new waitToExplode());
+        if (ID.equals(4)) {
+            threadToKill = new Thread(new waitToKill());
+        } else if (ID.equals(7)) {
+            threadToKill = new Thread(new waitToKill());
         } else if (ID.equals(8)) {
-            threadToExplode = new Thread(new waitToExplode());
+            threadToKill = new Thread(new waitToKill());
             plantHeight = 74;
             plantWidth = 76;
         }
@@ -158,10 +163,10 @@ public class Plants<PlantID> extends Organism {
         return MapSlot[x][y];
     }
 
-    public static void emptySlot(int x, int y){
+    public static void emptySlot(int x, int y) {
         isSlotFilled[x][y] = false;
     }
-    public static void setMapSlot(int x, int y){
+    public static void setMapSlot(int x, int y) {
         MapSlot[x][y] = new Point(265 + 82 * x, 50 + 88 * y);
     }
 
@@ -172,10 +177,10 @@ public class Plants<PlantID> extends Organism {
         return LilypadMapSlot[x][y];
     }
 
-    public static void emptyLilypadSlot(int x, int y){
+    public static void emptyLilypadSlot(int x, int y) {
         isLilypadSlotFilled[x][y] = false;
     }
-    public static void setLilypadMapSlot(int x, int y){
+    public static void setLilypadMapSlot(int x, int y) {
         LilypadMapSlot[x][y] = new Point(265 + 82 * x, 75 + 88 * y);
     }
 
@@ -251,7 +256,7 @@ public class Plants<PlantID> extends Organism {
         isIdle = true;
     }
 
-    public class waitToExplode implements Runnable { 
+    public class waitToKill implements Runnable { 
         public void run() { 
             try{
                 Thread.sleep(800);
@@ -259,12 +264,40 @@ public class Plants<PlantID> extends Organism {
         }
     } 
     public void startTimer(){
-        threadToExplode.start();
+        threadToKill.start();
     }
 
     @JsonIgnore
-    public boolean isthreadToExplodeAlive(){
-        return threadToExplode.isAlive();
+    public boolean isthreadToKillAlive(){
+        return threadToKill.isAlive();
+    }
+
+    public int getJumpHeight() {
+        return jumpHeight;
+    }
+
+    public void addJumpHeight() {
+        jumpHeight += 2;
+    }
+    
+    public void reduceJumpHeight() {
+        jumpHeight -= 2;
+    }
+
+    public int getJumpDisplacement() {
+        return jumpDisplacement;
+    }
+
+    public void addJumpDisplacement() {
+        jumpDisplacement += 2;
+    }
+
+    public boolean getIsSquashJumped() {
+        return isSquashJumped;
+    }
+
+    public void setIsSquashJumped() {
+        isSquashJumped = true;
     }
 
     //initialization block
