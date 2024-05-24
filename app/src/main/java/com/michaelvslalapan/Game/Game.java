@@ -153,18 +153,23 @@ public class Game extends JPanel implements ActionListener{
         "Cherrybomb",
         "Puffshroom"
     };
+    /*
     private int[] PlantCost = new int[]{
         50, 100, 50, 175, 50, 25, 200, 100, 150, 0
     };
+    public int getCostByPlantID(int PlantID) {
+        return getCostByPlantID(PlantID];
+    }
+    */
+    public int getCostByPlantID(int PlantID) {
+        return (PlantInventory.getPlantCatalog().get(PlantID).getCost());
+    }
     
     public int getPlantID(String PlantName) {
         for (int i = 0; i < PlantID.length; i++) {
             if (PlantName.equals(PlantID[i])) return i;
         }
         return -1;
-    }
-    public int getCostByPlantID(int PlantID) {
-        return PlantCost[PlantID];
     }
 
     public double getCooldownByPlantID(int PlantID) {
@@ -353,9 +358,8 @@ public class Game extends JPanel implements ActionListener{
         secondsTimer = new Timer(1000, new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 secondsTime += 1;
-                if (secondsTime >= 100) {
-                    isNight = true;
-                }
+                if (Math.floor(secondsTime / 100) % 2 == 1) isNight = true;
+                else isNight = false;
             }
         });
         secondsTimer.start();
@@ -367,12 +371,12 @@ public class Game extends JPanel implements ActionListener{
         GUI_2D.setFont(font); 
         GUI_2D.setColor(Color.WHITE);
         for (int p = 0; p < 6; p++) {
-            GUI_2D.drawString(PlantDeck[p] == -1 ? "" : Integer.toString(PlantCost[PlantDeck[p]]), 120, 197 + 74 * p);
+            GUI_2D.drawString(PlantDeck[p] == -1 ? "" : Integer.toString(getCostByPlantID(PlantDeck[p])), 120, 197 + 74 * p);
 
             if (!isSliding) {
-                GUI_2D.drawString(Integer.toString(PlantCost[p]), 265 + 105, 197 + 74 * p);
+                GUI_2D.drawString(Integer.toString(getCostByPlantID(p)), 265 + 105, 197 + 74 * p);
                 if (p < 4) {
-                    GUI_2D.drawString(Integer.toString(PlantCost[p+6]), 415 + 105, 197 + 74 * p);
+                    GUI_2D.drawString(Integer.toString(getCostByPlantID(p+6)), 415 + 105, 197 + 74 * p);
                 }
             }
         }
@@ -502,7 +506,56 @@ public class Game extends JPanel implements ActionListener{
                         GUI.drawImage(WallnutHalfLife, plantCoordX, plantCoordY, plant.getPlantWidth(), plant.getPlantHeight(), this);
                     }
                 } else if (plant.getPlantID().equals(4)) { // Squash
-                    GUI.drawImage(plantGif[4], plantCoordX, plantCoordY, plant.getPlantWidth(), plant.getPlantHeight(), this);
+                    plantLaneX = plant.getLaneX();
+                    plantLaneY = plant.getLaneY();
+                    int targetLaneX = plantLaneX;
+                    IterateZombieTarget: for (Zombie zombie: zombies) {
+                        if (plantLaneY == zombie.getLaneY() && (plantLaneX == zombie.getLaneX() || plantLaneX + 1 == zombie.getLaneX())){
+                            if (plantLaneX == zombie.getLaneX()) targetLaneX = plantLaneX;
+                            else if (plantLaneX + 1 == zombie.getLaneX()) targetLaneX = plantLaneX + 1;
+                            plant.setIsThreaten(true);
+                            break IterateZombieTarget;
+                        }
+                    }
+
+                    if (!plant.getIsThreaten()) {
+                        GUI.drawImage(plantGif[4], plantCoordX, plantCoordY, plant.getPlantWidth(), plant.getPlantHeight(), this);
+                    } else {
+                        if (plant.getJumpHeight() < 44 && !plant.getIsSquashJumped()) {
+                            plant.addJumpHeight();
+                            if (targetLaneX > plantLaneX && plant.getJumpDisplacement() < 44) {
+                                plant.addJumpDisplacement();
+                            }
+                        }
+                        if (plant.getJumpHeight() == 44) {
+                            plant.setIsSquashJumped();
+                        }
+                        if (plant.getJumpHeight() > 0 && plant.getIsSquashJumped()) {
+                            plant.reduceJumpHeight();
+                            if (targetLaneX > plantLaneX && plant.getJumpDisplacement() < 88) {
+                                plant.addJumpDisplacement();
+                            }
+                        }
+                        
+                        GUI.drawImage(plantGif[4], plantCoordX + plant.getJumpDisplacement(), plantCoordY - plant.getJumpHeight(), plant.getPlantWidth(), plant.getPlantHeight(), this);
+                    
+                        if (plant.getJumpHeight() == 0 && plant.getIsSquashJumped()) {
+                            AudioManager.cherryExplode();
+                            Plants.emptySlot(plantLaneX, plantLaneY);
+                            iteratedPlant.remove();
+                            
+                            //kill zombie
+                            Iterator<Zombie> iteratedZombie = zombies.iterator(); 
+                            while (iteratedZombie.hasNext()){
+                                Zombie zombie = iteratedZombie.next();
+                                if (zombie.getLaneY() == plantLaneY && zombie.getLaneX() == targetLaneX) {
+                                    zombie.stopAttackingPlant();
+                                    iteratedZombie.remove();
+                                    reduceZombieInMapCount();
+                                }
+                            }
+                        }
+                    }
                 } else if (plant.getPlantID().equals(5)) { // Lilypad
                     //System.out.println(new Point(plant.getLaneX(), plant.getLaneY()).print());
                     GUI.drawImage(plantGif[5], 265 + 82 * plant.getLaneX(), 75 + 88 * plant.getLaneY(), plant.getPlantWidth(), plant.getPlantHeight(), this);
@@ -535,7 +588,7 @@ public class Game extends JPanel implements ActionListener{
                                     }
                                 }
                             }
-                            if (plant.isthreadToExplodeAlive()) {
+                            if (plant.isthreadToKillAlive()) {
                                 GUI.drawImage(explosionImage, plantCoordX-150, plantCoordY-125, 300, 250, this);
                             } else {
                                 iteratedPlant.remove();
@@ -568,7 +621,7 @@ public class Game extends JPanel implements ActionListener{
                                 }
                             }
                         }
-                        if (plant.isthreadToExplodeAlive()) {
+                        if (plant.isthreadToKillAlive()) {
                             GUI.drawImage(explosionImage, plantCoordX-150, plantCoordY-125, 300, 250, this);
                         } else {
                             iteratedPlant.remove();
@@ -592,7 +645,7 @@ public class Game extends JPanel implements ActionListener{
                     IterateZombieTarget: for (Zombie zombie: zombies) {
                         if (plantLaneY == zombie.getLaneY() && plantLaneX <= zombie.getLaneX()){
                             if (plant.getIsIdle()) {
-                                if (plant.getPlantID().equals(9) && isNight) {
+                                if (plant.getPlantID().equals(9) && isNight && zombie.getLaneX() - plantLaneX <= 3) {
                                     plant.attack();
                                 } else if (!plant.getPlantID().equals(9)) {
                                     plant.attack();
@@ -682,7 +735,7 @@ public class Game extends JPanel implements ActionListener{
 
             //draw black&white plant menu
             for (int i = 0; i < 6; i++) {
-                if (getSunCredits() >= PlantCost[PlantDeck[i]] && realCooldownPlantList.get(i) == 0.0) {
+                if (getSunCredits() >= getCostByPlantID(PlantDeck[i]) && realCooldownPlantList.get(i) == 0.0) {
                     GUI.drawImage(plantCatalogImg[PlantDeck[i]], 40, 156 + 74 * i, 62, 66, this);
                 } else {
                     GUI.drawImage(plantCatalogImgDark[PlantDeck[i]], 40, 156 + 74 * i, 62, 66, this);
@@ -1188,7 +1241,7 @@ public class Game extends JPanel implements ActionListener{
     }
 
     public void plantSelected() {
-        spendSunCredits(PlantCost[selectedPlant]);
+        spendSunCredits(getCostByPlantID(selectedPlant));
     }
 
     public void emptyPlantSelection() {
