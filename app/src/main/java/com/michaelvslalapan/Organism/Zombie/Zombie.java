@@ -55,7 +55,7 @@ public class Zombie extends Organism implements Comparable<Zombie> {
         this.ZombieID = ZombieID;
         zombieAttackTimer = new Timer(((int) get_Attack_Speed()) * 1000, new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                for(Plants plant: Game.plants){
+                for(Plants<Integer> plant: Game.plants){
                     if (plant.getLaneX() == LaneX && plant.getLaneY() == LaneY) {
                         if (LaneY == 2 || LaneY == 3) {
                             if (Plants.getIsSlotFilled(LaneX, LaneY) && plant.getPlantID().equals(5)) continue;
