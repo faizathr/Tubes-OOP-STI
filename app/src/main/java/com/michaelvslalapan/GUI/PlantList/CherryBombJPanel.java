@@ -10,13 +10,13 @@ import com.michaelvslalapan.GUI.StartUpFrame;
  *
  * @author David
  */
-public class WallnutJPanel extends javax.swing.JPanel {
+public class CherryBombJPanel extends javax.swing.JPanel {
     StartUpFrame mainframe;
     /**
      * Creates new form SunflowerJPanel
      * @param mainframe
      */
-    public WallnutJPanel(StartUpFrame mainframe) {
+    public CherryBombJPanel(StartUpFrame mainframe) {
         initComponents();
         this.mainframe = mainframe;
     }
@@ -35,11 +35,11 @@ public class WallnutJPanel extends javax.swing.JPanel {
 
         setLayout(null);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/WallnutFull.gif"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CherryBomb.gif"))); // NOI18N
         add(jLabel2);
         jLabel2.setBounds(260, 110, 80, 100);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/StartAndMenuButton/BackButton.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BackButton.png"))); // NOI18N
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -51,7 +51,7 @@ public class WallnutJPanel extends javax.swing.JPanel {
         add(jButton2);
         jButton2.setBounds(20, 20, 90, 40);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Wallnut.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CherryBomb.png"))); // NOI18N
         add(jLabel1);
         jLabel1.setBounds(0, 0, 600, 600);
     }// </editor-fold>//GEN-END:initComponents

@@ -335,7 +335,7 @@ public class Game extends JPanel implements ActionListener{
     }
 
     public void startGame() {
-        for(int i = 0; i < 6; i++){
+        for(int i = 0; i < 10; i++){
             cooldownPlantList.add(getCooldownByPlantID(i));
             realCooldownPlantList.add(0.0);
         }
