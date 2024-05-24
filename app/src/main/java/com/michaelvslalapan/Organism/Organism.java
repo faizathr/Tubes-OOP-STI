@@ -2,6 +2,8 @@ package com.michaelvslalapan.Organism;
 
 import java.util.concurrent.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public abstract class Organism {
     private String name;
     private double health;
@@ -65,6 +67,7 @@ public abstract class Organism {
         this.health -= attackDamage;
     }
 
+    @JsonIgnore
     public boolean isDead(){
         return health <= (double) 0;
     }

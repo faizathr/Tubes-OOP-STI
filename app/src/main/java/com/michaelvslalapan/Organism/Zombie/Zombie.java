@@ -9,16 +9,26 @@ import javax.swing.Timer;
 import com.michaelvslalapan.Game.Game;
 import com.michaelvslalapan.Organism.Organism;
 import com.michaelvslalapan.Organism.Tanaman.Plants;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.michaelvslalapan.Game.AudioManager;
 
 public class Zombie extends Organism implements Comparable<Zombie> {
-    private static Timer zombieSpawningTimer, zombieAttackTimer, zombieSlowedTimer;
+    private static Timer zombieSpawningTimer;
+    private Timer zombieAttackTimer;
+    private Timer zombieSlowedTimer = new Timer(3000, new ActionListener(){
+        public void actionPerformed(ActionEvent e) {
+            isSlowed = false;
+            zombieSlowedTimer.stop();
+        }
+    });
     private static boolean isReachedHouse = false;
 
     private int ZombieID;
     private int zombieWidth = 73;
     private int zombieHeight = 119;
-    private int LaneX, LaneY, CoordY;
+    private int LaneX = 9, CoordY;
+    private final int LaneY;
     private double timePerLaneMove = 10;
     private float CoordX = 1000f;
     private boolean isSlowed;
@@ -43,8 +53,48 @@ public class Zombie extends Organism implements Comparable<Zombie> {
         this.LaneY = LaneY;
         CoordY = getLaneYCoord(LaneY);
         this.ZombieID = ZombieID;
+        zombieAttackTimer = new Timer(((int) get_Attack_Speed()) * 1000, new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                for(Plants<Integer> plant: Game.plants){
+                    if (plant.getLaneX() == LaneX && plant.getLaneY() == LaneY) {
+                        if (LaneY == 2 || LaneY == 3) {
+                            if (Plants.getIsSlotFilled(LaneX, LaneY) && plant.getPlantID().equals(5)) continue;
+                        }
+                        if(!AudioManager.isEating() && !isReachedHouse){
+                            AudioManager.eat();
+                        }
+                        plant.decreaseHealth(get_Attack_Damage());
+                    }
+                }
+            }
+        });
+        //zombieAttackTimer.setInitialDelay(200);
     }
 
+    public Zombie(@JsonProperty("zombieID")int ZombieID, @JsonProperty("_name")String name, @JsonProperty("_Health")double health, @JsonProperty("_Attack_Damage")double attackDamage, @JsonProperty("_Attack_Speed")double attackSpeed, @JsonProperty("_is_aquatic")boolean is_aquatic, @JsonProperty("coordY") int coordY, @JsonProperty("isSlowed") boolean slowed, @JsonProperty("coordX") float coordX, @JsonProperty("laneX")int laneX, @JsonProperty("laneY")int laneY) {
+        super(name, health, attackDamage, attackSpeed, is_aquatic);
+        this.LaneY = laneY;
+        CoordY = coordY;
+        CoordX = coordX;
+        this.ZombieID = ZombieID;
+        isSlowed = slowed;
+        zombieAttackTimer = new Timer(((int) get_Attack_Speed()) * 1000, new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                for(Plants<Integer> plant: Game.plants){
+                    if (plant.getLaneX() == LaneX && plant.getLaneY() == LaneY) {
+                        if (LaneY == 2 || LaneY == 3) {
+                            if (Plants.getIsSlotFilled(LaneX, LaneY) && plant.getPlantID().equals(5)) continue;
+                        }
+                        if(!AudioManager.isEating() && !isReachedHouse){
+                            AudioManager.eat();
+                        }
+                        plant.decreaseHealth(get_Attack_Damage());
+                    }
+                }
+            }
+        });
+    }
+    
     public void settimePerLaneMove(double timePerLaneMove){
         this.timePerLaneMove = timePerLaneMove;
     }
@@ -72,11 +122,11 @@ public class Zombie extends Organism implements Comparable<Zombie> {
     public int getZombieID() {
         return ZombieID;
     }
-
+    @JsonIgnore
     public int getWidth() {
         return zombieWidth;
     }
-
+    @JsonIgnore
     public int getHeight() {
         return zombieHeight;
     }
@@ -93,28 +143,24 @@ public class Zombie extends Organism implements Comparable<Zombie> {
             new DuckyTubeZombie(LaneY),
             new DolphinRiderZombie(LaneY)
         };
-        //System.out.println("LaneY: " + LaneY);
         if (LaneY <= 1 || LaneY >= 4) {
             int randSeed = (int)(Math.random() * NonAquaticZombieInventory.length);
-            //System.out.println("NonAquaticZombieInventory randSeed: " + randSeed);
             zombie = NonAquaticZombieInventory[randSeed];
         } else {
-            // if (LaneY >= 2 && LaneY <= 3) {
             int randSeed = (int)(Math.random() * AquaticZombieInventory.length);
-            //System.out.println("AquaticZombieInventory randSeed: " + randSeed);
             zombie = AquaticZombieInventory[randSeed];
         }
         return zombie;
     }
-
+    @JsonIgnore
     public static void startSpawning() {
         zombieSpawningTimer = new Timer(3 * 1000, new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 if (Game.getSecondsTime() >= 20 && Game.getSecondsTime() <= 160) {
                     if (Game.getZombieInMapCount() < 10) {
-                        for (int LaneY = 0; LaneY < 6; LaneY++) {
+                        for (int LaneYSpawn = 0; LaneYSpawn < 6; LaneYSpawn++) {
                             if ((int)(Math.random() * 10) < 3) {
-                                Game.zombies.add(genrateRandomZombie(LaneY));
+                                Game.zombies.add(genrateRandomZombie(LaneYSpawn));
                                 Game.addZombieInMapCount();
                                 Collections.sort(Game.zombies);
                             }   
@@ -123,10 +169,13 @@ public class Zombie extends Organism implements Comparable<Zombie> {
                 }
             }
         });
-        zombieSpawningTimer.setInitialDelay(20 * 1000);
+        if(Game.isUsingPreviousGame){
+            zombieSpawningTimer.setInitialDelay((Game.getSecondsTime() - 20*1000 < 0) ? 0 : (Game.getSecondsTime() - 20*1000));
+        }else{
+            zombieSpawningTimer.setInitialDelay(20 * 1000);
+        }
         zombieSpawningTimer.start();
     }
-
     public int getLaneX() {
         int calculateLaneX = 9;
         int[] fieldArr = {296,377,458,539,620,701,782,863,944};
@@ -144,12 +193,6 @@ public class Zombie extends Organism implements Comparable<Zombie> {
     public void slowed() {
         if (!isSlowed) {
             isSlowed = true;
-            zombieSlowedTimer = new Timer(3000, new ActionListener(){
-                public void actionPerformed(ActionEvent e) {
-                    isSlowed = false;
-                    zombieSlowedTimer.stop();
-                }
-            });
             zombieSlowedTimer.start();
         } else {
             zombieSlowedTimer.restart();
@@ -173,7 +216,7 @@ public class Zombie extends Organism implements Comparable<Zombie> {
     }
 
     public void attackOrMove() {
-        LaneX = getLaneX();
+        LaneX = this.getLaneX();
         if (Plants.getIsSlotFilled(LaneX, LaneY) != false){
             IterateGamePlants: for(Plants<Integer> plant: Game.plants){
                 if (plant.getLaneX() == LaneX && plant.getLaneY() == LaneY && !plant.getPlantID().equals(5)){
@@ -209,7 +252,11 @@ public class Zombie extends Organism implements Comparable<Zombie> {
         CoordX -= getZombieSpeed(timePerLaneMove) * (isSlowed ? 0.5f : 1f);
     }
 
-    public static void stopAttackingPlant() {
+    public static void stopSpawning() {
+        zombieSpawningTimer.stop();
+    }
+
+    public void stopAttackingPlant() {
         zombieAttackTimer.stop();
     }
 
@@ -217,7 +264,7 @@ public class Zombie extends Organism implements Comparable<Zombie> {
 	public int compareTo(Zombie z) {
 		return LaneY - z.getLaneY();
 	}
-
+    @JsonIgnore
     public boolean isGameOver() {
         if (CoordX < 210) {
             isReachedHouse = true;
@@ -238,22 +285,5 @@ public class Zombie extends Organism implements Comparable<Zombie> {
         zombieSpawningTimer.setInitialDelay(4000);
         zombieSpawningTimer.start();
         Game.setWave(1);
-    }
-
-    // Initialization Block
-    {
-        zombieAttackTimer = new Timer((int) (this.get_Attack_Speed() * 1000), new ActionListener(){
-            public void actionPerformed(ActionEvent e) {
-                for(Plants<Integer> plant: Game.plants){
-                    if (plant.getLaneX() == LaneX && plant.getLaneY() == LaneY && !(plant.getPlantID().equals(5) && Plants.getIsSlotFilled(LaneX, LaneY))){
-                        if(!AudioManager.isEating() && !isReachedHouse){
-                            AudioManager.eat();
-                        }
-                        plant.decreaseHealth(get_Attack_Damage());
-                    }
-                }
-            }
-        });
-        zombieAttackTimer.setInitialDelay(200);
     }
 }
