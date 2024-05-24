@@ -20,6 +20,9 @@ public class Zombie extends Organism implements Comparable<Zombie> {
         public void actionPerformed(ActionEvent e) {
             isSlowed = false;
             zombieSlowedTimer.stop();
+            if(Game.stopThread){
+                ((Timer)e.getSource()).stop();
+            }
         }
     });
     private static boolean isReachedHouse = false;
@@ -66,6 +69,9 @@ public class Zombie extends Organism implements Comparable<Zombie> {
                         plant.decreaseHealth(get_Attack_Damage());
                     }
                 }
+                if(Game.stopThread){
+                    ((Timer)e.getSource()).stop();
+                }
             }
         });
         //zombieAttackTimer.setInitialDelay(200);
@@ -90,6 +96,9 @@ public class Zombie extends Organism implements Comparable<Zombie> {
                         }
                         plant.decreaseHealth(get_Attack_Damage());
                     }
+                }
+                if(Game.stopThread){
+                    ((Timer)e.getSource()).stop();
                 }
             }
         });
@@ -166,6 +175,9 @@ public class Zombie extends Organism implements Comparable<Zombie> {
                             }   
                         }
                     }
+                }
+                if(Game.stopThread){
+                    ((Timer)e.getSource()).stop();
                 }
             }
         });

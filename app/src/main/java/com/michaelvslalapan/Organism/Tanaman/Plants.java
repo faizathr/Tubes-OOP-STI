@@ -309,12 +309,18 @@ public class Plants<PlantID> extends Organism {
         peaTimer = new Timer(2000, new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 Game.peas.add(new Pea(LaneX, LaneY, attackDamage, (int) ID));
+                if(Game.stopThread){
+                    ((Timer)e.getSource()).stop();
+                }
             }
         });
         
         repeaterPeaTimer = new Timer(2000, new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 Game.peas.add(new Pea(LaneX, LaneY, attackDamage, 6));
+                if(Game.stopThread){
+                    ((Timer)e.getSource()).stop();
+                }
             }
         });
         repeaterPeaTimer.setInitialDelay(2200);
@@ -322,6 +328,9 @@ public class Plants<PlantID> extends Organism {
         sunDropTimer = new Timer(3 * 1000, new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 Game.suns.add(new Sun(LaneX, LaneY));
+                if(Game.stopThread){
+                    ((Timer)e.getSource()).stop();
+                }
             }
         });
     }

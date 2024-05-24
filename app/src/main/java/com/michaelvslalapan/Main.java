@@ -8,6 +8,16 @@ public class Main{
     public static Game maingame;
     public static JFrame frame;
     public static File previousGameFile;
+    private static String directory;
+
+    public static void restartGame(){
+        Main.maingame = new Game();
+        Main.frame.setContentPane(maingame);
+        Main.frame.repaint();
+        Main.frame.revalidate();
+        Main.previousGameFile = new File(directory);
+        Game.stopThread = false;
+    }
     public static void main(String[] args){
         int inset=38;
         if(System.getProperty("os.name").equals("Mac OS X")){
@@ -18,7 +28,7 @@ public class Main{
         
         frame = new JFrame();
 
-        String directory = System.getProperty("user.dir") + "/src/main/resources/SaveFiles/SaveFile.json";
+        directory = System.getProperty("user.dir") + "/src/main/resources/SaveFiles/SaveFile.json";
         previousGameFile = new File(directory);
 
         maingame = new Game();

@@ -229,6 +229,7 @@ public class Game extends JPanel implements ActionListener{
     private static int zombieWave = 0;
     public static boolean isUsingPreviousGame = false;
     public static int isContinueGameSaved;
+    public static boolean stopThread;
     
     private Plants<Integer> plant = new Sunflower(0, 0);
     private Pea pea;
@@ -253,7 +254,6 @@ public class Game extends JPanel implements ActionListener{
         try {
             for (int i = 0; i < imgfilenames.length; i++) {
                 errfile = imgfilenames[i];
-                System.out.println(errfile);
                 img[i] = toolkit.getImage(getClass().getResource("/img/" + imgfilenames[i]));
             }
         } catch(Exception ex) {
@@ -306,9 +306,11 @@ public class Game extends JPanel implements ActionListener{
 
         AudioManager.menu();
         gameTimer.start();
+        stopThread = false;
     }
 
     public void startDeckSelection() {
+        stopThread = false;
         plantDeckSelection = true;
         loadFont();
 
@@ -323,6 +325,9 @@ public class Game extends JPanel implements ActionListener{
                         Point zombiePoint = zombieDisplayCoord[zombieDisplay][i];
                         zombiePoint.setX(zombiePoint.getX() + 9);
                     }
+                }
+                if(stopThread){
+                    ((Timer)e.getSource()).stop();
                 }
             }
         });
@@ -366,6 +371,9 @@ public class Game extends JPanel implements ActionListener{
                 secondsTime += 1;
                 if (Math.floor(secondsTime / 100) % 2 == 1) isNight = true;
                 else isNight = false;
+                if(stopThread){
+                    ((Timer)e.getSource()).stop();
+                }
             }
         });
         secondsTimer.start();
@@ -745,7 +753,7 @@ public class Game extends JPanel implements ActionListener{
 
             //draw black&white plant menu
             for (int i = 0; i < 6; i++) {
-                if (getSunCredits() >= getCostByPlantID(PlantDeck[i]) && realCooldownPlantList.get(i) == 0.0) {
+                if (getSunCredits() >= getCostByPlantID(PlantDeck[i]) && realCooldownPlantList.get(PlantDeck[i]) == 0.0) {
                     GUI.drawImage(plantCatalogImg[PlantDeck[i]], 40, 156 + 74 * i, 62, 66, this);
                 } else {
                     GUI.drawImage(plantCatalogImgDark[PlantDeck[i]], 40, 156 + 74 * i, 62, 66, this);
@@ -987,7 +995,7 @@ public class Game extends JPanel implements ActionListener{
                     }
                     if (!isClickingSun) {
                         if (plantCatalogClickArea[0].contains(e.getPoint())) {
-                            if (getSunCredits() >= getCostByPlantID(PlantDeck[0]) && realCooldownPlantList.get(0) == 0.0) {
+                            if (getSunCredits() >= getCostByPlantID(PlantDeck[0]) && realCooldownPlantList.get(PlantDeck[0]) == 0.0) {
                                 AudioManager.seedlift();
                                 selectPlant((getSelectedPlant() == PlantDeck[0]) ? -1 : PlantDeck[0]);
                             } else {
@@ -995,7 +1003,7 @@ public class Game extends JPanel implements ActionListener{
                                 selectPlant(-1);
                             }
                         } else if (plantCatalogClickArea[1].contains(e.getPoint())) {
-                            if (getSunCredits() >= getCostByPlantID(PlantDeck[1])&& realCooldownPlantList.get(1) == 0.0) {
+                            if (getSunCredits() >= getCostByPlantID(PlantDeck[1])&& realCooldownPlantList.get(PlantDeck[1]) == 0.0) {
                                 AudioManager.seedlift();
                                 selectPlant((getSelectedPlant() == PlantDeck[1]) ? -1 : PlantDeck[1]);
                             } else {
@@ -1003,7 +1011,7 @@ public class Game extends JPanel implements ActionListener{
                                 selectPlant(-1);
                             }
                         } else if (plantCatalogClickArea[2].contains(e.getPoint())) {
-                            if (getSunCredits() >= getCostByPlantID(PlantDeck[2]) && realCooldownPlantList.get(2) == 0.0) {
+                            if (getSunCredits() >= getCostByPlantID(PlantDeck[2]) && realCooldownPlantList.get(PlantDeck[2]) == 0.0) {
                                 AudioManager.seedlift();
                                 selectPlant((getSelectedPlant() == PlantDeck[2]) ? -1 : PlantDeck[2]);
                             } else {
@@ -1011,7 +1019,7 @@ public class Game extends JPanel implements ActionListener{
                                 selectPlant(-1);
                             }
                         } else if (plantCatalogClickArea[3].contains(e.getPoint())) {
-                            if (getSunCredits() >= getCostByPlantID(PlantDeck[3]) && realCooldownPlantList.get(3) == 0.0) {
+                            if (getSunCredits() >= getCostByPlantID(PlantDeck[3]) && realCooldownPlantList.get(PlantDeck[3]) == 0.0) {
                                 AudioManager.seedlift();
                                 selectPlant((getSelectedPlant() == PlantDeck[3]) ? -1 : PlantDeck[3]);
                             } else {
@@ -1019,7 +1027,7 @@ public class Game extends JPanel implements ActionListener{
                                 selectPlant(-1);
                             }
                         } else if (plantCatalogClickArea[4].contains(e.getPoint())) {
-                            if (getSunCredits() >= getCostByPlantID(PlantDeck[4]) && realCooldownPlantList.get(4) == 0.0) {
+                            if (getSunCredits() >= getCostByPlantID(PlantDeck[4]) && realCooldownPlantList.get(PlantDeck[4]) == 0.0) {
                                 AudioManager.seedlift();
                                 selectPlant((getSelectedPlant() == PlantDeck[4]) ? -1 : PlantDeck[4]);
                             } else {
@@ -1027,7 +1035,7 @@ public class Game extends JPanel implements ActionListener{
                                 selectPlant(-1);
                             }
                         } else if (plantCatalogClickArea[5].contains(e.getPoint())) {
-                            if (getSunCredits() >= getCostByPlantID(PlantDeck[5]) && realCooldownPlantList.get(5) == 0.0) {
+                            if (getSunCredits() >= getCostByPlantID(PlantDeck[5]) && realCooldownPlantList.get(PlantDeck[5]) == 0.0) {
                                 AudioManager.seedlift();
                                 selectPlant((getSelectedPlant() == PlantDeck[5]) ? -1 : PlantDeck[5]);
                             } else {
@@ -1157,11 +1165,13 @@ public class Game extends JPanel implements ActionListener{
                             int SaveGame = JOptionPane.showConfirmDialog(Main.frame, "Do You Want to Save The Current Game and Exit?", "Save Confirmation", JOptionPane.YES_NO_OPTION);
                             if(JOptionPane.YES_OPTION == SaveGame){
                                 Save.saveGame();
-                                System.exit(0);
+                                Main.restartGame();
+                                stopThread = true;
                                 System.out.println("Save Berhasil");
                             }
                         } catch (Exception e1) {
                             System.out.println("Save Error!");
+                            e1.printStackTrace();
                         }
                         
                     }
@@ -1350,9 +1360,10 @@ public class Game extends JPanel implements ActionListener{
         Timer coolDown = new Timer((int) (1000), new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 realCooldownPlantList.set(PlantID, realCooldownPlantList.get(PlantID) - 1);
-                if(realCooldownPlantList.get(PlantID) == 0){
+                if(realCooldownPlantList.get(PlantID) == 0 || stopThread == true){
                     ((Timer)e.getSource()).stop();
                 }
+
             }
         });
         coolDown.start();

@@ -61,7 +61,11 @@ public class AudioManager{
                 AudioClip[4].setMicrosecondPosition(0);
                 AudioClip[4].start(); 
                 AudioTimer.stop();
+                if(Game.stopThread){
+                    ((Timer)e.getSource()).stop();
+                }
             }
+            
         });
     }
 
@@ -71,13 +75,11 @@ public class AudioManager{
     }
     public static void evillaugh(){
         AudioClip[0].stop();
-        AudioClip[0] = null;
         AudioClip[9].start(); 
     }
 
     public static void begin(){
         AudioClip[27].stop();
-        AudioClip[27] = null;
         AudioClip[2].stop();
         AudioClip[3].stop();
         
@@ -195,7 +197,6 @@ public class AudioManager{
         AudioClip[26].start();
     }
     public static void selectPlant(){
-        AudioClip[9] = null;
         AudioClip[27].start(); 
         AudioClip[27].loop(Clip.LOOP_CONTINUOUSLY);
     }
