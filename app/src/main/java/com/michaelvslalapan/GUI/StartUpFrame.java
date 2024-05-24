@@ -62,6 +62,7 @@ public class StartUpFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Michael vs Lalapan Game");
         setAlwaysOnTop(true);
         setLocationByPlatform(true);
         setResizable(false);

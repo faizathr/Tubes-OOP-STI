@@ -61,8 +61,8 @@ public abstract class Organism {
         this.is_aquatic = is_aquatic;
     }
 
-    public void decreaseHealth(double health){
-        this.health -= health;
+    public void decreaseHealth(double attackDamage){
+        this.health -= attackDamage;
     }
 
     public boolean isDead(){
