@@ -33,9 +33,10 @@ public class StartUpJPanel extends javax.swing.JPanel {
 
         setLayout(null);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Start.gif"))); // NOI18N
-        jButton1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/StartAndMenuButton/StartButton.gif"))); // NOI18N
+        // jButton1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jButton1.setContentAreaFilled(false);
+        jButton1.setBorderPainted(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -43,7 +44,7 @@ public class StartUpJPanel extends javax.swing.JPanel {
             }
         });
         add(jButton1);
-        jButton1.setBounds(200, 200, 210, 90);
+        jButton1.setBounds(200, 150, 210, 107);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/StartPop.png"))); // NOI18N
         add(jLabel1);

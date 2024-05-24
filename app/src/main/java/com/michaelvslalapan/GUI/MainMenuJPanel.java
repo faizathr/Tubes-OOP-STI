@@ -37,7 +37,7 @@ public class MainMenuJPanel extends javax.swing.JPanel {
 
         setLayout(null);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ZombieListButton.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/StartAndMenuButton/ZombieListButton.png"))); // NOI18N
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -49,7 +49,7 @@ public class MainMenuJPanel extends javax.swing.JPanel {
         add(jButton1);
         jButton1.setBounds(170, 220, 230, 60);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ExitButton.png"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/StartAndMenuButton/ExitButton.png"))); // NOI18N
         jButton4.setBorderPainted(false);
         jButton4.setContentAreaFilled(false);
         jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -60,9 +60,9 @@ public class MainMenuJPanel extends javax.swing.JPanel {
             }
         });
         add(jButton4);
-        jButton4.setBounds(240, 450, 100, 60);
+        jButton4.setBounds(200, 450, 200, 70);
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HelpButton.png"))); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/StartAndMenuButton/HelpButton.png"))); // NOI18N
         jButton5.setBorderPainted(false);
         jButton5.setContentAreaFilled(false);
         jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -74,7 +74,7 @@ public class MainMenuJPanel extends javax.swing.JPanel {
         add(jButton5);
         jButton5.setBounds(230, 330, 116, 60);
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PlantsListButton.png"))); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/StartAndMenuButton/PlantsListButton.png"))); // NOI18N
         jButton6.setBorderPainted(false);
         jButton6.setContentAreaFilled(false);
         jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

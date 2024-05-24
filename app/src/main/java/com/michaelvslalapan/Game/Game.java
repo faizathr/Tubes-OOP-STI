@@ -240,7 +240,7 @@ public class Game extends JPanel implements ActionListener{
 
     private void loadMainMenu() {
         try {
-            MainMenu = toolkit.getImage(getClass().getResource("/img/Menu.jpg"));
+            MainMenu = toolkit.getImage(getClass().getResource("/img/MenuAwal.png"));
         } catch(Exception ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Cannot open image!");
