@@ -777,7 +777,7 @@ public class Game extends JPanel implements ActionListener{
                     plant.stop();
                 }
                 secondsTimer.stop();
-                Zombie.stopAttackingPlant();
+                Zombie.stopSpawning();
                 Sun.stop();
                 suns.clear();
                 peas.clear();
