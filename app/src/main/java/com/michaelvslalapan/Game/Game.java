@@ -27,6 +27,7 @@ import javax.swing.Timer;
 
 import com.michaelvslalapan.Main;
 import com.michaelvslalapan.ADT.Point;
+import com.michaelvslalapan.Organism.Tanaman.PlantInventory;
 import com.michaelvslalapan.Organism.Tanaman.Plants;
 import com.michaelvslalapan.Organism.Tanaman.Sunflower;
 import com.michaelvslalapan.Organism.Zombie.Zombie;
@@ -133,6 +134,7 @@ public class Game extends JPanel implements ActionListener{
     private int plantCoordY;
     private int plantLaneX;
     private int plantLaneY;
+    private static List<Double> cooldownPlantList = new ArrayList<Double>(); 
 
     // Player
     private int sunCredits = 50, sunChanges, selectedPlant = -1;
@@ -153,6 +155,7 @@ public class Game extends JPanel implements ActionListener{
     private int[] PlantCost = new int[]{
         50, 100, 50, 175, 50, 25, 200, 100, 150, 0
     };
+    
     public int getPlantID(String PlantName) {
         for (int i = 0; i < PlantID.length; i++) {
             if (PlantName.equals(PlantID[i])) return i;
@@ -161,6 +164,10 @@ public class Game extends JPanel implements ActionListener{
     }
     public int getCostByPlantID(int PlantID) {
         return PlantCost[PlantID];
+    }
+
+    public double getCooldownByPlantID(int PlantID) {
+        return (PlantInventory.getPlantCatalog().get(PlantID).getCooldown());
     }
 
     // Plant Catalog
@@ -319,6 +326,12 @@ public class Game extends JPanel implements ActionListener{
     }
 
     public void startGame() {
+        for(int i = 0; i < 6; i++){
+            cooldownPlantList.add(getCooldownByPlantID(i));
+        }
+
+        System.out.println(cooldownPlantList.toString());
+
         sunChanges = sunCredits;
 
         Sun.startTimer();
