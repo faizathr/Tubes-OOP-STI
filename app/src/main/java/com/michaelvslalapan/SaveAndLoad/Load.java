@@ -34,6 +34,7 @@ public class Load {
         Game.setZombieInMapCount(mapper.convertValue(gameData.get("zombieInMap"), Integer.class));
         Game.setWave(mapper.convertValue(gameData.get("zombieWave"), Integer.class));
         Main.maingame.setIsNight(mapper.convertValue(gameData.get("isNight"), Boolean.class));
+        Game.setRealCoolDownList(mapper.convertValue(gameData.get("realCooldownPlantList"), new TypeReference<List<Double>>() {}));
         // Main.maingame.setSecondsTime(mapper.convertValue(gameData.get("secondsTime"), Integer.class));
 
     }

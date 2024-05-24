@@ -332,7 +332,15 @@ public class Game extends JPanel implements ActionListener{
             realCooldownPlantList.add(0.0);
         }
 
-        System.out.println(cooldownPlantList.toString());
+        if(isUsingPreviousGame){
+            for(int i = 0; i < 6; i++){
+                if(realCooldownPlantList.get(i) != 0.0){
+                    timerForCooldown(i);
+                }
+            }
+        }
+
+        // System.out.println(cooldownPlantList.toString());
 
         sunChanges = sunCredits;
 
@@ -993,7 +1001,7 @@ public class Game extends JPanel implements ActionListener{
                                                     if(plant.plant(LaneX, LaneY, getSelectedPlant())){
                                                         AudioManager.plant();
                                                         plantSelected();
-                                                        timerForCooldown(cooldownPlantList.get(getSelectedPlant()), getSelectedPlant());
+                                                        timerForCooldown(getSelectedPlant());
                                                         realCooldownPlantList.set(getSelectedPlant(), cooldownPlantList.get(getSelectedPlant()));
                                                     } else {
                                                         AudioManager.buzzer();
@@ -1005,7 +1013,7 @@ public class Game extends JPanel implements ActionListener{
                                                 if(plant.plant(LaneX, LaneY, getSelectedPlant())){
                                                     AudioManager.plant();
                                                     plantSelected();
-                                                    timerForCooldown(cooldownPlantList.get(getSelectedPlant()), getSelectedPlant());
+                                                    timerForCooldown(getSelectedPlant());
                                                     realCooldownPlantList.set(getSelectedPlant(), cooldownPlantList.get(getSelectedPlant()));
                                                 } else {
                                                     AudioManager.buzzer();
@@ -1263,13 +1271,23 @@ public class Game extends JPanel implements ActionListener{
         }
     }
 
-    private static void timerForCooldown(double seconds, int PlantID){
-        Timer coolDown = new Timer((int) (seconds*1000), new ActionListener(){
+    private static void timerForCooldown(int PlantID){
+        Timer coolDown = new Timer((int) (1000), new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                realCooldownPlantList.set(PlantID, 0.0);
+                realCooldownPlantList.set(PlantID, realCooldownPlantList.get(PlantID) - 1);
+                if(realCooldownPlantList.get(PlantID) == 0){
+                    ((Timer)e.getSource()).stop();
+                }
             }
         });
-        coolDown.setRepeats(false);
         coolDown.start();
+    }
+
+    public static List<Double> getRealCoolDownList(){
+        return realCooldownPlantList;
+    }
+
+    public static void setRealCoolDownList(List<Double> realcooldownlist){
+        realCooldownPlantList =  realcooldownlist;
     }
 }

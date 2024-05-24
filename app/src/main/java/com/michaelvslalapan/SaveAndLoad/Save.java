@@ -41,6 +41,7 @@ public class Save {
         gameData.put("zombieWave", Game.getWave());
         gameData.put("isNight", Main.maingame.getIsNight());
         gameData.put("plantDeck", Main.maingame.getPlantDeck());
+        gameData.put("realCooldownPlantList", Game.getRealCoolDownList());
 
         // Serialize the map and write to the file
         mapper.writer(prettyPrinter).writeValue(new File(directory), gameData);
