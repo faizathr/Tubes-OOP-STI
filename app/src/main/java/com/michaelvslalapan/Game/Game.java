@@ -27,6 +27,7 @@ import javax.swing.Timer;
 
 import com.michaelvslalapan.Main;
 import com.michaelvslalapan.ADT.Point;
+import com.michaelvslalapan.GUI.StartUpFrame;
 import com.michaelvslalapan.Organism.Tanaman.PlantInventory;
 import com.michaelvslalapan.Organism.Tanaman.Plants;
 import com.michaelvslalapan.Organism.Tanaman.Sunflower;
@@ -122,7 +123,7 @@ public class Game extends JPanel implements ActionListener{
     private Image MainMenu;
     private Ellipse2D shovel2D;
     private Point mouse = new Point();
-    private Rectangle endScreen, startDeckSelectionButton, startGameButton, playAgainButton, saveAndExitButton;
+    private Rectangle endScreen, startDeckSelectionButton, startGameButton, playAgainButton, saveAndExitButton, othersButton, exitButton;
     private Rectangle[] plantCatalogClickArea = new Rectangle[6];
 
     //Zombie
@@ -298,7 +299,9 @@ public class Game extends JPanel implements ActionListener{
             }
         });
 
-        startDeckSelectionButton = new Rectangle(445, 525, 135, 42);
+        startDeckSelectionButton = new Rectangle(410, 450, 210, 50);
+        othersButton = new Rectangle(440, 525, 147, 38);
+        exitButton = new Rectangle(440, 575, 153, 38);
 
         AudioManager.menu();
         gameTimer.start();
@@ -893,7 +896,13 @@ public class Game extends JPanel implements ActionListener{
                     AudioManager.evillaugh();
                     startDeckSelectionButton = null;
                     checkContinueGame();
+                    othersButton = null;
+                    exitButton = null;
                     startDeckSelection();
+                }else if(othersButton.contains(e.getPoint())){
+                    (new StartUpFrame()).setVisible(true);
+                }else if(exitButton.contains(e.getPoint())){
+                    System.exit(0);
                 }
             } else if (!isGameStarted) {
                 for (int i = 0; i < 6; i++) {
